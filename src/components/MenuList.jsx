@@ -7,7 +7,7 @@ import { navbarLinks } from '@/utils/navbarLinks'
 
 const MenuList = ({ open, handleMenu }) => {
   return (
-    <div onClick={handleMenu} className={`${open ? 'opacity-100 visible' : 'invisible opacity-0'} transition-all fixed inset-0 bg-black/50 flex justify-end`}>
+    <div onClick={handleMenu} className={`${open ? 'opacity-100 visible' : 'invisible opacity-0'} z-20 transition-all fixed inset-0 bg-black/50 flex justify-end`}>
       <aside className={`${open ? '' : 'translate-x-48'} transition-all w-48 bg-gray-500`}>
 
         <div className='flex justify-end text-white text-2xl p-5 hover:cursor-pointer' onClick={handleMenu}>
