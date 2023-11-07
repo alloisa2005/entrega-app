@@ -58,7 +58,7 @@ export const mockGames = [
         name: 'God of War',
         price: 60,
         description: 'God of War is an action-adventure game developed by Santa Monica Studio and published by Sony Interactive Entertainment. Released on April 20, 2018, for the PlayStation 4 console, it is the eighth installment in the God of War series, the eighth chronologically, and the sequel to 2010s God of War III.',
-        image: 'https://upload.wikimedia.org/wikipedia/en/0/0f/God_of_War_2018_cover_art.jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg',
         category: 'Action',
         stock: 2
     },
@@ -67,7 +67,7 @@ export const mockGames = [
         name: 'Super Mario Odyssey',
         price: 60,
         description: 'Super Mario Odyssey is a 2017 platform game developed and published by Nintendo for the Nintendo Switch. An entry in the Super Mario series, it follows Mario and Cappy, a sentient hat that allows Mario to control other characters and objects, as they journey across various worlds to save Princess Peach from his nemesis Bowser, who plans to forcibly marry her.',
-        image: 'https://upload.wikimedia.org/wikipedia/en/1/15/Super_Mario_Odyssey.jpg',
+        image: 'https://m.media-amazon.com/images/I/71XZsDkAuNL._AC_UF894,1000_QL80_.jpg',
         category: 'Platform',
         stock: 4
     },
@@ -76,7 +76,7 @@ export const mockGames = [
         name: 'Uncharted 4: A Thiefs End',
         price: 40,
         description: 'Uncharted 4: A Thiefs End is an action-adventure game developed by Naughty Dog and published by Sony Computer Entertainment. It is the fourth main entry in the Uncharted series. Set several years after the events of Uncharted 3: Drakes Deception, players control Nathan Drake, a former treasure hunter coaxed out of retirement by his estranged older brother Samuel.',
-        image: 'https://upload.wikimedia.org/wikipedia/en/5/5c/Uncharted_4_box_artwork.jpg',
+        image: 'https://assets2.ignimgs.com/2015/06/03/uncharted-4-button-v2jpg-5a448e.jpg',
         category: 'Action',
         stock: 6
     },
@@ -85,7 +85,7 @@ export const mockGames = [
         name: 'Horizon Zero Dawn',
         price: 40,
         description: 'Horizon Zero Dawn is a 2017 action role-playing game developed by Guerrilla Games and published by Sony Interactive Entertainment. The plot follows Aloy, a hunter in a world overrun by machines, who sets out to uncover her past.',
-        image: 'https://upload.wikimedia.org/wikipedia/en/1/15/Horizon_Zero_Dawn.jpg',
+        image: 'https://www.goha.ru/s/f/BvcO/3EyGtb/fMJUIDb8PN.jpg',
         category: 'Action',
         stock: 9
     },

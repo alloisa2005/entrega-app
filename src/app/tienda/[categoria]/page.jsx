@@ -1,4 +1,6 @@
+import GameCard from "@/components/GameCard";
 import { mockGames } from "@/data/products";
+import Image from "next/image";
 
 const ProductsByCategory = ({ params }) => {
 
@@ -6,7 +8,13 @@ const ProductsByCategory = ({ params }) => {
 
   const games = categoria === 'all' ? mockGames : mockGames.filter( game => game.category.toLowerCase() === categoria.toLowerCase() );
   return (
-    <div>ProductsByCategory: { games.length } </div>
+    <div className="p-1 grid grid-cols-4 gap-4">
+
+      {games.map( game => (
+        <GameCard key={game.id} game={game} />
+      ))}
+
+    </div>
   )
 }
 

@@ -7,7 +7,7 @@ export const navbarLinks = [
   {
     id: 2,
     title: 'Tienda',
-    path: '/tienda'
+    path: '/tienda/all'
   },
   {
     id: 3,
