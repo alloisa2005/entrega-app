@@ -14,4 +14,9 @@ export const navbarLinks = [
     title: 'Mi Carrito',
     path: '/carrito'
   },    
+  {
+    id: 4,
+    title: 'Menu Admin',
+    path: '/admin/productos'
+  },   
 ];
