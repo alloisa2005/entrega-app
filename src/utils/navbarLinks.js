@@ -7,11 +7,11 @@ export const navbarLinks = [
   {
     id: 2,
     title: 'Tienda',
-    path: '/tienda/all'
+    path: '/tienda/categorias/all'
   },
   {
     id: 3,
-    title: 'Sobre Nosotros',
-    path: '/sobre-nosotros'
+    title: 'Mi Carrito',
+    path: '/carrito'
   },    
 ];

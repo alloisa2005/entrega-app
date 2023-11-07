@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import Menu from './Menu'
 
@@ -8,10 +9,10 @@ const Navbar = () => {
       <div className='contenedor h-full flex justify-between items-center'>
 
         {/* Logo */}      
-        <div className='flex items-center gap-1 text-white'>
+        <Link href={'/'} className='flex items-center gap-1 text-white'>
           <Image src={'/images/logo.png'} alt='Logo' width={65} height={30} />
           <p className='hidden md:block text-lg'>Meeple<span className='text-rojo font-bold text-xl'>Nation</span></p>
-        </div>
+        </Link>
 
         {/* Opciones */}
         <Menu />
