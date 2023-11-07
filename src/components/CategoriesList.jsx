@@ -15,6 +15,7 @@ const CategoriesList = () => {
       <Link href={'/tienda/categorias/adventure'} className={`${pathname === '/tienda/categorias/adventure' ? 'font-bold text-black': 'text-gray-500'}  italic hover:text-black hover:cursor-pointer`}>Adventure</Link>
       <Link href={'/tienda/categorias/Platform'} className={`${pathname === '/tienda/categorias/Platform' ? 'font-bold text-black': 'text-gray-500'}  italic hover:text-black hover:cursor-pointer`}>Platform</Link>
       <Link href={'/tienda/categorias/rpg'} className={`${pathname === '/tienda/categorias/rpg' ? 'font-bold text-black': 'text-gray-500'}  italic hover:text-black hover:cursor-pointer`}>RPG</Link>
+      <Link href={'/tienda/categorias/sport'} className={`${pathname === '/tienda/categorias/sport' ? 'font-bold text-black': 'text-gray-500'}  italic hover:text-black hover:cursor-pointer`}>Sport</Link>
       <hr />
     </div>
   )

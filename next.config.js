@@ -17,6 +17,10 @@ const nextConfig = {
       'i.blogs.es',
       's3.us-east-1.amazonaws.com',
       'static.independent.co.uk',
+      'cdn02.nintendo-europe.com',
+      'images.nintendolife.com',
+      'image.api.playstation.com',
+      'i.redd.it',
     ],
   },
 };

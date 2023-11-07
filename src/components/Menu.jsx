@@ -12,7 +12,7 @@ const Menu = () => {
 
   return (
     <>
-      <div onClick={handleMenu} >
+      <div className='' onClick={handleMenu} >
         <HiMenuAlt3 size={32} className='text-white hover:cursor-pointer' />
       </div>   
 

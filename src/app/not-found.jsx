@@ -12,7 +12,7 @@ const NotFound = () => {
         height={500} />
       
       <p className='text-3xl font-bold italic text-primario'>La página que intenta acceder no existe</p>
-      <Link href={'/tienda/all'} className='mt-8 bg-primario px-4 py-3 text-white rounded-lg text-lg hover:bg-primario/90 hover:shadow-md ease-out duration-300'>
+      <Link href={'/tienda/categorias/all'} className='mt-8 bg-primario px-4 py-3 text-white rounded-lg text-lg hover:bg-primario/90 hover:shadow-md ease-out duration-300'>
         Volver a la tienda
       </Link>
     </div>
