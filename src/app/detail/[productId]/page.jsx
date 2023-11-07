@@ -1,7 +1,9 @@
+import AddToCart from '@/components/AddToCart';
 import PlataformaIcon from '@/components/PlataformaIcon';
 import { mockGames } from '@/data/products';
 import Image from 'next/image';
 import React from 'react'
+
 
 const ProductDetail = ({ params }) => {
 
@@ -19,8 +21,14 @@ const ProductDetail = ({ params }) => {
         </div>
       </div>
 
-      <div className='contenedor my-3'>
-        <p>{game.description}</p>
+      <div className='contenedor my-5'>
+        <div className='flex flex-col lg:flex-row justify-between gap-7'>
+          <div className='flex-1 text-justify'>
+            <p>{game.description}</p>
+          </div>
+
+          <AddToCart game={game}/>
+        </div>
       </div>
     </section>
   )
