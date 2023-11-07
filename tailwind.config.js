@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         primario: "#232E7E",
         gris: '#343A40',
-        naranja: '#F58220',        
+        naranja: '#F58220',         
         rojo: '#EC3A33',
       },
       backgroundImage: {
