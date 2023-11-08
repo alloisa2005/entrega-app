@@ -1,4 +1,5 @@
 import CarritoCard from '@/components/CarritoCard'
+import MetodosPago from '@/components/MetodosPago'
 import React from 'react'
 
 const Carrito = () => {
@@ -17,7 +18,9 @@ const Carrito = () => {
 
         {/* Detalle de compra */}
         <div className='bg-red-200 w-[30%] p-2'>
-          sdsdsd
+          <p className='text-center'>Detalle de Compra</p>
+
+          <MetodosPago />
         </div>
       </div>
     </div>
