@@ -4,7 +4,7 @@ import CartControls from './CartControls'
 
 const CarritoCard = () => {
   return (
-    <div className='w-full border-b-2 p-2 flex items-center justify-between gap-3'>
+    <div className='w-full  p-2 flex items-center justify-between gap-3'>
       <div className='flex items-center gap-3'>
         <Image 
           src={'https://m.media-amazon.com/images/M/MV5BNmY2ZDFlZWUtZjliZi00ZGFiLTgxYTYtYTU1MTgwYjMzNDkyXkEyXkFqcGdeQXVyMTI1Mzg0ODA5._V1_.jpg'} 

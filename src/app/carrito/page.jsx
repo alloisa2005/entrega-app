@@ -9,7 +9,7 @@ const Carrito = () => {
 
       <div className='mt-3 flex justify-between gap-3'>
         {/* Lista de Prods */}
-        <div className='flex flex-col gap-3 w-full border p-2'>
+        <div className='flex flex-col gap-3 w-full border rounded-md shadow-md p-2'>
           <CarritoCard />
 
           <CarritoCard />
@@ -17,7 +17,7 @@ const Carrito = () => {
         </div>
 
         {/* Detalle de compra */}
-        <div className='bg-red-200 w-[30%] p-2'>
+        <div className='border rounded-md shadow-md w-[30%] p-2'>
           <p className='text-center'>Detalle de Compra</p>
 
           <MetodosPago />
