@@ -16,8 +16,8 @@ const ProductDetail = ({ params }) => {
       <div className='w-full h-[400px] relative'>
         <Image src={game.bgImage} alt={game.name} width={1000} height={800} quality="100" priority className='w-full h-full object-cover'/>
         <div className='absolute w-full h-full top-0 left-0 bg-gradient-to-b from-transparent to-black'></div>
-        <div className='absolute bottom-10 left-20 text-white flex items-center gap-10'>
-          <p className=' text-4xl font-bold'>{game.name}</p>
+        <div className='absolute bottom-10 left-8 lg:left-20 text-white flex items-center gap-10'>
+          <p className='text-3xl lg:text-4xl font-bold'>{game.name}</p>
           <PlataformaIcon plataforma={game.plataforma}/>
         </div>
       </div>
