@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import Spinner from "./Spinner";
 
 const NuevoJuegoForm = () => {  
 
@@ -14,6 +16,8 @@ const NuevoJuegoForm = () => {
   const [boxImagePreview, setBoxImagePreview] = useState('');
   const [posterImage, setPosterImage] = useState('');
   const [posterImagePreview, setPosterImagePreview] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleInputImage = (e) => {   
     if(e.target.name === 'boxImage') {
@@ -39,8 +43,25 @@ const NuevoJuegoForm = () => {
     }
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+    setLoading(true);
+
+    if(!titulo.trim() || !categoria.trim() || !precio || !descripcion.trim()) {
+      setError('Todos los campos son obligatorios');
+      setLoading(false);
+      return;
+    }
+
+    if(!boxImage || !posterImage) {
+      setError('Debes cargar ambas imágenes');
+      setLoading(false);
+      return;
+    }
+  }
+
   return (
-    <form className="mt-7">      
+    <form className="my-5" onSubmit={handleSubmit}>      
 
       <div className="flex flex-col lg:flex-row items-center w-full gap-2">
 
@@ -132,6 +153,30 @@ const NuevoJuegoForm = () => {
           </div>
 
         </div>
+
+        {error && (
+          <div className="bg-red-500 text-white font-bold rounded-lg px-3 py-1 mb-4 flex items-center shadow-lg">
+            <p className="font-josefin text-md">{error}</p>
+          </div>
+        )}
+
+        <div className="w-full mt-4 flex justify-center">
+          <button    
+            disabled={loading}    
+            type="submit"
+            className="min-w-[200px] flex justify-center items-center gap-3 border border-black bg-black hover:bg-white px-2 py-2 rounded-md ease-out duration-300 hover:shadow-lg text-white hover:text-black"
+          >
+            {loading ? (
+            <Spinner />
+          ) : (
+            <>
+              <FaCloudUploadAlt size={26} className="" />
+              <p className="text-lg font-bold">Guardar Juego</p>
+            </>
+          )}          
+          </button>
+      </div>
+
       </div>
     </form>
   )
