@@ -20,6 +20,7 @@ const AddToCart = ({ game }) => {
         </div>
       </div> 
 
+      {/* background: linear-gradient(90.06deg, #1E1E1E 0.05%, #122930 41.06%); */}
       <div className='select-none flex items-center justify-center gap-4 bg-black py-3 text-white mt-4 hover:bg-black/80 hover:cursor-pointer ease-out duration-300'>
         <BsCartPlusFill size={20} className='text-white' />
         <p>Añadir al carrito</p>
