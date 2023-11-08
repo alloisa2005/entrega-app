@@ -108,7 +108,7 @@ const NuevoJuegoForm = () => {
             <div className="w-full flex items-center justify-between gap-3">
               <input onChange={handleInputImage} name="boxImage" type='file' accept="image/*" 
               className="mb-4 outline-none text-md border-2 px-2 py-1 rounded-md w-[95%]" />                  
-              <AiFillCloseCircle onClick={handleDeleteImage('box')} size={25} className='text-red-500 hover:text-red-700 hover:cursor-pointer ease-in duration-300'/>
+              <AiFillCloseCircle onClick={handleDeleteImage('box')} size={25} className={`${boxImagePreview ? 'text-red-500 hover:text-red-700 hover:cursor-pointer': 'text-gray-500'} ease-in duration-300`}/>
             </div>
             <div className="w-full lg:w-[230px] h-[230px] border shadow-md rounded-md overflow-hidden">
               {boxImagePreview && (                  
@@ -122,7 +122,7 @@ const NuevoJuegoForm = () => {
             <div className="flex items-center justify-between gap-3">
               <input onChange={handleInputImage} name="posterImage" type='file' accept="image/*" 
                 className="mb-4 outline-none text-md border-2 px-2 py-1 rounded-md w-[95%]" />                 
-              <AiFillCloseCircle onClick={handleDeleteImage('poster')} size={25} className='text-red-500 hover:text-red-700 hover:cursor-pointer ease-in duration-300'/>
+              <AiFillCloseCircle onClick={handleDeleteImage('poster')} size={25} className={`${posterImagePreview ? 'text-red-500 hover:text-red-700 hover:cursor-pointer': 'text-gray-500'} ease-in duration-300`}/>
             </div>
             <div className="w-full lg:w-[550px] h-[230px] border shadow-md rounded-md overflow-hidden">
               {posterImagePreview && (                
