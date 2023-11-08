@@ -8,7 +8,7 @@ export const mockGames = [
         bgImage:'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2020/05/witcher-3-geralt-treetops.jpg',
         category: 'RPG',
         trailer:'https://www.youtube.com/watch?v=XHrskkHf958',
-        plataforma: 'XBOX',
+        plataforma: 'xbox',
         stock: 10
     },
     {
@@ -20,7 +20,7 @@ export const mockGames = [
         bgImage:'https://assets-prd.ignimgs.com/2021/11/15/beyond667b-1600893075379-1636973051153.png',
         category: 'RPG',
         trailer:'https://www.youtube.com/watch?v=JSRtYpNRoN0',
-        plataforma: 'XBOX',
+        plataforma: 'xbox',
         stock: 13
     },
     {
@@ -32,7 +32,7 @@ export const mockGames = [
         bgImage:'https://assets.xboxservices.com/assets/22/86/228693c6-7b6a-44a4-ba35-79d8f1b55296.jpg?n=GTA-V_Sneaky-Slider-1084_752023_1600x675.jpg',
         category: 'Action',
         trailer:'https://www.youtube.com/watch?v=QkkoHAzjnUs',
-        plataforma: 'PS4',
+        plataforma: 'ps4',
         stock: 5
     },
     {
@@ -44,7 +44,7 @@ export const mockGames = [
         bgImage:'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2023/03/zelda-breath-wild-2986236.jpg',
         category: 'Adventure',
         trailer:'https://www.youtube.com/watch?v=1rPxiXXxftE',
-        plataforma: 'NS',
+        plataforma: 'ns',
         stock: 7
     },
     {
@@ -56,7 +56,7 @@ export const mockGames = [
         bgImage:'https://images.hdqwalls.com/wallpapers/the-last-of-us-part-1-x7.jpg',
         category: 'Action',
         trailer:'https://www.youtube.com/watch?v=46ohP30YA_Y',
-        plataforma: 'PS4',
+        plataforma: 'ps4',
         stock: 3
     },
     {
@@ -68,7 +68,7 @@ export const mockGames = [
         bgImage:'https://compass-ssl.xbox.com/assets/64/02/6402981a-9446-46d8-8289-e370f3158746.jpg?n=Red-Dead-Redemption-II_GLP-Page-Hero-1084_1920x1080.jpg',
         category: 'Action',
         trailer:'https://www.youtube.com/watch?v=gmA6MrX81z4',
-        plataforma: 'PS4',
+        plataforma: 'ps4',
         stock: 8
     },
     {
@@ -80,7 +80,7 @@ export const mockGames = [
         bgImage:'https://media.vandal.net/m/3-2023/20233520332817_1.jpg',
         category: 'Action',
         trailer:'https://www.youtube.com/watch?v=K0u_kAWLJOA',
-        plataforma: 'PS4',
+        plataforma: 'ps4',
         stock: 2
     },
     {
@@ -92,7 +92,7 @@ export const mockGames = [
         bgImage:'https://i.blogs.es/d60ef0/super-mario-odyssey-cabecera/1366_2000.jpg',
         category: 'Platform',
         trailer:'https://www.youtube.com/watch?v=5kcdRBHM7kM',
-        plataforma: 'NS',
+        plataforma: 'ns',
         stock: 4
     },
     {
@@ -104,7 +104,7 @@ export const mockGames = [
         bgImage:'https://s3.us-east-1.amazonaws.com/nd.images/uploads/wide-bg.jpg',
         category: 'Action',
         trailer:'https://www.youtube.com/watch?v=hh5HV4iic1Y',
-        plataforma: 'PS4',
+        plataforma: 'ps4',
         stock: 6
     },
     {
@@ -116,7 +116,7 @@ export const mockGames = [
         bgImage:'https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/03/01/12/hzd.jpg',
         category: 'Action',
         trailer:'https://www.youtube.com/watch?v=u4-FCsiF5x4',
-        plataforma: 'PS4',
+        plataforma: 'ps4',
         stock: 9
     },
     {
@@ -128,7 +128,7 @@ export const mockGames = [
         bgImage:'https://images.nintendolife.com/adc8dfcee7cd5/1280x720.jpg',
         category: 'Action',
         trailer:'https://www.youtube.com/watch?v=w3Gt42kVgCw',
-        plataforma: 'NS',
+        plataforma: 'ns',
         stock: 1
     },
     {
@@ -140,7 +140,7 @@ export const mockGames = [
         bgImage:'https://i.blogs.es/e3229f/mk11ultimate/1366_2000.jpeg',
         category: 'Action',
         trailer:'https://www.youtube.com/watch?v=UZ5gscTzwmk',
-        plataforma: 'PS4',
+        plataforma: 'ps4',
         stock: 3
     },
     {
@@ -152,7 +152,7 @@ export const mockGames = [
         bgImage:'https://image.api.playstation.com/vulcan/ap/rnd/202307/0710/02c58aabf3579a5b5d9ff4ae72775e46c5d0e23d2bb1c020.png',
         category: 'Sport',
         trailer:'https://www.youtube.com/watch?v=IyFZznAk69U',
-        plataforma: 'NS',
+        plataforma: 'ns',
         stock: 5
     },
 ];
