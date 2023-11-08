@@ -1,5 +1,6 @@
 import AddToCart from '@/components/AddToCart';
 import PlataformaIcon from '@/components/PlataformaIcon';
+import Trailers from '@/components/Trailers';
 import { mockGames } from '@/data/products';
 import Image from 'next/image';
 import React from 'react'
@@ -30,6 +31,12 @@ const ProductDetail = ({ params }) => {
           <AddToCart game={game}/>
         </div>
       </div>
+
+      {
+        game?.trailers?.length > 0 && (
+          <Trailers trailers={game.trailers}/>
+        )
+      }
     </section>
   )
 }

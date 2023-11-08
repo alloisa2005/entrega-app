@@ -7,7 +7,7 @@ export const mockGames = [
         image: 'https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg',
         bgImage:'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2020/05/witcher-3-geralt-treetops.jpg',
         category: 'RPG',
-        trailer:'https://www.youtube.com/watch?v=XHrskkHf958',
+        trailers:['XHrskkHf958'],
         plataforma: 'xbox',
         stock: 10
     },
@@ -19,7 +19,7 @@ export const mockGames = [
         image: 'https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png',
         bgImage:'https://assets-prd.ignimgs.com/2021/11/15/beyond667b-1600893075379-1636973051153.png',
         category: 'RPG',
-        trailer:'https://www.youtube.com/watch?v=JSRtYpNRoN0',
+        trailers:['JSRtYpNRoN0'],
         plataforma: 'xbox',
         stock: 13
     },
@@ -31,7 +31,7 @@ export const mockGames = [
         image: 'https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png',
         bgImage:'https://assets.xboxservices.com/assets/22/86/228693c6-7b6a-44a4-ba35-79d8f1b55296.jpg?n=GTA-V_Sneaky-Slider-1084_752023_1600x675.jpg',
         category: 'Action',
-        trailer:'https://www.youtube.com/watch?v=QkkoHAzjnUs',
+        trailers:['QkkoHAzjnUs'],
         plataforma: 'ps4',
         stock: 5
     },
@@ -43,7 +43,7 @@ export const mockGames = [
         image: 'https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg',
         bgImage:'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2023/03/zelda-breath-wild-2986236.jpg',
         category: 'Adventure',
-        trailer:'https://www.youtube.com/watch?v=1rPxiXXxftE',
+        trailers:['1rPxiXXxftE'],
         plataforma: 'ns',
         stock: 7
     },
@@ -55,7 +55,7 @@ export const mockGames = [
         image: 'https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg',
         bgImage:'https://images.hdqwalls.com/wallpapers/the-last-of-us-part-1-x7.jpg',
         category: 'Action',
-        trailer:'https://www.youtube.com/watch?v=46ohP30YA_Y',
+        trailers:['46ohP30YA_Y'],
         plataforma: 'ps4',
         stock: 3
     },
@@ -67,7 +67,7 @@ export const mockGames = [
         image: 'https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg',
         bgImage:'https://compass-ssl.xbox.com/assets/64/02/6402981a-9446-46d8-8289-e370f3158746.jpg?n=Red-Dead-Redemption-II_GLP-Page-Hero-1084_1920x1080.jpg',
         category: 'Action',
-        trailer:'https://www.youtube.com/watch?v=gmA6MrX81z4',
+        trailers:['gmA6MrX81z4'],
         plataforma: 'ps4',
         stock: 8
     },
@@ -79,7 +79,7 @@ export const mockGames = [
         image: 'https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg',
         bgImage:'https://media.vandal.net/m/3-2023/20233520332817_1.jpg',
         category: 'Action',
-        trailer:'https://www.youtube.com/watch?v=K0u_kAWLJOA',
+        trailers:['K0u_kAWLJOA'],
         plataforma: 'ps4',
         stock: 2
     },
@@ -91,7 +91,7 @@ export const mockGames = [
         image: 'https://m.media-amazon.com/images/I/71XZsDkAuNL._AC_UF894,1000_QL80_.jpg',
         bgImage:'https://i.blogs.es/d60ef0/super-mario-odyssey-cabecera/1366_2000.jpg',
         category: 'Platform',
-        trailer:'https://www.youtube.com/watch?v=5kcdRBHM7kM',
+        trailers:['5kcdRBHM7kM'],
         plataforma: 'ns',
         stock: 4
     },
@@ -103,7 +103,7 @@ export const mockGames = [
         image: 'https://assets2.ignimgs.com/2015/06/03/uncharted-4-button-v2jpg-5a448e.jpg',
         bgImage:'https://s3.us-east-1.amazonaws.com/nd.images/uploads/wide-bg.jpg',
         category: 'Action',
-        trailer:'https://www.youtube.com/watch?v=hh5HV4iic1Y',
+        trailers:['hh5HV4iic1Y'],
         plataforma: 'ps4',
         stock: 6
     },
@@ -115,7 +115,7 @@ export const mockGames = [
         image: 'https://www.goha.ru/s/f/BvcO/3EyGtb/fMJUIDb8PN.jpg',
         bgImage:'https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/03/01/12/hzd.jpg',
         category: 'Action',
-        trailer:'https://www.youtube.com/watch?v=u4-FCsiF5x4',
+        trailers:['u4-FCsiF5x4'],
         plataforma: 'ps4',
         stock: 9
     },
@@ -127,7 +127,7 @@ export const mockGames = [
         image: 'https://upload.wikimedia.org/wikipedia/en/5/50/Super_Smash_Bros._Ultimate.jpg',
         bgImage:'https://images.nintendolife.com/adc8dfcee7cd5/1280x720.jpg',
         category: 'Action',
-        trailer:'https://www.youtube.com/watch?v=w3Gt42kVgCw',
+        trailers:['w3Gt42kVgCw'],
         plataforma: 'ns',
         stock: 1
     },
@@ -139,7 +139,7 @@ export const mockGames = [
         image: 'https://m.media-amazon.com/images/M/MV5BNmY2ZDFlZWUtZjliZi00ZGFiLTgxYTYtYTU1MTgwYjMzNDkyXkEyXkFqcGdeQXVyMTI1Mzg0ODA5._V1_.jpg',
         bgImage:'https://i.blogs.es/e3229f/mk11ultimate/1366_2000.jpeg',
         category: 'Action',
-        trailer:'https://www.youtube.com/watch?v=UZ5gscTzwmk',
+        trailers:['UZ5gscTzwmk'],
         plataforma: 'ps4',
         stock: 3
     },
@@ -151,7 +151,7 @@ export const mockGames = [
         image: 'https://i.redd.it/hpx7at3kbcab1.jpg',
         bgImage:'https://image.api.playstation.com/vulcan/ap/rnd/202307/0710/02c58aabf3579a5b5d9ff4ae72775e46c5d0e23d2bb1c020.png',
         category: 'Sport',
-        trailer:'https://www.youtube.com/watch?v=IyFZznAk69U',
+        trailers:['IyFZznAk69U'],
         plataforma: 'ns',
         stock: 5
     },
