@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .contenedor {
-  @apply max-w-7xl mx-auto px-4
+  @apply max-w-[1250px] mx-auto px-4
 }
