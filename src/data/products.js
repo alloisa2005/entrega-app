@@ -139,7 +139,7 @@ export const mockGames = [
         image: 'https://m.media-amazon.com/images/M/MV5BNmY2ZDFlZWUtZjliZi00ZGFiLTgxYTYtYTU1MTgwYjMzNDkyXkEyXkFqcGdeQXVyMTI1Mzg0ODA5._V1_.jpg',
         bgImage:'https://i.blogs.es/e3229f/mk11ultimate/1366_2000.jpeg',
         category: 'Action',
-        trailers:['UZ5gscTzwmk'],
+        trailers:['UoTams2yc0s'],
         plataforma: 'ps4',
         stock: 3
     },
@@ -151,7 +151,7 @@ export const mockGames = [
         image: 'https://i.redd.it/hpx7at3kbcab1.jpg',
         bgImage:'https://image.api.playstation.com/vulcan/ap/rnd/202307/0710/02c58aabf3579a5b5d9ff4ae72775e46c5d0e23d2bb1c020.png',
         category: 'Sport',
-        trailers:['IyFZznAk69U'],
+        trailers:['XhP3Xh4LMA8'],
         plataforma: 'ns',
         stock: 5
     },

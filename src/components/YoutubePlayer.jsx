@@ -10,7 +10,7 @@ const YouTubePlayer = ({ videoId }) => {
     const player = event.target;
 
     // For example, you can automatically play the video
-    player.playVideo();
+    player.pauseVideo();
   };
 
   const onError = (error) => {
@@ -20,9 +20,8 @@ const YouTubePlayer = ({ videoId }) => {
   const opts = {
     height: '370px',
     width: '100%',
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 0,
+    playerVars: {      
+      autoplay: 1,      
     },
   };
 

@@ -9,7 +9,7 @@ const CategoriesList = () => {
   const pathname = usePathname()  
   
   return (
-    <div className='mt-4 flex flex-col gap-2 uppercase mb-3'>
+    <div className='mt-4 flex flex-wrap justify-between md:justify-center md:gap-14 lg:flex-col lg:flex-start gap-2 uppercase mb-3 text-sm md:text-md'>
       <Link href={'/tienda/categorias/all'} className={`${pathname === '/tienda/categorias/all' ? 'font-bold text-black': 'text-gray-500'}  italic hover:text-black hover:cursor-pointer`}>All</Link>
       <Link href={'/tienda/categorias/action'} className={`${pathname === '/tienda/categorias/action' ? 'font-bold text-black': 'text-gray-500'}  italic hover:text-black hover:cursor-pointer`}>Action</Link>
       <Link href={'/tienda/categorias/adventure'} className={`${pathname === '/tienda/categorias/adventure' ? 'font-bold text-black': 'text-gray-500'}  italic hover:text-black hover:cursor-pointer`}>Adventure</Link>
