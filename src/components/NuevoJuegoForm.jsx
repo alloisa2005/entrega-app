@@ -12,6 +12,9 @@ const NuevoJuegoForm = () => {
   const [categoria, setCategoria] = useState('');
   const [precio, setPrecio] = useState(0);
   const [descripcion, setDescripcion] = useState('');
+  const [trailer1, setTrailer1] = useState('');
+  const [trailer2, setTrailer2] = useState('');
+  const [trailer3, setTrailer3] = useState('');
   const [boxImage, setBoxImage] = useState(''); 
   const [boxImagePreview, setBoxImagePreview] = useState('');
   const [posterImage, setPosterImage] = useState('');
@@ -118,6 +121,49 @@ const NuevoJuegoForm = () => {
       </div>
 
       <div className="flex flex-col w-full mt-5">
+        <label className="select-none font-josefin text-lg border-b-2 border-naranja mb-3">Trailers</label>
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 lg:gap-6">
+          <div className="flex flex-col w-full">
+            <label className="select-none font-josefin text-md text-gray-700 italic">Trailer 1</label>
+            <input
+              value={trailer1}            
+              name='titulo'
+              onChange={(e) => { setTrailer1(e.target.value) }}
+              type="text"
+              placeholder="Youtube ID"
+              className="outline-none font-josefin text-md border-2 px-2 py-1 rounded-md"
+            />
+          </div>
+
+          <div className="flex flex-col w-full">
+            <label className="select-none font-josefin text-md text-gray-700 italic">Trailer 2</label>
+            <input
+              value={trailer2}            
+              name='titulo'
+              onChange={(e) => { setTrailer2(e.target.value) }}
+              type="text"
+              placeholder="Youtube ID"
+              className="outline-none font-josefin text-md border-2 px-2 py-1 rounded-md"
+            />
+          </div>
+
+          <div className="flex flex-col w-full">
+            <label className="select-none font-josefin text-md text-gray-700 italic">Trailer 3</label>
+            <input
+              value={trailer3}            
+              name='titulo'
+              onChange={(e) => { setTrailer3(e.target.value) }}
+              type="text"
+              placeholder="Youtube ID"
+              className="outline-none font-josefin text-md border-2 px-2 py-1 rounded-md"
+            />
+          </div>
+
+        </div>
+      </div>
+
+      <div className="flex flex-col w-full mt-5">
         <label className="select-none font-josefin text-lg border-b-2 border-naranja">
           Imágenes
         </label>
@@ -155,7 +201,7 @@ const NuevoJuegoForm = () => {
         </div>
 
         {error && (
-          <div className="bg-red-500 text-white font-bold rounded-lg px-3 py-1 mb-4 flex items-center shadow-lg">
+          <div className="bg-red-500 text-white font-bold rounded-lg px-3 py-2 mb-2 flex items-center justify-center lg:justify-start shadow-lg">
             <p className="font-josefin text-md">{error}</p>
           </div>
         )}
