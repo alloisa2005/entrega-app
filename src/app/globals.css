@@ -5,3 +5,7 @@
 .contenedor {
   @apply max-w-[1250px] mx-auto px-4
 }
+
+.alturaMinima {
+  @apply min-h-[calc(100vh-125px)]
+}

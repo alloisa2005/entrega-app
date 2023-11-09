@@ -14,7 +14,7 @@ const CarritoCard = () => {
           className='w-[70px] object-contain hover:cursor-pointer'
         />
         <div className='flex flex-col gap-2'>
-          <p className='text-lg italic'>Mortal Kombat 11</p>
+          <p className='text-md lg:text-lg italic'>Mortal Kombat 11</p>
           <p className='text-blue-500 border-b-2 w-fit text-[13px] hover:cursor-pointer'>Eliminar</p>
         </div>
       </div>
