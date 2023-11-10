@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
+import MiModal from "./MiModal";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,13 @@ export const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+
+    if (!email.trim() || !password.trim()) {
+      setLoading(false);
+      setError("Ingrese email y/o contraseña");
+      return;
+    }    
   };
 
   return (
@@ -59,20 +67,7 @@ export const LoginForm = () => {
       </form>
 
       {error && (
-        <div className="px-4 absolute w-full top-0 left-0 bottom-0 bg-black/60 z-20 flex items-center justify-center">
-          
-          <div className="p-3 w-full md:w-[45%]  bg-white rounded-md">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-center text-red-500 font-bold text-xl">ERROR</p>
-              <AiFillCloseCircle onClick={() => setError('')}
-                size={28} 
-                className='text-red-500 hover:scale-110 hover:cursor-pointer ease-in duration-300' 
-              />
-            </div>
-            {error}            
-          </div>
-          
-        </div>
+        <MiModal titulo={'ERROR'} mensaje={error} closeFn={() => setError('')} />
       )}
     </>
   );
