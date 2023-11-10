@@ -45,7 +45,7 @@ export const RegisterForm = () => {
       setError("Seleccione una imagen");
       return;
     }
-    
+
     if (!nombre.trim() || !email.trim() || !direccion.trim() || !password.trim()) {
       setLoading(false);
       setError("Todos los campos son obligatorios");
@@ -55,7 +55,7 @@ export const RegisterForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="mt-4 md:mt-4 mb-6 w-full lg:max-w-[65%] flex flex-col gap-6 border-2 p-4 rounded-md shadow-md">
+      <form onSubmit={handleSubmit} className="mb-6 w-full lg:max-w-[65%] flex flex-col gap-4 border-2 p-4 rounded-md shadow-md">
         <div className="flex justify-center">
           <input
             id="fileInput"
@@ -75,17 +75,43 @@ export const RegisterForm = () => {
           </div>        
         </div>
 
+        <div className="flex flex-col md:flex-row gap-4 md:gap-5 items-center justify-between w-full">
+          <div className="w-full flex flex-col">
+            <label className='font-bold'>Nombre</label>
+            <input
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              type="text"
+              className="border rounded-md p-2 outline-none focus:border-black focus:shadow-md"
+              placeholder="John Doe"
+            />
+          </div>
+
+          <div className="w-full flex flex-col">
+            <label className='font-bold'>Email</label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              className="border rounded-md p-2 outline-none focus:border-black focus:shadow-md"
+              placeholder="john@gmail.com"
+            />
+          </div>
+        </div>
+
         <div className="flex flex-col">
-          <label>Email</label>
+          <label className='font-bold'>Dirección</label>
           <input
+            value={direccion}
+            onChange={(e) => setDireccion(e.target.value)}
             type="text"
             className="border rounded-md p-2 outline-none focus:border-black focus:shadow-md"
-            placeholder="john@gmail.com"
+            placeholder="Calle 445"
           />
         </div>
 
         <div className="flex flex-col mt-3">
-          <label>Contraseña</label>
+          <label className='font-bold'>Contraseña</label>
           <input
             type="password"
             className="border rounded-md p-2 outline-none focus:border-black focus:shadow-md"
