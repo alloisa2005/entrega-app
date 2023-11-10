@@ -13,10 +13,15 @@ export const navbarLinks = [
     id: 3,
     title: 'Mi Carrito',
     path: '/carrito'
-  },    
+  },  
   {
     id: 4,
+    title: 'Log In',
+    path: '/user/login'
+  },   
+  {
+    id: 5,
     title: 'Menu Admin',
     path: '/admin/productos'
-  },   
+  },     
 ];
