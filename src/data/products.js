@@ -2,7 +2,7 @@ export const mockGames = [
     {
         id: 1,
         name: 'The Witcher 3: Wild Hunt',
-        price: 50,
+        price: 1500,
         description: 'La historia se centra en el personaje Geralt de Rivia, quien recibe una carta de su amante Yennefer de Vengerberg diciendo que necesita localizarlo lo antes posible. Geralt, después de encontrar a su amante, conoce que Ciri, nieta de Calenthe y exalumna del mismo personaje, es buscada por La Cacería Salvaje, un grupo antiguo de espectros que están liderados por el Rey de La Cacería Salvaje. Tras varios sucesos que llevan al personaje principal a buscar a Ciri en la gran ciudad de Novigrado, en las islas Skellige y en las tierras de Velen, Geralt aprende que La Cacería Salvaje busca una manera de que se cumpla la Profecía de Ithlinne, la cual dice que el universo será destruido por el Frío Blanco. Ciri, debido a que es hija de la sangre vieja, es la única que puede destruir esta profecía y salvar al mundo.',
         image: 'https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg',
         bgImage:'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2020/05/witcher-3-geralt-treetops.jpg',

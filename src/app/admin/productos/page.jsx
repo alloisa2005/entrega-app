@@ -1,9 +1,11 @@
+import MiTabla from '@/components/MiTabla'
 import React from 'react'
+import { mockGames } from '../../../data/products'
 
 const ListaProductos = () => {
   return (
-    <div className='text-center mt-10'>
-      Acá iría la lista de productos y poder editar o elimiarlos
+    <div className='mty-4 mb-10'>      
+      <MiTabla data={mockGames} />
     </div>
   )
 }

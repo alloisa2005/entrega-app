@@ -1,3 +1,4 @@
+import { separadorMiles } from '@/utils/separadorMiles'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -12,7 +13,7 @@ const GameCard = ({ game }) => {
       <div className="px-3 py-2 flex flex-1 flex-col gap-2">
         <p className="font-bold">{game.name}</p>
         <p className="text-sm">Categoría: <span className="text-gray-700 italic">{game.category}</span></p>
-        <p className="text-md font-bold">$ {game.price}</p>
+        <p className="text-md font-bold">$ {separadorMiles(game.price)}</p>
       </div>
     </Link>
   )

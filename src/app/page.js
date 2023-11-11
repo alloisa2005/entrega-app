@@ -5,7 +5,7 @@ export default function Home() {
 
   return (    
     <main className="alturaMinima">      
-      <Hero />
+      <Hero />      
 
       <Editoriales />
     </main>
