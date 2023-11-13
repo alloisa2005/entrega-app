@@ -3,7 +3,8 @@
 import { separadorMiles } from "@/utils/separadorMiles";
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from "@tanstack/react-table";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete }  from "react-icons/md";
 
@@ -49,21 +50,25 @@ const MiTabla = ({ data }) => {
     },
     {
       header: "Acciones",
-      cell: info => {        
-        return <div className="w-full flex gap-3">          
+      cell: info => {   
+        const juegoId = info.row.original.id;
+        return <div className="w-full flex gap-3">  
+        <Link href={`/admin/editJuego/${juegoId}`}>
           <FaRegEdit size={22} className='text-green-400 hover:text-green-500 hover:cursor-pointer hover:scale-110 ease-in duration-300' />          
+        </Link>
+        
           <MdOutlineDelete size={24} className='text-red-400 hover:text-red-500 hover:cursor-pointer hover:scale-110 ease-in duration-300' />           
         </div>
       }
     },
-  ];
+  ];  
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),        
     state: {
       globalFilter: filtered,      
     },
@@ -72,7 +77,7 @@ const MiTabla = ({ data }) => {
 
   const paginaAnterior = () => {
     if(pageIndex !== 1) {      
-      setPageIndex(pageIndex-1)
+      setPageIndex(pageIndex-1)      
     }
     table.setPageIndex(0)
   }

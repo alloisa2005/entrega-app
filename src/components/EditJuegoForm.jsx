@@ -1,12 +1,12 @@
 'use client'
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Spinner from "./Spinner";
 
-const NuevoJuegoForm = () => {  
+const EditJuegoForm = ({ game }) => {    
 
   const [titulo, setTitulo] = useState('');
   const [categoria, setCategoria] = useState('');
@@ -22,6 +22,17 @@ const NuevoJuegoForm = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    setTitulo(game.name);
+    setCategoria(game.plataforma.toLowerCase());
+    setPrecio(game.price);
+    setDescripcion(game.description);
+    setTrailer1(game.trailers[0]);
+    setTrailer2(game.trailers[1]);
+    setTrailer3(game.trailers[2]);
+    setBoxImagePreview(game.image)
+    setPosterImagePreview(game.bgImage);
+  }, [game])
   const handleInputImage = (e) => {   
     if(e.target.name === 'boxImage') {
       setBoxImage(e.target.files[0]);
@@ -90,7 +101,7 @@ const NuevoJuegoForm = () => {
           >
             <option value="" className="text-lg">Seleccione Plataforma</option>
             <option value="ps4" className="text-lg">PS4</option>            
-            <option value="nintendo" className="text-lg">Nintendo Switch</option>
+            <option value="ns" className="text-lg">Nintendo Switch</option>
             <option value="xbox" className="text-lg">XBOX</option>
           </select>
         </div>
@@ -228,4 +239,4 @@ const NuevoJuegoForm = () => {
   )
 }
 
-export default NuevoJuegoForm
+export default EditJuegoForm
