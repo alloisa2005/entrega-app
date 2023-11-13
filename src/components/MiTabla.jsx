@@ -1,7 +1,7 @@
 'use client';
 
 import { separadorMiles } from "@/utils/separadorMiles";
-import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel } from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from "@tanstack/react-table";
 import Image from "next/image";
 import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
@@ -10,11 +10,13 @@ import { MdOutlineDelete }  from "react-icons/md";
 const MiTabla = ({ data }) => {
 
   const [pageIndex, setPageIndex] = useState(1);
+  const [filtered, setFiltered] = useState('');
+
   const columns = [
     {
       header: "Foto",
       cell: info => {        
-        return <div className="w-[50px] bg-red-200 ml-2 -mr-4">
+        return <div className="w-[28px] ml-2 -mr-4">
           <Image src={info.row.original.image} alt={info.row.original.name} width={70} height={50} className='w-full object-contain' />
         </div>
       }
@@ -61,6 +63,11 @@ const MiTabla = ({ data }) => {
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      globalFilter: filtered,      
+    },
+    onGlobalFilterChange: setFiltered,
   });
 
   const paginaAnterior = () => {
@@ -79,6 +86,13 @@ const MiTabla = ({ data }) => {
 
   return (
     <div className="w-full">
+      <input 
+        type="text"
+        value={filtered}
+        onChange={(e) => setFiltered(e.target.value)}
+        placeholder="Buscar juego..."
+        className="mb-2 w-full p-2 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+      />
       <table>
         <thead>
           {
@@ -97,7 +111,7 @@ const MiTabla = ({ data }) => {
         <tbody>
           {
             table.getRowModel().rows.map( row => (
-              <tr key={row.id}>
+              <tr key={row.id} >
                 {
                   row.getVisibleCells().map( (cell, index) => (
                     <td key={index}>
