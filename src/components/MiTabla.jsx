@@ -63,6 +63,19 @@ const MiTabla = ({ data }) => {
     getPaginationRowModel: getPaginationRowModel(),
   });
 
+  const paginaAnterior = () => {
+    if(pageIndex !== 1) {      
+      setPageIndex(pageIndex-1)
+    }
+    table.setPageIndex(0)
+  }
+
+  const paginaSiguiente = () => {
+    if(pageIndex !== table.getPageCount()) {
+      setPageIndex(pageIndex+1)
+    }
+    table.setPageIndex(table.getPageCount()-1)
+  }
 
   return (
     <div className="w-full">
@@ -98,16 +111,14 @@ const MiTabla = ({ data }) => {
         </tbody>
       </table>
 
-      <div className="mt-2 flex items-center justify-center gap-4">
-          <button onClick={() => {
-            setPageIndex(pageIndex-1)
-            table.setPageIndex(0)
-            }}>{'<<'}</button>          
-          <p>{`Página ${pageIndex} de ${table.getPageCount()}`}</p>
-          <button onClick={() => {
-            setPageIndex(pageIndex+1)
-            table.setPageIndex(table.getPageCount()-1)
-            }}>{'>>'}</button>          
+      <div className="mt-2 flex items-center justify-center gap-6">
+          <div className="w-8 h-8 bg-black text-white font-bold rounded-lg flex items-center justify-center hover:scale-105 hover:shadow-md ease-in duration-300">
+            <button className="w-full h-full text-sm" onClick={paginaAnterior}>{'<<'}</button>          
+          </div>
+          <p className="italic text-sm">{`Página ${pageIndex} de ${table.getPageCount()}`}</p>
+          <div className="w-8 h-8 bg-black text-white font-bold rounded-lg flex items-center justify-center hover:scale-105 hover:shadow-md ease-in duration-300">
+            <button onClick={paginaSiguiente}>{'>>'}</button>          
+          </div>
       </div>
     </div>
   )
