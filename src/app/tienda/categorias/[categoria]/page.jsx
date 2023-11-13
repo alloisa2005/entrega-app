@@ -1,8 +1,8 @@
 import GameCard from "@/components/GameCard";
 import { mockGames } from "@/data/products";
-import Image from "next/image";
 
-const ProductsByCategory = ({ params }) => {
+
+const ProductsByCategory = async ({ params }) => {
 
   const { categoria } = params;
 
@@ -10,8 +10,8 @@ const ProductsByCategory = ({ params }) => {
   return (
     <div className="p-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
-      {games.map( game => (
-        <GameCard key={game.id} game={game} />
+      {games.map( game => (        
+        <GameCard key={game.id} game={game} />        
       ))}
 
     </div>

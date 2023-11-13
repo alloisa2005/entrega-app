@@ -1,3 +1,4 @@
+import { cortarTexto } from '@/utils/cortarTexto'
 import { separadorMiles } from '@/utils/separadorMiles'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,7 +12,7 @@ const GameCard = ({ game }) => {
       </div>
 
       <div className="px-3 py-2 flex flex-1 flex-col gap-2">
-        <p className="font-bold">{game.name}</p>
+        <p className="font-bold">{cortarTexto(game.name, 23)}</p>
         <p className="text-sm">Categoría: <span className="text-gray-700 italic">{game.category}</span></p>
         <p className="text-md font-bold">$ {separadorMiles(game.price)}</p>
       </div>
