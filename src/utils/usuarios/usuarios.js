@@ -34,7 +34,11 @@ export const saveUser = async (nombre, email, direccion, password, fileImg) => {
 };
 
 export const getUsers = async () => {
-  const response = await fetch("http://localhost:3000/api/v1/usuarios/");
+  const response = await fetch("http://localhost:3000/api/v1/usuarios/", {
+    next: {
+      revalidate: 0,
+    }
+  });
   const data = await response.json();
   return data;
 };

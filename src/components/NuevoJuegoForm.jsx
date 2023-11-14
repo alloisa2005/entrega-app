@@ -15,6 +15,7 @@ const NuevoJuegoForm = () => {
   const [trailer1, setTrailer1] = useState('');
   const [trailer2, setTrailer2] = useState('');
   const [trailer3, setTrailer3] = useState('');
+  const [rating, setRating] = useState(0);
   const [boxImage, setBoxImage] = useState(''); 
   const [boxImagePreview, setBoxImagePreview] = useState('');
   const [posterImage, setPosterImage] = useState('');
