@@ -1,9 +1,15 @@
+import TablaUsuarios from '@/components/TablaUsuarios'
+import { getUsers } from '@/utils/usuarios/usuarios'
 import React from 'react'
 
-const ListaUsuarios = () => {
+const ListaUsuarios = async () => {
+
+  const data = await getUsers();
+  // console.log(data)
+
   return (
-    <div className='text-center mt-10'>
-      Acá iría la lista de usuarios
+    <div className='mty-4 mb-10'>      
+      <TablaUsuarios data={data} />
     </div>
   )
 }

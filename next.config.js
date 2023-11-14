@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     domains: [
       "upload.wikimedia.org",
+      'res.cloudinary.com',
       "m.media-amazon.com",
       "assets2.ignimgs.com",
       "www.goha.ru",
