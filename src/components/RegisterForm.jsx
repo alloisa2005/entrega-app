@@ -1,14 +1,17 @@
 "use client";
 
-import { uploadUserImage } from "@/utils/uploadImages";
-import { saveUser } from "@/utils/usuarios/saveUser";
+import { useState } from "react";
+import { saveUser } from '../utils/usuarios/usuarios'
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import MiModal from "./MiModal";
 import Spinner from "./Spinner";
 
 export const RegisterForm = () => {
+
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nombre, setNombre] = useState("");
@@ -60,10 +63,12 @@ export const RegisterForm = () => {
 
       if(data.error){
         setError(data.errorMsg);
-      }else{
-        setError("Usuario creado con éxito");
+        setLoading(false);
+        return;
       }
+
       setLoading(false);
+      router.replace("/user/login");
     } catch (error) {
       setError(error.message);
       setLoading(false);

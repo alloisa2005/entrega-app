@@ -7,10 +7,11 @@ export const GET = async () => {
   try {
     await connectDB();
 
-    const users = await User.find();
+    // No devuelvo el password en la respuesta
+    const users = await User.find().select("-password");
     return NextResponse.json(users, { status: 201 });
   } catch (error) {
-    return NextResponse.json(users, { status: 400 });
+    return NextResponse.json({msg: error.message}, { status: 400 });
   }
 };
 

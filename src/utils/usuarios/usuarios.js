@@ -32,3 +32,9 @@ export const saveUser = async (nombre, email, direccion, password, fileImg) => {
   const data = await response.json(); 
   return {error:false, errorMsg: '', data};
 };
+
+export const getUserById = async (id) => {
+  const response = await fetch(`http://localhost:3000/api/v1/usuarios/${id}`);
+  const data = await response.json();
+  return data;
+}
