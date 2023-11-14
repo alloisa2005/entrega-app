@@ -1,16 +1,34 @@
-
 import { NextResponse } from "next/server";
 import { connectDB } from "@/db/connectDB";
 import User from "@/models/user";
+import bcrypt from "bcryptjs";
 
 export const GET = async () => {
+  try {
+    await connectDB();
 
-    try {
-      await connectDB();
+    const users = await User.find();
+    return NextResponse.json(users, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(users, { status: 400 });
+  }
+};
 
-      const users = await User.find();
-      return NextResponse.json(users, { status: 201 });
-    } catch (error) {
-      return NextResponse.json(users, { status: 400 });
+export const POST = async (req) => {
+  const { nombre, email, direccion, password, image } = await req.json();
+
+  try {
+    await connectDB();
+
+    const existeUser = await User.findOne({ email });
+    if (existeUser) {
+      return NextResponse.json({msg: "El email ya se encuentra registrado."}, { status: 400 });
     }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.create({ nombre, email, direccion, image, password: hashedPassword });
+    return NextResponse.json(user, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({msg: error.message}, { status: 400 });
+  }
 };

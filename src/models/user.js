@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
       type: String,      
       minLength: [5, "La contraseña debe tener al menos 5 caracteres"],      
     },
-    name: {
+    nombre: {
       type: String,
       required: [true, "Please enter your name"],
       maxLength: [40, "Your name cannot exceed 30 characters"],
@@ -21,14 +21,18 @@ const userSchema = new mongoose.Schema(
     image: {
       type: String,
     },
-    address: {
+    direccion: {
       type: String,
       trim: true,
     },   
     isAdmin: {
       type: Boolean,
       default: false,
-    },            
+    },  
+    activo: {
+      type: Boolean,
+      default: true,
+    },           
   },
   { timestamps: true }
 );

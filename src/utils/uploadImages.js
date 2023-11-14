@@ -28,9 +28,7 @@ export const uploadUserImage = async (file) => {
     const image = new FormData();
     image.append("file", file);
     image.append("cloud_name", 'dayyupv1u');
-    image.append("upload_preset", 'gns-users');          
-
-    console.log(image)
+    image.append("upload_preset", 'gns-users');              
 
     const res = await fetch('http://api.cloudinary.com/v1_1/dayyupv1u/image/upload', {
         method: "POST",
