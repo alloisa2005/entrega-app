@@ -4,11 +4,11 @@ import { separadorMiles } from "@/utils/separadorMiles";
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from "@tanstack/react-table";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete }  from "react-icons/md";
 
-const MiTabla = ({ data }) => {
+const TablaProductos = ({ data }) => {
 
   const [pageIndex, setPageIndex] = useState(1);
   const [filtered, setFiltered] = useState('');
@@ -143,5 +143,5 @@ const MiTabla = ({ data }) => {
   )
 }
 
-export default MiTabla
+export default TablaProductos
 

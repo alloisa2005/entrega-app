@@ -1,11 +1,14 @@
-import MiTabla from '@/components/MiTabla'
+
 import React from 'react'
 import { mockGames } from '../../../data/products'
+import TablaProductos from '@/components/TablaProductos';
 
 const ListaProductos = () => {
+
+
   return (
     <div className='mty-4 mb-10'>      
-      <MiTabla data={mockGames} />
+      <TablaProductos data={mockGames} />
     </div>
   )
 }
