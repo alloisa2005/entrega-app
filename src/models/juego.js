@@ -7,7 +7,7 @@ const juegoSchema = new mongoose.Schema({
     trim: true,
     maxlength: 100,
   },  
-  categoría: {
+  categoria: {
     type: String,
     required: true,
     trim: true,

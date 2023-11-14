@@ -35,9 +35,17 @@ const TablaUsuarios = ({ data }) => {
       accessorKey: "direccion",
     },
     {
-      header: "Admin",
-      accessorKey: "isAdmin",
-    },    
+      header: "Admin",      
+      cell: info => {        
+        return <p className={`${info.row.original.isAdmin ? 'bg-green-500' : 'bg-red-500'} px-2 w-[50px] rounded-xl text-white font-semibold text-center`}>{info.row.original.isAdmin ? 'SI' : 'NO'}</p>
+      }
+    },  
+    {
+      header: "Activo",      
+      cell: info => {        
+        return <p className={`${info.row.original.activo ? 'bg-green-500' : 'bg-red-500'} font-bold px-2 w-[80px] rounded-xl text-white text-center`}>{info.row.original.activo ? 'Activo' : 'Baja'}</p>
+      }
+    },  
     {
       header: "Acciones",
       cell: info => {   

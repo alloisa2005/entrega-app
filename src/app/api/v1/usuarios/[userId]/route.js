@@ -16,3 +16,18 @@ export const GET = async (req, { params }) => {
     return NextResponse.json({msg: error.message}, { status: 400 });
   }
 };
+
+export const PUT = async (req, { params }) => {
+
+  const { userId } = params;  
+  
+  try {
+    await connectDB();
+
+    // no devuelvo el password
+    const user = await User.findById(userId).select("-password");
+    return NextResponse.json(user, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({msg: error.message}, { status: 400 });
+  }
+};
