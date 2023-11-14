@@ -19,10 +19,10 @@ export const RegisterForm = () => {
   const [selectedImage, setSelectedImage] = useState("");
   const [fileImg, setFileImg] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [modal, setModal] = useState({error: false, msg: ""});
 
   const handleSelectImage = () => {
-    setError("");
+    setModal({ error: false, msg: ""});
     document.getElementById("fileInput").click();
   };
 
@@ -47,13 +47,13 @@ export const RegisterForm = () => {
 
     if (!selectedImage) {
       setLoading(false);
-      setError("Seleccione una imagen");
+      setModal({ error: true, msg: "Selecciona una imagen"});
       return;
     }
 
     if (!nombre.trim() || !email.trim() || !direccion.trim() || !password.trim()) {
       setLoading(false);
-      setError("Todos los campos son obligatorios");
+      setModal({ error: true, msg: "Todos los campos son obligatorios"});
       return;
     }
 
@@ -62,15 +62,24 @@ export const RegisterForm = () => {
       const data = await saveUser(nombre, email, direccion, password, fileImg);
 
       if(data.error){
-        setError(data.errorMsg);
+        setModal({ error: true, msg: data.errorMsg});
         setLoading(false);
         return;
       }
 
+      setModal({ error: false, msg: "Usuario creado correctamente. Inicie sesión para continuar"});      
+      //router.replace("/user/login");
+      setNombre("");
+      setEmail("");
+      setDireccion("");
+      setPassword("");
+      setSelectedImage("");
+      setFileImg(null);
+      
       setLoading(false);
-      router.replace("/user/login");
+
     } catch (error) {
-      setError(error.message);
+      setModal({ error: true, msg: error.message});
       setLoading(false);
     }
   };
@@ -164,11 +173,11 @@ export const RegisterForm = () => {
         </div>
       </form>
 
-      {error && (
+      {modal.msg && (
         <MiModal
-          titulo={"ERROR"}
-          mensaje={error}
-          closeFn={() => setError("")}
+          error={modal.error}          
+          mensaje={modal.msg}
+          closeFn={() => setModal({ error: false, msg: ""})}
         />
       )}
     </>
