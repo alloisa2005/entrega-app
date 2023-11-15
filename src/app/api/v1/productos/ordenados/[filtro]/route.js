@@ -1,3 +1,4 @@
+import { connectDB } from "@/db/connectDB";
 import Juego from "@/models/juego";
 import { NextResponse } from "next/server";
 
@@ -5,6 +6,8 @@ export const GET = async (_, { params }) => {
   const { filtro } = params;
 
   try {
+    await connectDB();
+    
     const juegos =
       filtro === "rating"
         ? await Juego.find().sort({ rating: -1 }).limit(4) 
