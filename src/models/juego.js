@@ -17,7 +17,7 @@ const juegoSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    maxlength: 500,    
+    maxlength: 1000,    
   },
   precio: {
     type: Number,
@@ -43,6 +43,11 @@ const juegoSchema = new mongoose.Schema({
   rating: {
     type: Number,    
     trim: true,
+  },
+  stock: {
+    type: Number,    
+    trim: true,
+    default: 0,
   },
 }, { timestamps: true})
 

@@ -207,7 +207,7 @@ const TablaUsuarios = ({ data }) => {
 
             <div className="mt-6">
               <p>Dirección: {selectedUser.direccion}</p>
-            </div>          
+            </div>                     
           </div>
         </div>
       )}

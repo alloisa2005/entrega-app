@@ -16,38 +16,44 @@ const TablaProductos = ({ data }) => {
   const columns = [
     {
       header: "Foto",
-      cell: info => {        
-        return <div className="w-[28px] ml-2 -mr-4">
-          <Image src={info.row.original.image} alt={info.row.original.name} width={70} height={50} className='w-full object-contain' />
-        </div>
+      cell: info => {               
+        return <div className="w-[50px] h-[50px] overflow-hidden ml-2 -mr-4">
+        <Image
+          src={info.row.original.boxImage}
+          alt={info.row.original.titulo}
+          width={70}
+          height={50}
+          className="w-full h-full object-cover"
+        />
+      </div> 
       }
     },
     {
       header: "Nombre",
-      accessorKey: "name",
-    },
-    {
-      header: "Precio ($)",
-      cell: info => {        
-        return <p>{separadorMiles(info.row.original.price)}</p>
-      }
+      accessorKey: "titulo",
     },
     {
       header: "Stock",
       accessorKey: "stock",
-    },
+    },  
     {
-      header: "Categoría",
-      accessorKey: "category",
-    },
+      header: "Precio ($)",
+      cell: info => {        
+        return <p>{separadorMiles(info.row.original.precio)}</p>
+      }
+    },     
     {
       header: "Plataforma",
       cell: info => {        
         return <div className="uppercase">
-          <p>{info.row.original.plataforma}</p>
+          <p>{info.row.original.categoria}</p>
         </div>
       }
     },
+    {
+      header: "Rating",
+      accessorKey: "rating",
+    }, 
     {
       header: "Acciones",
       cell: info => {   

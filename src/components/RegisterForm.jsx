@@ -2,15 +2,12 @@
 
 import { useState } from "react";
 import { saveUser } from '../utils/usuarios/usuarios'
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import MiModal from "./MiModal";
 import Spinner from "./Spinner";
 
 export const RegisterForm = () => {
-
-  const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

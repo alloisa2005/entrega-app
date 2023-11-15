@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const ListaProductos = async () => {
 
-  const juegos = await getProductos();
+  const juegos = await getProductos();  
 
   return (
     <div className='my-4 mb-10'>      

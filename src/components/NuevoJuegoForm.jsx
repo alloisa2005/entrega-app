@@ -1,6 +1,8 @@
 'use client'
 
+import { saveProducto } from "@/utils/juegos/juegos";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -8,6 +10,8 @@ import Spinner from "./Spinner";
 
 const NuevoJuegoForm = () => {  
 
+  const router = useRouter();
+  
   const [titulo, setTitulo] = useState('');
   const [categoria, setCategoria] = useState('');
   const [precio, setPrecio] = useState(0);
@@ -15,14 +19,15 @@ const NuevoJuegoForm = () => {
   const [trailer1, setTrailer1] = useState('');
   const [trailer2, setTrailer2] = useState('');
   const [trailer3, setTrailer3] = useState('');
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
+  const [stock, setStock] = useState(0);
   const [boxImage, setBoxImage] = useState(''); 
   const [boxImagePreview, setBoxImagePreview] = useState('');
   const [posterImage, setPosterImage] = useState('');
   const [posterImagePreview, setPosterImagePreview] = useState('');
-  const [error, setError] = useState('');
+  const [modal, setModal] = useState({error: false, msg: ""});
   const [loading, setLoading] = useState(false);
-
+  
   const handleInputImage = (e) => {   
     if(e.target.name === 'boxImage') {
       setBoxImage(e.target.files[0]);
@@ -51,17 +56,45 @@ const NuevoJuegoForm = () => {
     e.preventDefault(); 
     setLoading(true);
 
-    if(!titulo.trim() || !categoria.trim() || !precio || !descripcion.trim()) {
-      setError('Todos los campos son obligatorios');
+    if(!titulo.trim() || !categoria.trim() || !precio || !descripcion.trim() || !rating || !stock) {
+      setModal({ error: true, msg: "Todos los campos son obligatorios"});
       setLoading(false);
       return;
     }
 
-    if(!boxImage || !posterImage) {
-      setError('Debes cargar ambas imágenes');
+    if(precio < 0) {
+      setModal({ error: true, msg: "Ingrese un PRECIO válido"});
       setLoading(false);
       return;
     }
+
+    if(rating < 0) {
+      setModal({ error: true, msg: "Ingrese un RATING válido"});
+      setLoading(false);
+      return;
+    }
+
+    if(stock < 0) {
+      setModal({ error: true, msg: "Ingrese un STOCK válido"});
+      setLoading(false);
+      return;
+    }
+
+    if(!boxImage || !posterImage) {      
+      setModal({ error: true, msg: "Debes cargar ambas imágenes"});
+      setLoading(false);
+      return;
+    }
+
+    const data = await saveProducto(titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating, boxImage, posterImage, stock);
+
+    if(data.error){
+      setModal({ error: true, msg: data.errorMsg});
+      setLoading(false);
+      return;
+    }
+
+    router.push('/admin/productos');
   }
 
   return (
@@ -69,7 +102,7 @@ const NuevoJuegoForm = () => {
 
       <div className="flex flex-col lg:flex-row items-center w-full gap-2">
 
-        <div className="flex flex-col w-full lg:w-[50%]">
+        <div className="flex flex-col w-full">
           <label className="select-none font-josefin text-lg text-gray-700 italic">Título</label>
           <input
             value={titulo}            
@@ -81,7 +114,7 @@ const NuevoJuegoForm = () => {
           />
         </div>
 
-        <div className="flex flex-col w-full lg:w-[30%] h-full">
+        <div className="flex flex-col w-full lg:w-[25%] h-full">
           <label className="select-none font-josefin text-lg text-gray-700 italic">Plataforma</label>
           <select 
             value={categoria}            
@@ -96,8 +129,8 @@ const NuevoJuegoForm = () => {
           </select>
         </div>
 
-        <div className="flex flex-col w-full lg:w-[20%]">
-          <label className="select-none font-josefin text-lg text-gray-700 italic">Precio ($)</label>
+        <div className="flex flex-col w-full lg:w-[12%]">
+          <label className="select-none font-josefin text-lg text-gray-700 italic">Precio (💲)</label>
           <input            
             value={precio}            
             onChange={(e) => { setPrecio(e.target.value) }}
@@ -107,6 +140,28 @@ const NuevoJuegoForm = () => {
           />
         </div>
 
+        <div className="flex flex-col w-full lg:w-[10%]">
+          <label className="select-none font-josefin text-lg text-gray-700 italic">Rating (⭐)</label>
+          <input            
+            value={rating}            
+            onChange={(e) => { setRating(e.target.value) }}
+            type="number"  
+            min={1}          
+            max={10}
+            placeholder="Puntaje del juego"
+            className="outline-none font-josefin text-lg border-2 px-2 py-1 rounded-md"
+          />
+        </div>
+        <div className="flex flex-col w-full lg:w-[10%]">
+          <label className="select-none font-josefin text-lg text-gray-700 italic">Stock</label>
+          <input            
+            value={stock}            
+            onChange={(e) => { setStock(e.target.value) }}
+            type="number"                           
+            placeholder="Stock del juego"
+            className="outline-none font-josefin text-lg border-2 px-2 py-1 rounded-md"
+          />
+        </div>
       </div>
 
       <div className="flex flex-col w-full mt-3">
@@ -201,9 +256,9 @@ const NuevoJuegoForm = () => {
 
         </div>
 
-        {error && (
+        {modal.msg && (
           <div className="bg-red-500 text-white font-bold rounded-lg px-3 py-2 mb-2 flex items-center justify-center lg:justify-start shadow-lg">
-            <p className="font-josefin text-md">{error}</p>
+            <p className="font-josefin text-md">{modal.msg}</p>
           </div>
         )}
 
