@@ -4,9 +4,7 @@ import YouTubePlayer from "./YoutubePlayer";
 const Trailers = ({ trailer1, trailer2, trailer3 }) => {
   let cantCol = 1;
   if (trailer1 && trailer2 && trailer3) cantCol = 3;
-  else if (trailer1 && trailer2) cantCol = 2;
-
-  console.log(cantCol);
+  else if (trailer1 && trailer2) cantCol = 2;  
 
   return (
     <div className="contenedor my-8">

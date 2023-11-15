@@ -123,8 +123,10 @@ const NuevoJuegoForm = () => {
             className="bg-white h-full outline-none font-josefin text-lg border-2 px-2 py-1 rounded-md"
           >
             <option value="" className="text-lg">Seleccione Plataforma</option>
+            <option value="ns" className="text-lg">Nintendo Switch</option>
+            <option value="pc" className="text-lg">PC</option> 
             <option value="ps4" className="text-lg">PS4</option>            
-            <option value="nintendo" className="text-lg">Nintendo Switch</option>
+            <option value="ps5" className="text-lg">PS5</option> 
             <option value="xbox" className="text-lg">XBOX</option>
           </select>
         </div>

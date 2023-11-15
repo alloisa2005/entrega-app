@@ -21,8 +21,7 @@ const TablaUsuarios = ({ data }) => {
   const [openAcciones, setOpenAcciones] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const handleOpciones = (user) => {
-    console.log(user);
+  const handleOpciones = (user) => {    
     setSelectedUser(user);
     setOpenAcciones(true);
   };

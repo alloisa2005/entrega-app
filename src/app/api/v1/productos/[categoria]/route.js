@@ -4,8 +4,7 @@ import { NextResponse } from "next/server";
 
 export const GET = async (req, { params }) => {
 
-  const { categoria } = params;
-  console.log(categoria)
+  const { categoria } = params;  
 
   try {
     await connectDB();

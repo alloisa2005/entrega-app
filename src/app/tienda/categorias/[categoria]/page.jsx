@@ -1,22 +1,25 @@
 import GameCard from "@/components/GameCard";
 import { getProductos } from "@/utils/juegos/juegos";
 
-
 const ProductsByCategory = async ({ params }) => {
-
-  const { categoria } = params;
-  //const games = categoria === 'all' ? mockGames : mockGames.filter( game => game.category.toLowerCase() === categoria.toLowerCase() );
-  const games = await getProductos(categoria)
+  const { categoria } = params;  
+  const games = await getProductos(categoria.toLowerCase());
 
   return (
-    <div className="p-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <>
+      {games.length === 0 ? (
+        <p className="text-center text-2xl font-semibold alturaMinima ">
+          Lo sentimos, no tenemos productos de esta plataforma.
+        </p>
+      ) : (
+        <div className="p-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {games.map((game) => (
+            <GameCard key={game._id} game={game} />
+          ))}
+        </div>
+      )}
+    </>
+  );
+};
 
-      {games.map( game => (        
-        <GameCard key={game._id} game={game} />        
-      ))}
-
-    </div>
-  )
-}
-
-export default ProductsByCategory
+export default ProductsByCategory;

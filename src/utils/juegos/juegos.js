@@ -43,7 +43,7 @@ export const saveProducto = async (titulo, categoria, precio, descripcion, trail
 }
 
 export const getProductoById = async (juegoId) => {
-  const response = await fetch(`http://localhost:3000/api/v1/detail/${juegoId}`, 
+  const response = await fetch(`http://localhost:3000/api/v1/productos/detail/${juegoId}`, 
     {next: {revalidate: 60}}
   );
   const data = await response.json();
