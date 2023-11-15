@@ -49,3 +49,11 @@ export const getProductoById = async (juegoId) => {
   const data = await response.json();
   return data;
 };
+
+export const getProductosOrdenados = async (filtro) => {
+  const response = await fetch(`http://localhost:3000/api/v1/productos/ordenados/${filtro}`, 
+    {next: {revalidate: 600}}  // cada 10 min se actualiza
+  );
+  const data = await response.json();
+  return data;
+};
