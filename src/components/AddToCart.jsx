@@ -1,3 +1,4 @@
+import { separadorMiles } from '@/utils/separadorMiles';
 import React from 'react'
 import { BsCartPlusFill } from 'react-icons/bs';
 
@@ -7,7 +8,7 @@ const AddToCart = ({ game }) => {
       <p className='select-none text-center mb-2 text-black border-b-2 text-xl py-3'>Precio</p>
       
       <div className='select-none'>
-        <p className='text-2xl font-bold mt-5 text-center'>${game.price}</p>
+        <p className='text-2xl font-bold mt-5 text-center'>$ {separadorMiles(game.precio)}</p>
       </div>
 
       <div className='select-none flex items-center justify-center mt-5 gap-7'>

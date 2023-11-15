@@ -2,7 +2,7 @@ import { uploadGameImage } from "../uploadImages";
 
 export const getProductos = async (categoria = 'all') => {
   const response = await fetch(`http://localhost:3000/api/v1/productos/${categoria}`, 
-    {next: {revalidate: 0}}
+    {next: {revalidate: 60}}
   );
   const data = await response.json();
   return data;
@@ -41,3 +41,11 @@ export const saveProducto = async (titulo, categoria, precio, descripcion, trail
   const data = await response.json(); 
   return {error:false, errorMsg: '', data};
 }
+
+export const getProductoById = async (juegoId) => {
+  const response = await fetch(`http://localhost:3000/api/v1/detail/${juegoId}`, 
+    {next: {revalidate: 60}}
+  );
+  const data = await response.json();
+  return data;
+};
