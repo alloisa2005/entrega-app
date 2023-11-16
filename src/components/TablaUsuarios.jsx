@@ -20,6 +20,20 @@ const TablaUsuarios = ({ data }) => {
 
   const [openAcciones, setOpenAcciones] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  
+  const toggleIsAdmin = async () => {
+    setSelectedUser({
+      ...selectedUser,
+      isAdmin: !selectedUser.isAdmin,
+    });
+  }
+
+  const toggleActivo = async () => {
+    setSelectedUser({
+      ...selectedUser,
+      activo: !selectedUser.activo,
+    });
+  }
 
   const handleOpciones = (user) => {    
     setSelectedUser(user);
@@ -51,6 +65,11 @@ const TablaUsuarios = ({ data }) => {
     {
       header: "Nombre",
       accessorKey: "nombre",
+      cell: (cell) => {
+        return (
+          <p className="font-bold">{cell.getValue()}</p>
+        );
+      },
     },
     {
       header: "Email",
@@ -187,7 +206,7 @@ const TablaUsuarios = ({ data }) => {
 
       {openAcciones && (
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="w-[50%] h-[50%] bg-white rounded-md p-3">
+          <div className="w-[35%]  bg-white rounded-md py-3 px-5">
             <div className="flex items-center justify-between border-b border-black my-2">
               <h2 className="text-xl font-semibold">Editar Usuario</h2>
               <AiFillCloseCircle size={28} onClick={closeModal}/>
@@ -205,8 +224,36 @@ const TablaUsuarios = ({ data }) => {
             </div>  
 
             <div className="mt-6">
-              <p>Dirección: {selectedUser.direccion}</p>
+              <p className="font-bold">Dirección: <span className="text-gray-500 text-lg">{selectedUser.direccion}</span></p>
             </div>                     
+
+            <div className="flex items-center justify-between px-10">
+
+              <div className="mt-4 flex items-center gap-3">
+                <p>Admin:</p>
+                <select value={selectedUser.isAdmin ? 'SI' : 'NO'} 
+                  onChange={toggleIsAdmin}
+                  className={`${selectedUser.isAdmin ? 'text-green-500' : 'text-red-500'} bg-white h-full outline-none font-josefin font-bold text-lg border-2 px-2 py-1 rounded-md`}>
+                  <option value="SI">SI</option>
+                  <option value="NO">NO</option>
+                </select>
+              </div>
+
+              <div className="mt-4 flex items-center gap-3">
+                <p>Activo:</p>
+                <select value={selectedUser.activo ? 'SI' : 'NO'} 
+                  onChange={toggleActivo}
+                  className={`${selectedUser.activo ? 'text-green-500' : 'text-red-500'} bg-white h-full outline-none font-josefin font-bold text-lg border-2 px-2 py-1 rounded-md`}>
+                  <option value="SI">SI</option>
+                  <option value="NO">NO</option>
+                </select>
+              </div>
+
+            </div>    
+
+            <div className="w-full mt-5 text-center">
+              <button className="rounded-lg bg-black text-white px-5 py-2 font-bold">Editar</button>
+            </div>
           </div>
         </div>
       )}
