@@ -154,6 +154,7 @@ const NuevoJuegoForm = () => {
             className="outline-none font-josefin text-lg border-2 px-2 py-1 rounded-md"
           />
         </div>
+        
         <div className="flex flex-col w-full lg:w-[10%]">
           <label className="select-none font-josefin text-lg text-gray-700 italic">Stock</label>
           <input            

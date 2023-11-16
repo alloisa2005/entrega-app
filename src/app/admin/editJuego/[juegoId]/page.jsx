@@ -1,11 +1,11 @@
 import EditJuegoForm from '@/components/EditJuegoForm'
-import { mockGames } from '@/data/products';
+import { getProductoById } from '@/utils/juegos/juegos';
 import React from 'react'
 
-const EditJuego = ({ params }) => {
+const EditJuego = async ({ params }) => {
 
   const {juegoId} = params;
-  const game = mockGames.find(g => g.id === parseInt(juegoId)); 
+  const game = await getProductoById(juegoId);
 
   return (
     <div className='w-full'>      

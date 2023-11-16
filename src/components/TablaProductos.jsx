@@ -57,7 +57,7 @@ const TablaProductos = ({ data }) => {
     {
       header: "Acciones",
       cell: info => {   
-        const juegoId = info.row.original.id;
+        const juegoId = info.row.original._id;
         return <div className="w-full flex gap-3">  
         <Link href={`/admin/editJuego/${juegoId}`}>
           <FaRegEdit size={22} className='text-green-400 hover:text-green-500 hover:cursor-pointer hover:scale-110 ease-in duration-300' />          
