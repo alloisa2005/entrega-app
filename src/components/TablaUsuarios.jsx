@@ -12,9 +12,13 @@ import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
 import { AiFillCloseCircle } from "react-icons/ai";
-
+import { useRouter } from "next/navigation";
+import { actualizarUsuario } from "@/utils/usuarios/usuarios"
 
 const TablaUsuarios = ({ data }) => {
+
+  const router = useRouter();
+
   const [pageIndex, setPageIndex] = useState(1);
   const [filtered, setFiltered] = useState("");
 
@@ -45,6 +49,17 @@ const TablaUsuarios = ({ data }) => {
     setOpenAcciones(false);
   }
 
+  const handleUpdateUser = async () => {
+
+    console.log(selectedUser.isAdmin, selectedUser.activo, selectedUser._id);
+
+    const data = await actualizarUsuario(selectedUser._id, selectedUser.isAdmin, selectedUser.activo);
+    if(data.error) {      
+      return;
+    }
+    closeModal();
+    router.refresh();    
+  };
   const columns = [
     {
       header: "Foto",
@@ -252,7 +267,9 @@ const TablaUsuarios = ({ data }) => {
             </div>    
 
             <div className="w-full mt-5 text-center">
-              <button className="rounded-lg bg-black text-white px-5 py-2 font-bold">Editar</button>
+              <button 
+                onClick={handleUpdateUser}
+                className="rounded-lg bg-black text-white px-5 py-2 font-bold">Editar</button>
             </div>
           </div>
         </div>

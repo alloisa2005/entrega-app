@@ -4,8 +4,8 @@ import React from 'react'
 
 const ListaUsuarios = async () => {
 
-  const data = await getUsers();  
-
+  const data = await getUsers();    
+  
   return (
     <div className='my-4 mb-10'>      
       {

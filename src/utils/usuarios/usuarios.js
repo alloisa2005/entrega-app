@@ -48,3 +48,18 @@ export const getUserById = async (id) => {
   const data = await response.json();
   return data;
 }
+
+export const actualizarUsuario = async (id, isAdmin, activo) => {
+  const response = await fetch(`http://localhost:3000/api/v1/usuarios/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      isAdmin,
+      activo
+    }),
+  });
+  const data = await response.json();
+  return data;
+};
