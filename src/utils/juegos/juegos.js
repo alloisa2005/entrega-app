@@ -57,3 +57,16 @@ export const getProductosOrdenados = async (filtro) => {
   const data = await response.json();
   return data;
 };
+
+export const updateProducto = async (juegoId, titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating, stock) => {
+  const response = await fetch(`http://localhost:3000/api/v1/productos/producto/${juegoId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating, stock }),    
+  });
+
+  const data = await response.json();
+  return data;
+};
