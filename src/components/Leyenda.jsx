@@ -10,19 +10,19 @@ const Leyenda = () => {
       
       <div className='contenedor py-24 grid grid-cols-1 md:grid-cols-3 gap-6'>
 
-        <div className='border rounded-md text-center w-full flex flex-col items-center gap-3 p-2 justify-center shadow-md'>
+        <div className='font-montserrat border rounded-md text-center w-full flex flex-col items-center gap-3 p-2 justify-center shadow-md'>
           <GiPriceTag size={70} className='text-black' />
-          <h2 className='text-2xl font-bold text-black'>Grandes Ofertas</h2>
+          <h2 className='text-2xl font-bold text-black font-montserrat'>Grandes Ofertas</h2>
           <p>En GamesWorld te ofrecemos las mejores ofertas en juegos, precios increíbles en títulos únicos y exclusivos, con todos los métodos de pago.</p>
         </div>
 
-        <div className='border rounded-md text-center w-full flex flex-col items-center gap-3 p-2 justify-center shadow-md'>
+        <div className='font-montserrat border rounded-md text-center w-full flex flex-col items-center gap-3 p-2 justify-center shadow-md'>
           <AiOutlineStar size={70} className='text-black' />
           <h2 className='text-2xl font-bold text-black'>Novedades Exclusivas</h2>
           <p>Solo en GamesWorld encontrarás novedades únicas y exclusivas en juegos de mesa importados de las mejores y más reconocidas editoriales.</p>
         </div>
 
-        <div className='border rounded-md text-center w-full flex flex-col items-center gap-3 p-2 justify-center shadow-md'>
+        <div className='font-montserrat border rounded-md text-center w-full flex flex-col items-center gap-3 p-2 justify-center shadow-md'>
           <FaTruckFast size={70} className='text-black' />
           <h2 className='text-2xl font-bold text-black'>Envíos Rápidos</h2>
           <p>En GamesWorld te ofrecemos envíos rápidos y seguros, en tiempos record, a todo Uruguay y con los costos de envío mas bajo que puedas encontrar</p>

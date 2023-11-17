@@ -21,7 +21,7 @@ const MenuList = ({ open, handleMenu }) => {
         <nav className='flex flex-col gap-5 px-3 text-white font-bold'>
           {
             navbarLinks.map(( link ) => (
-              <Link key={link.id} onClick={handleMenu} className={`${pathname === link.path ? 'text-black bg-white' : ''} hover:text-black hover:bg-white p-2 rounded-md`} href={link.path}>{link.title}</Link>
+              <Link key={link.id} onClick={handleMenu} className={`${pathname === link.path ? 'text-black bg-white' : ''} font-montserrat hover:text-black hover:bg-white p-2 rounded-md`} href={link.path}>{link.title}</Link>
             ))
           }          
         </nav>

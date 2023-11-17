@@ -13,6 +13,9 @@ module.exports = {
         naranja: '#F58220',         
         rojo: '#EC3A33',
       },
+      fontFamily: {
+        montserrat: ['var(--font-montserrat)', 'sans-serif'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

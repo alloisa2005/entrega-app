@@ -13,7 +13,7 @@ const Hero = () => {
           priority
           className="w-full h-full object-cover"
         />
-        <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-b from-black to-transparent flex items-center px-20">
+        <div className="font-montserrat absolute left-0 top-0 w-full h-full bg-gradient-to-b from-black to-transparent flex items-center px-20">
           <h1 className="text-white text-right text-3xl lg:text-5xl italic w-full">
             Welcome to{" "}
             <span className="text-5xl font-bold lg:text-6xl bg-clip-text text-transparent pr-2 bg-gradient-to-r from-white to-red-400">
