@@ -92,7 +92,7 @@ const TablaUsuarios = ({ data }) => {
     },
     {
       header: "Dirección",
-      accessorKey: "direccion",
+      accessorKey: "direccion",      
     },
     {
       header: "Admin",

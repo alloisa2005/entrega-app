@@ -23,6 +23,7 @@ const DetalleCompra = () => {
       <div className='rounded-md py-2 md:py-3 mt-3 mb-1 text-center bg-black hover:bg-black/80 text-white hover:cursor-pointer ease-in duration-300'>
         <p className='font-bold'>Confirmar Compra</p>
       </div>
+      
     </div>
   )
 }

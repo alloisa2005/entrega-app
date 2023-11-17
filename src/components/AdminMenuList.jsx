@@ -9,11 +9,11 @@ const AdminMenuList = () => {
   const pathname = usePathname();
 
   return (
-    <div className='my-4 flex items-center justify-around bg-black text-white font-bold text-lg py-3 rounded-md'>
-      <Link href={'/admin/productos'} className={pathname === '/admin/productos' ? 'border-b-2 border-red-500 text-xl' : ''}>Lista Juegos</Link>
-      <Link href={'/admin/nuevoJuego'} className={pathname === '/admin/nuevoJuego' ? 'border-b-2 border-red-500 text-xl' : ''}>Agregar Juego</Link>
-      <Link href={'/admin/usuarios'} className={pathname === '/admin/usuarios' ? 'border-b-2 border-red-500 text-xl' : ''}>Lista Usuarios</Link>
-      <Link href={'/admin/estadisticas'} className={pathname === '/admin/estadisticas' ? 'border-b-2 border-red-500 text-xl' : ''}>Estadísticas</Link>      
+    <div className='px-3 my-4 flex flex-col md:flex-row md:items-center justify-around bg-black text-white font-bold text-lg py-3 rounded-md'>
+      <Link href={'/admin/productos'} className={pathname === '/admin/productos' ? 'w-fit border-b-2 border-red-500 text-xl mb-1 md:mb-0' : 'mb-1 md:mb-0'}>Lista Juegos</Link>
+      <Link href={'/admin/nuevoJuego'} className={pathname === '/admin/nuevoJuego' ? 'w-fit border-b-2 border-red-500 text-xl mb-1 md:mb-0' : 'mb-1 md:mb-0'}>Agregar Juego</Link>
+      <Link href={'/admin/usuarios'} className={pathname === '/admin/usuarios' ? 'w-fit border-b-2 border-red-500 text-xl mb-1 md:mb-0' : 'mb-1 md:mb-0'}>Lista Usuarios</Link>
+      <Link href={'/admin/estadisticas'} className={pathname === '/admin/estadisticas' ? 'w-fit border-b-2 border-red-500 text-xl mb-1 md:mb-0' : 'mb-1 md:mb-0'}>Estadísticas</Link>      
     </div>
   )
 }

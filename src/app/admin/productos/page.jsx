@@ -10,7 +10,7 @@ const ListaProductos = async () => {
   const juegos = await getProductos();  
 
   return (
-    <div className='my-4 mb-10'>      
+    <div className='my-4 mb-10 font-montserrat'>      
       {
         juegos.length === 0 ? (
           <div className='text-center my-16'>

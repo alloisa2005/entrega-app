@@ -10,8 +10,9 @@ const Carrito = () => {
   };
 
   return (
-    <div className='contenedor my-4 alturaMinima' >
-      <p className='border-b-2 border-black text-2xl italic'>Mi Carrito</p>
+    <div className='contenedor my-4 alturaMinima' >      
+      
+      <p className='border-b-2 border-black text-2xl italic'>Mi Carrito</p>                    
 
       <div className='mt-3 flex flex-col-reverse lg:flex-row justify-between gap-3'>
         {/* Lista de Prods */}

@@ -15,6 +15,7 @@ module.exports = {
       },
       fontFamily: {
         montserrat: ['var(--font-montserrat)', 'sans-serif'],
+        caveat: ['var(--font-caveat)', 'cursive'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
