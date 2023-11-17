@@ -203,12 +203,7 @@ const EditJuegoForm = ({ game }) => {
         </div>
       </div>
 
-      <div className="flex flex-col w-full mt-5">
-        <label className="select-none font-josefin text-lg border-b-2 border-naranja">
-          Imágenes
-        </label>
-
-        
+      <div className="flex flex-col w-full mt-5">                
 
         {error && (
           <div className="bg-red-500 text-white font-bold rounded-lg px-3 py-2 mb-2 flex items-center justify-center lg:justify-start shadow-lg">
