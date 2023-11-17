@@ -13,7 +13,7 @@ const GameCard = ({ game }) => {
       </div>
 
       <div className="px-3 py-2 flex flex-1 flex-col gap-2">
-        <p className="font-bold">{cortarTexto(game.titulo, 23)}</p>
+        <p className="text-[15px] font-bold">{cortarTexto(game.titulo, 23)}</p>
         <p className="text-sm">Plataforma: <span className="text-gray-700 italic">{game.categoria.toUpperCase()}</span></p>
         <div className='flex justify-between items-center'>
           <p className="text-md font-bold">$ {separadorMiles(game.precio)}</p>

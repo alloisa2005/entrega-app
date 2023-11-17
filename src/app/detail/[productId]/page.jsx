@@ -12,19 +12,19 @@ const ProductDetail = async ({ params }) => {
   const game = await getProductoById(productId);
   
   return (
-    <section>
+    <section className='font-montserrat'>
       <div className='w-full h-[400px] relative'>
         <Image src={game.posterImage} alt={game.titulo} width={1000} height={800} quality="100" priority className='w-full h-full object-cover'/>
         <div className='absolute w-full h-full top-0 left-0 bg-gradient-to-b from-transparent to-black'></div>
         <div className='absolute bottom-10 left-8 lg:left-20 text-white flex items-center gap-10'>
-          <p className='text-3xl lg:text-4xl font-bold'>{game.titulo}</p>
+          <p className='text-3xl lg:text-5xl font-bold italic'>{game.titulo}</p>
           <PlataformaIcon plataforma={game.categoria}/>
         </div>
       </div>
 
       <div className='contenedor my-5'>
         <div className='flex flex-col lg:flex-row justify-between gap-7'>
-          <div className='flex-1 text-justify'>
+          <div className='flex-1 text-justify text-md'>
             <p>{game.descripcion}</p>
           </div>
 

@@ -5,7 +5,7 @@ import React from 'react'
 const Editoriales = () => {
   return (
     <div className='bg-black'>
-      <div className='contenedor text-white py-6'>
+      <div className='font-montserrat contenedor text-white py-10'>
         <p className='font-semibold italic text-xl lg:text-2xl uppercase border-b border-white'>Nuestras Principales Editoriales </p>
 
         <div className='grid grid-cols-2 md:grid-cols-4 gap-12 my-14'>
