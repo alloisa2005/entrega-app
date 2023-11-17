@@ -11,12 +11,12 @@ const ProductsByCategory = async ({ params }) => {
         <p className="text-center text-2xl font-semibold alturaMinima ">
           Lo sentimos, no tenemos productos de esta plataforma.
         </p>
-      ) : (
+      ) : (        
         <div className="p-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {games.map((game) => (
             <GameCard key={game._id} game={game} />
           ))}
-        </div>
+        </div>        
       )}
     </>
   );

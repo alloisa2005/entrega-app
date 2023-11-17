@@ -11,9 +11,7 @@ export default function Home() {
 
       <Leyenda />
       
-      <FilaJuegos titulo={'últimos agregados'} filtro='latest'/>
-      
-      <FilaJuegos titulo={'más populares'}  filtro='rating'/>
+      <FilaJuegos titulo={'últimos agregados'} />            
 
       <Editoriales />
     </main>
