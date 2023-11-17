@@ -1,6 +1,11 @@
 import GameCard from "@/components/GameCard";
 import { getProductos } from "@/utils/juegos/juegos";
 
+export const metadata = {
+  title: "Store",
+  description: "Home page",
+}
+
 const ProductsByCategory = async ({ params }) => {
   const { categoria } = params;  
   const games = await getProductos(categoria.toLowerCase());

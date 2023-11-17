@@ -5,6 +5,15 @@ import { getProductoById } from '@/utils/juegos/juegos';
 import Image from 'next/image';
 import React from 'react'
 
+export const generateMetadata = async ({ params }) => {   
+  const game = await getProductoById(params.productId);
+  if(!game) return {title: 'Not Found', description: 'Not Found'}
+
+  return {
+    title: game.titulo,
+    description: `${game.titulo} - ${game.categoria}`,   
+  }
+}
 
 const ProductDetail = async ({ params }) => {
 

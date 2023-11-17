@@ -2,6 +2,11 @@ import CarritoCard from '@/components/CarritoCard'
 import DetalleCompra from '@/components/DetalleCompra'
 import MetodosPago from '@/components/MetodosPago'
 
+export const metadata = {
+  title: "Cart",
+  description: "Home page",
+}
+
 const Carrito = () => {
 
   const estiloDiv = {

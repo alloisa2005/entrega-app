@@ -1,7 +1,7 @@
 import { uploadGameImage } from "../uploadImages";
 
 export const getProductos = async (categoria = 'all') => {
-  const response = await fetch(`http://localhost:3000/api/v1/productos/${categoria}`, 
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/v1/productos/${categoria}`, 
     {next: {revalidate: 60}}
   );
   const data = await response.json();
@@ -22,10 +22,10 @@ export const saveProducto = async (titulo, categoria, precio, descripcion, trail
   }  
   const bgImage = response.imgUrl;
 
-  response = await fetch("http://localhost:3000/api/v1/productos/", {
+  response = await fetch(`${process.env.NEXTAUTH_URL}/api/v1/productos/`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json",s
     },
     body: JSON.stringify({
       titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating,
@@ -43,7 +43,7 @@ export const saveProducto = async (titulo, categoria, precio, descripcion, trail
 }
 
 export const getProductoById = async (juegoId) => {
-  const response = await fetch(`http://localhost:3000/api/v1/productos/detail/${juegoId}`, 
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/v1/productos/detail/${juegoId}`, 
     {next: {revalidate: 60}}
   );
   const data = await response.json();
@@ -51,7 +51,7 @@ export const getProductoById = async (juegoId) => {
 };
 
 export const getProductosOrdenados = async (filtro) => {
-  const response = await fetch(`http://localhost:3000/api/v1/productos/ordenados/${filtro}`, 
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/v1/productos/ordenados/${filtro}`, 
     {next: {revalidate: 180}}  // cada 3 min se actualiza
   );
   const data = await response.json();
@@ -59,7 +59,7 @@ export const getProductosOrdenados = async (filtro) => {
 };
 
 export const updateProducto = async (juegoId, titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating, stock) => {
-  const response = await fetch(`http://localhost:3000/api/v1/productos/producto/${juegoId}`, {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/v1/productos/api/v1/productos/producto/${juegoId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

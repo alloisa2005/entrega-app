@@ -1,6 +1,11 @@
 import AdminMenuList from '@/components/AdminMenuList'
 import React from 'react'
 
+export const metadata = {
+  title: "Admin",
+  description: "Home page",
+}
+
 const AdminLayout = ({children}) => {
   return (
     <>

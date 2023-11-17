@@ -1,6 +1,11 @@
 import { RegisterForm } from '@/components/RegisterForm'
 import React from 'react'
 
+export const metadata = {
+  title: "Register",
+  description: "Home page",
+}
+
 const Register = () => {
   return (
     <div className='font-montserrat contenedor  flex items-center justify-center w-full'>
