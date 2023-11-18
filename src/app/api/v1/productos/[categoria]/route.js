@@ -5,8 +5,7 @@ import { NextResponse } from "next/server";
 export const GET = async (req, { params }) => {
 
   const urlParams = new URLSearchParams(req.url.slice(req.url.indexOf('?')));
-  const nombre = urlParams.get('nombre');
-  console.log('nombre: ', nombre)
+  const nombre = urlParams.get('nombre');  
 
   const { categoria } = params;  
 
@@ -18,7 +17,7 @@ export const GET = async (req, { params }) => {
         $regex: nombre,
         $options: 'i'
       }});
-      console.log('juegos: ', juegos)
+      
       return NextResponse.json(juegos, { status: 201 });
     }
 

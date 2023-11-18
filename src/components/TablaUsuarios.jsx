@@ -49,9 +49,7 @@ const TablaUsuarios = ({ data }) => {
     setOpenAcciones(false);
   }
 
-  const handleUpdateUser = async () => {
-
-    console.log(selectedUser.isAdmin, selectedUser.activo, selectedUser._id);
+  const handleUpdateUser = async () => {    
 
     const data = await actualizarUsuario(selectedUser._id, selectedUser.isAdmin, selectedUser.activo);
     if(data.error) {      

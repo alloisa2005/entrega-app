@@ -14,9 +14,9 @@ const GamesList = ({ games, params }) => {
 
   const handleSearch = () => {
     if (searchText.trim() === "") {
-      router.push(`/tienda/categorias/all`);
+      router.replace(`/tienda/categorias/all`);
     } else {
-      router.push(`/tienda/categorias/all?nombre=${searchText}`);
+      router.replace(`/tienda/categorias/all?nombre=${searchText}`);
     }
   };
 
