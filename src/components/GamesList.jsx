@@ -4,26 +4,24 @@ import React, { useEffect } from "react";
 import GameCard from "./GameCard";
 import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-import { useDebounce } from "@uidotdev/usehooks";
 
 const GamesList = ({ games, params }) => {
 
   const router = useRouter();
 
   const [searchText, setSearchText] = React.useState("");
-  const debouncedSearchTerm = useDebounce(searchText, 300);
-
-  useEffect(() => {
-    if (!debouncedSearchTerm) {
-      router.replace(`/tienda/categorias/all`);
-    } else {
-      router.replace(`/tienda/categorias/all?nombre=${searchText}`);
-    }
-  }, [debouncedSearchTerm]);
 
   const handleChange = (e) => {
     setSearchText(e.target.value);    
   };  
+
+  const handleSearch = () => {
+    if (!searchText) {
+      router.replace(`/tienda/categorias/all`);
+    } else {
+      router.replace(`/tienda/categorias/all?nombre=${searchText}`);
+    }
+  };
 
   return (
     <>
@@ -34,7 +32,10 @@ const GamesList = ({ games, params }) => {
           onChange={handleChange}
           placeholder="Buscar por nombre..." 
           className="w-full p-2" 
-        />        
+        />    
+        <div onClick={handleSearch} className='bg-gray-400 p-2 text-white' >
+          <IoSearch size={25} />
+        </div>    
       </div>
       <div className="p-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {games.map((game) => (
