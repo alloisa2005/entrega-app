@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react'
 import RatingBar from './RatingBar';
 
-const FilaJuegos = async ({ titulo }) => {
+const FilaJuegos = async () => {
 
   const gamesLatest = await getProductosOrdenados('latest')    
   const gamesRatings = await getProductosOrdenados('rating')    
@@ -12,7 +12,7 @@ const FilaJuegos = async ({ titulo }) => {
   return (
     <div className='bg-black'>
       <div className='contenedor text-white py-5'>
-        <h2 className='font-montserrat text-2xl font-semibold border-b uppercase italic'>{titulo}</h2>
+        <h2 className='font-montserrat text-2xl font-semibold border-b uppercase italic'>últimos agregados</h2>
 
         <div className='mt-5 grid grid-cols-2 lg:grid-cols-4 gap-4'>
           {gamesLatest && gamesLatest.map((game) => (
@@ -29,7 +29,7 @@ const FilaJuegos = async ({ titulo }) => {
       </div>
 
       <div className='contenedor text-white py-5'>
-        <h2 className='font-montserrat text-2xl font-semibold border-b uppercase italic'>{titulo}</h2>
+        <h2 className='font-montserrat text-2xl font-semibold border-b uppercase italic'>más populares</h2>
 
         <div className='mt-5 grid grid-cols-2 lg:grid-cols-4 gap-4'>
           {gamesRatings && gamesRatings.map((game) => (

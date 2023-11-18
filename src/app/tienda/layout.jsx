@@ -11,7 +11,7 @@ const TiendaLayout = ({ children }) => {
           <PlataformaList />
         </div>
 
-        <div className='font-montserrat flex-1 p-2'>
+        <div className='font-montserrat flex-1 p-2'>          
           {children}
         </div>
       </div>

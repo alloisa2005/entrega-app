@@ -1,9 +1,12 @@
 import { uploadGameImage } from "../uploadImages";
 
-export const getProductos = async (categoria = 'all') => {
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/v1/productos/${categoria}`, 
-    {next: {revalidate: 60}}
-  );
+export const getProductos = async (categoria = 'all', nombre='') => {
+
+  const url = nombre === '' ? `${process.env.NEXTAUTH_URL}/api/v1/productos/${categoria}` 
+                            : `${process.env.NEXTAUTH_URL}/api/v1/productos/${categoria}?nombre=${nombre}` 
+
+  const response = await fetch(url,{next: {revalidate: 0}});
+  
   const data = await response.json();
   return data;
 };

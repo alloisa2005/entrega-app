@@ -1,4 +1,5 @@
 import GameCard from "@/components/GameCard";
+import GamesList from "@/components/GamesList";
 import { getProductos } from "@/utils/juegos/juegos";
 
 export const metadata = {
@@ -6,9 +7,11 @@ export const metadata = {
   description: "Home page",
 }
 
-const ProductsByCategory = async ({ params }) => {
+const ProductsByCategory = async ({ params, searchParams }) => {
   const { categoria } = params;  
-  const games = await getProductos(categoria.toLowerCase());
+  const { nombre } = searchParams;
+
+  const games = await getProductos(categoria.toLowerCase(), nombre);  
 
   return (
     <>
@@ -17,11 +20,7 @@ const ProductsByCategory = async ({ params }) => {
           Lo sentimos, no tenemos productos de esta plataforma.
         </p>
       ) : (        
-        <div className="p-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {games.map((game) => (
-            <GameCard key={game._id} game={game} />
-          ))}
-        </div>        
+        <GamesList games={games} params={params} />       
       )}
     </>
   );
