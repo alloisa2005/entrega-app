@@ -8,7 +8,7 @@ export const GET = async (req, { params }) => {
 
   // ej: http://localhost:3000/api/v1/productos/nombre?query=nombreJuego
   const query = req.nextUrl.searchParams.get("query");
-  console.log(query);
+  
 
   try {
     await connectDB();
