@@ -1,24 +1,29 @@
 'use client'
 
-import React from "react";
+import React, { useEffect } from "react";
 import GameCard from "./GameCard";
 import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-
+import { useDebounce } from "@uidotdev/usehooks";
 
 const GamesList = ({ games, params }) => {
 
   const router = useRouter();
 
   const [searchText, setSearchText] = React.useState("");
+  const debouncedSearchTerm = useDebounce(searchText, 300);
 
-  const handleSearch = () => {
-    if (searchText.trim() === "") {
+  useEffect(() => {
+    if (!debouncedSearchTerm) {
       router.replace(`/tienda/categorias/all`);
     } else {
       router.replace(`/tienda/categorias/all?nombre=${searchText}`);
     }
-  };
+  }, [debouncedSearchTerm]);
+
+  const handleChange = (e) => {
+    setSearchText(e.target.value);    
+  };  
 
   return (
     <>
@@ -26,13 +31,10 @@ const GamesList = ({ games, params }) => {
         <input 
           type="text"
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={handleChange}
           placeholder="Buscar por nombre..." 
           className="w-full p-2" 
-        />
-        <div onClick={handleSearch} className="flex items-center justify-center  h-full bg-gray-400 p-2">
-          <IoSearch size={25} className='text-white' />
-        </div>
+        />        
       </div>
       <div className="p-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {games.map((game) => (
