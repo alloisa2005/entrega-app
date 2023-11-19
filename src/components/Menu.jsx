@@ -1,6 +1,7 @@
 'use client'
 
 import { navbarLinks } from '@/utils/navbarLinks'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useState } from 'react'
@@ -18,7 +19,9 @@ const Menu = () => {
       <nav className='hidden lg:flex items-center gap-5 px-3 text-white font-bold'>
         {
           navbarLinks.map(( link ) => (
-            <Link key={link.id} className={`${pathname === link.path ? 'bg-white text-black': ''} font-montserrat hover:text-black hover:bg-white p-2 rounded-md`} href={link.path}>{link.title}</Link>
+            <Link key={link.id} className={`${pathname === link.path ? 'bg-white text-black': ''} font-montserrat hover:text-black hover:bg-white p-2 rounded-md`} href={link.path}>
+              {link.title}
+            </Link>
           ))
         } 
       </nav>

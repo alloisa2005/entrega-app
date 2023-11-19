@@ -1,5 +1,6 @@
 import AddToCart from '@/components/AddToCart';
 import PlataformaIcon from '@/components/PlataformaIcon';
+import ProductTitle from '@/components/ProductTitle';
 import Trailers from '@/components/Trailers';
 import { getProductoById } from '@/utils/juegos/juegos';
 import Image from 'next/image';
@@ -25,8 +26,8 @@ const ProductDetail = async ({ params }) => {
       <div className='w-full h-[400px] relative'>
         <Image src={game.posterImage} alt={game.titulo} width={1000} height={800} quality="100" priority className='w-full h-full object-cover'/>
         <div className='absolute w-full h-full top-0 left-0 bg-gradient-to-b from-transparent to-black'></div>
-        <div className='absolute bottom-10 left-8 lg:left-20 text-white flex items-center gap-10'>
-          <p className='text-3xl lg:text-5xl font-bold italic'>{game.titulo}</p>
+        <div className='absolute bottom-10 left-8 lg:left-20 text-white flex items-center gap-10'>          
+          <ProductTitle titulo={game.titulo} />
           <PlataformaIcon plataforma={game.categoria}/>
         </div>
       </div>
