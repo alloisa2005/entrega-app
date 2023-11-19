@@ -9,10 +9,7 @@ export const metadata = {
 
 const Carrito = () => {
 
-  const estiloDiv = {
-    minHeight: 'calc(100vh - 152px)',
-    // Otros estilos en línea aquí
-  };
+  
 
   return (
     <div className='contenedor my-4 alturaMinima' >      
