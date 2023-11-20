@@ -1,6 +1,7 @@
-import GameCard from "@/components/GameCard";
 import GamesList from "@/components/GamesList";
 import { getProductos } from "@/utils/juegos/juegos";
+import { Suspense } from "react";
+import Skeleton from "./Skeleton";
 
 export const metadata = {
   title: "Store",
@@ -20,7 +21,9 @@ const ProductsByCategory = async ({ params, searchParams }) => {
           Lo sentimos, no tenemos productos de esta plataforma.
         </p>
       ) : (        
-        <GamesList games={games} params={params} />       
+        <Suspense fallback={<Skeleton />}>
+          <GamesList games={games} params={params} />       
+        </Suspense>
       )}
     </>
   );
