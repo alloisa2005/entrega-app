@@ -10,7 +10,7 @@ export const GET = async (req, res) => {
   try {
     await connectDB();
     
-    const mensajes = await Mensaje.find(leido ? {leido: true} : {});
+    const mensajes = await Mensaje.find(leido ? {leido: true} : {}).sort({createdAt: -1});
     return NextResponse.json(mensajes, { status: 201 });
   } catch (error) {
     return NextResponse.json({msg: error.message}, { status: 400 });
