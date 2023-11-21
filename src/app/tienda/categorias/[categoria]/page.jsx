@@ -8,6 +8,17 @@ export const metadata = {
   description: "Home page",
 }
 
+export const generateStaticParams = () => {
+  return [
+    { categoria: "ps4" },
+    { categoria: "ps5" },
+    { categoria: "xbox"  },
+    { categoria: "ns"  },
+    { categoria: "pc"  },
+  ];
+};
+export const revalidate = 3600; // 1 hora
+
 const ProductsByCategory = async ({ params, searchParams }) => {
   const { categoria } = params;  
   const { nombre } = searchParams;
