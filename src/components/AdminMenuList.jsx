@@ -13,7 +13,7 @@ const AdminMenuList = () => {
       <Link href={'/admin/productos'} className={pathname === '/admin/productos' ? 'w-fit border-b-2 border-red-500 text-xl mb-1 md:mb-0' : 'mb-1 md:mb-0'}>Lista Juegos</Link>
       <Link href={'/admin/nuevoJuego'} className={pathname === '/admin/nuevoJuego' ? 'w-fit border-b-2 border-red-500 text-xl mb-1 md:mb-0' : 'mb-1 md:mb-0'}>Agregar Juego</Link>
       <Link href={'/admin/usuarios'} className={pathname === '/admin/usuarios' ? 'w-fit border-b-2 border-red-500 text-xl mb-1 md:mb-0' : 'mb-1 md:mb-0'}>Lista Usuarios</Link>
-      <Link href={'/admin/estadisticas'} className={pathname === '/admin/estadisticas' ? 'w-fit border-b-2 border-red-500 text-xl mb-1 md:mb-0' : 'mb-1 md:mb-0'}>Estadísticas</Link>      
+      <Link href={'/admin/mensajes'} className={pathname === '/admin/mensajes' ? 'w-fit border-b-2 border-red-500 text-xl mb-1 md:mb-0' : 'mb-1 md:mb-0'}>Mensajes</Link>      
     </div>
   )
 }
