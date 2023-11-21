@@ -76,7 +76,7 @@ const MensajeForm = () => {
           type="submit"
           className="mt-5 w-full md:w-fit md:px-8 bg-black py-2 text-white text-md font-bold rounded-md shadow-md hover:shadow-lg hover:scale-105 ease-in duration-300"
         >
-          {!loading ? "Pregúntanos" : <Spinner />}
+          {!loading ? "Enviar" : <Spinner />}
         </button>
       </div>
     </form>
