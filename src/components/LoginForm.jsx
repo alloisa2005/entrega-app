@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { motion } from "framer-motion";
 import MiModal from "./MiModal";
 
 export const LoginForm = () => {
@@ -27,9 +27,16 @@ export const LoginForm = () => {
       <form
         onSubmit={handleSubmit}
         className="mt-4 md:mt-8 mb-6 w-full lg:max-w-[50%] flex flex-col justify-center gap-6 border-2 p-4 rounded-md shadow-md"
-      >
+      >        
         <div className="flex flex-col">
-          <label>Email</label>
+          <motion.label
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 1 }}
+            exit={{ x: -50, opacity: 0 }}
+          >            
+            Email
+          </motion.label>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -40,8 +47,15 @@ export const LoginForm = () => {
         </div>
 
         <div className="flex flex-col mt-3">
-          <label>Contraseña</label>
-          <input
+          <motion.label
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 1 }}
+            exit={{ x: 50, opacity: 0 }}
+          >
+            Contraseña
+          </motion.label>
+          <input            
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"

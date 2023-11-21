@@ -16,7 +16,7 @@ export const GET = async (req, { params }) => {
       const juegos = await Juego.find({titulo: {
         $regex: nombre,
         $options: 'i'
-      }});
+      }});      
       
       return NextResponse.json(juegos, { status: 201 });
     }
