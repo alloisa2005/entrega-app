@@ -1,27 +1,43 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { useState } from 'react'
+import { guardarMensaje } from "@/utils/mensajes/mensajes";
+import React from "react";
+import { useState } from "react";
+import Spinner from "./Spinner";
 
 const MensajeForm = () => {
+  const [email, setEmail] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [mensaje, setMensaje] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [email, setEmail] = useState('')
-  const [nombre, setNombre] = useState('')
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();    
-  }
+    if (!email || !nombre || !mensaje) {
+      alert("Todos los campos son obligatorios");
+      setLoading(false);
+      return;
+    }
+    const data = await guardarMensaje(email, nombre, mensaje);
+
+    setEmail("");
+    setNombre("");
+    setMensaje("");
+    setLoading(false);
+
+    console.log(data);
+  };
 
   return (
-    <form onSubmit={handleSubmit} className='mt-5 flex flex-col'>
-
-      <div className='flex flex-col lg:flex-row items-center w-full gap-4 lg:gap-6'>
-
+    <form onSubmit={handleSubmit} className="mt-5 flex flex-col">
+      <div className="flex flex-col lg:flex-row items-center w-full gap-4 lg:gap-6">
         <div className="flex flex-col w-full">
           <label>Email</label>
-          <input       
+          <input
             value={email}
-            onChange={(e) => setEmail(e.target.value)}             
+            onChange={(e) => setEmail(e.target.value)}
             type="text"
             className="border rounded-md p-2 outline-none focus:border-black focus:shadow-md"
             placeholder="john@gmail.com"
@@ -30,34 +46,41 @@ const MensajeForm = () => {
 
         <div className="flex flex-col w-full">
           <label>Nombre</label>
-          <input          
+          <input
             value={nombre}
-            onChange={(e) => setNombre(e.target.value)}          
+            onChange={(e) => setNombre(e.target.value)}
             type="text"
             className="border rounded-md p-2 outline-none focus:border-black focus:shadow-md"
             placeholder="John Doe"
           />
         </div>
-
       </div>
 
       <div className="flex flex-col w-full mt-3">
-        <label className="select-none font-josefin text-lg text-gray-700 italic">Mensaje</label>
-        <textarea                
-          name='mensaje'      
+        <label className="select-none font-josefin text-lg text-gray-700 italic">
+          Mensaje
+        </label>
+        <textarea
+          value={mensaje}
+          onChange={(e) => setMensaje(e.target.value)}
+          name="mensaje"
           type="text"
           placeholder="Tú mensaje..."
           className="resize-none h-[140px] outline-none font-josefin text-md border-2 px-2 py-1 rounded-md"
         />
       </div>
 
-      <div className='w-full text-center'>
-        <button className="mt-5 w-full md:w-fit md:px-8 bg-black py-2 text-white text-md font-bold rounded-md shadow-md hover:shadow-lg hover:scale-105 ease-in duration-300">
-          Pregúntanos
+      <div className="w-full text-center">
+        <button
+          disabled={loading}
+          type="submit"
+          className="mt-5 w-full md:w-fit md:px-8 bg-black py-2 text-white text-md font-bold rounded-md shadow-md hover:shadow-lg hover:scale-105 ease-in duration-300"
+        >
+          {!loading ? "Pregúntanos" : <Spinner />}
         </button>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default MensajeForm
+export default MensajeForm;
