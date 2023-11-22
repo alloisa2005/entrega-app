@@ -7,8 +7,12 @@ import { MdOutlineDelete }  from "react-icons/md";
 import { FiMessageSquare } from "react-icons/fi";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Image from "next/image";
+import { borrarMensaje, leerMensaje } from "@/utils/mensajes/mensajes";
+import { useRouter } from "next/navigation";
 
 const TablaMensajes = ({ data }) => {    
+
+  const router = useRouter();
 
   const [pageIndex, setPageIndex] = useState(1);
   const [filtered, setFiltered] = useState('');
@@ -18,8 +22,18 @@ const TablaMensajes = ({ data }) => {
     setSelectedMsg(msg);
   }  
 
-  const closeModal = () => {
+  const closeModal = async () => {
+
+    if(!selectedMsg.leido) {
+      await leerMensaje(selectedMsg._id)
+      router.refresh();
+    }    
     setSelectedMsg(null);  
+  }
+
+  const handleDeleteMsg = async (mensajeId) => {
+    await borrarMensaje(mensajeId);
+    router.refresh();
   }
 
   const columns = [    
@@ -39,7 +53,7 @@ const TablaMensajes = ({ data }) => {
       accessorKey: "email",
       cell: info => {
         const leido = info.row.original.leido;
-        return <p className={`${!leido ? 'font-bold' : ''} hover:cursor-pointer`}>{info.getValue()}</p>
+        return <p onClick={() => handleSelectMsg(info.row.original)}  className={`${!leido ? 'font-bold' : ''} hover:cursor-pointer`}>{info.getValue()}</p>
       }
     },  
     {
@@ -47,19 +61,16 @@ const TablaMensajes = ({ data }) => {
       accessorKey: "nombre",
       cell: info => {
         const leido = info.row.original.leido;
-        return <p className={`${!leido ? 'font-bold' : ''} hover:cursor-pointer`}>{info.getValue()}</p>
+        return <p onClick={() => handleSelectMsg(info.row.original)}  className={`${!leido ? 'font-bold' : ''} hover:cursor-pointer`}>{info.getValue()}</p>
       }
     },         
     {
       header: "Acciones",
       cell: info => {   
         const mensajeId = info.row.original._id;
-        return <div className="w-full flex gap-3">  
-        <Link href={`/`}>
-          <FiMessageSquare size={22} className='text-green-400 hover:text-green-500 hover:cursor-pointer hover:scale-110 ease-in duration-300' />          
-        </Link>
-        
-          <MdOutlineDelete size={24} className='text-red-400 hover:text-red-500 hover:cursor-pointer hover:scale-110 ease-in duration-300' />           
+        return <div className="w-full flex gap-3">                  
+          <MdOutlineDelete onClick={() => handleDeleteMsg(mensajeId)}
+            size={24} className='text-red-400 hover:text-red-500 hover:cursor-pointer hover:scale-110 ease-in duration-300' />           
         </div>
       }
     },

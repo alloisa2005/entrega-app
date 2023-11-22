@@ -12,7 +12,7 @@ const Mensajes = async () => {
       {
         mensajes.length === 0 ? (
           <div className='text-center my-16'>
-            <h2 className='font-bold text-2xl mb-6'>No ha recibido mensajes.</h2>
+            <h2 className='font-bold text-[22px] mb-6'>No tiene mensajes.</h2>
             <Link href={'/admin/nuevoJuego'} className='bg-black text-white px-4 py-3 font-bold rounded-md' >Agregar Juego</Link>
           </div>
         ) : <TablaMensajes data={mensajes} /> 

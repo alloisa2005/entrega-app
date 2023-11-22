@@ -29,3 +29,41 @@ export const guardarMensaje = async (email, nombre, mensaje) => {
   const data = await response.json();
   return { error: false, errorMsg: "", data };
 };
+
+export const leerMensaje = async (mensajeId) => {
+
+  const response = await fetch(`http://localhost:3000/api/v1/mensajes/${mensajeId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ leido: "SI" }),
+  });
+
+  if (!response.ok) {
+    const data = await response.json();
+    return { error: true, errorMsg: data.msg, data: "" };
+  }
+
+  const data = await response.json();
+  return { error: false, errorMsg: "", data };
+};
+
+export const borrarMensaje = async (mensajeId) => {
+
+  const response = await fetch(`http://localhost:3000/api/v1/mensajes/${mensajeId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    const data = await response.json();
+    return { error: true, errorMsg: data.msg, data: "" };
+  }
+
+  const data = await response.json();
+  return { error: false, errorMsg: "", data };
+
+};

@@ -8,7 +8,7 @@ import MensajeContacto from "@/components/MensajeContacto";
 export default function Home() {  
 
   return (    
-    <main className="alturaMinima">      
+    <main className="">      
       <Hero />      
 
       <Leyenda />
