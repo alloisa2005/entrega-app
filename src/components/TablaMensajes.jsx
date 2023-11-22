@@ -3,40 +3,60 @@
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from "@tanstack/react-table";
 import Link from "next/link";
 import { useState } from "react";
-import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete }  from "react-icons/md";
+import { FiMessageSquare } from "react-icons/fi";
+import { AiFillCloseCircle } from "react-icons/ai";
+import Image from "next/image";
 
-const TablaMensajes = ({ data }) => {
+const TablaMensajes = ({ data }) => {    
 
   const [pageIndex, setPageIndex] = useState(1);
   const [filtered, setFiltered] = useState('');
+  const [selectedMsg, setSelectedMsg] = useState(null);
+
+  const handleSelectMsg = (msg) => {
+    setSelectedMsg(msg);
+  }  
+
+  const closeModal = () => {
+    setSelectedMsg(null);  
+  }
 
   const columns = [    
     {
       header: "Fecha",
       accessorKey: "createdAt",
       cell: info => {
+        const leido = info.row.original.leido;        
         const date = new Date(info.getValue());
         const fecha = date.toLocaleDateString();
         const hora = date.toLocaleTimeString();
-        return <p>{fecha} - {hora}</p>
+        return <p onClick={() => handleSelectMsg(info.row.original)} className={`${!leido ? 'font-bold' : ''} hover:cursor-pointer`}>{fecha} - {hora}</p>
       }
-    },
+    },    
     {
       header: "Email",
       accessorKey: "email",
+      cell: info => {
+        const leido = info.row.original.leido;
+        return <p className={`${!leido ? 'font-bold' : ''} hover:cursor-pointer`}>{info.getValue()}</p>
+      }
     },  
     {
       header: "Nombre",
       accessorKey: "nombre",
+      cell: info => {
+        const leido = info.row.original.leido;
+        return <p className={`${!leido ? 'font-bold' : ''} hover:cursor-pointer`}>{info.getValue()}</p>
+      }
     },         
     {
       header: "Acciones",
       cell: info => {   
-        const juegoId = info.row.original._id;
+        const mensajeId = info.row.original._id;
         return <div className="w-full flex gap-3">  
-        <Link href={`/admin/editJuego/${juegoId}`}>
-          <FaRegEdit size={22} className='text-green-400 hover:text-green-500 hover:cursor-pointer hover:scale-110 ease-in duration-300' />          
+        <Link href={`/`}>
+          <FiMessageSquare size={22} className='text-green-400 hover:text-green-500 hover:cursor-pointer hover:scale-110 ease-in duration-300' />          
         </Link>
         
           <MdOutlineDelete size={24} className='text-red-400 hover:text-red-500 hover:cursor-pointer hover:scale-110 ease-in duration-300' />           
@@ -121,6 +141,34 @@ const TablaMensajes = ({ data }) => {
             <button onClick={paginaSiguiente}>{'>>'}</button>          
           </div>
       </div>
+
+      {selectedMsg && (
+        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="w-[35%]  bg-white rounded-md py-3 px-5">
+            <div className="flex items-center justify-between border-b border-black my-2">
+              <h2 className="text-xl font-semibold">Mensaje</h2>
+              <AiFillCloseCircle size={28} onClick={closeModal} className='hover:cursor-pointer' />
+            </div>
+            
+            <div className="flex flex-col  gap-2 mt-5"> 
+              <div className="flex items-center gap-2">
+                <h2>De:</h2>
+                <p className="font-semibold">{selectedMsg.nombre}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <h2>Email:</h2>
+                <p className="font-semibold">{selectedMsg.email}</p>
+              </div>
+              <hr />
+              <div className="mt-3 flex flex-col gap-1">
+                <h2>Mensaje:</h2>
+                <p className="font-semibold bg-gray-200/50 p-2 rounded-md">{selectedMsg.mensaje}</p>
+              </div>
+            </div>                          
+            
+          </div>
+        </div>
+      )}
     </div>
   )
 }
