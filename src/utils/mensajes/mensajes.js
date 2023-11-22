@@ -11,14 +11,14 @@ export const getAllMensajes = async (leido = false) => {
   return data;
 };
 
-export const guardarMensaje = async (email, nombre, mensaje) => {    
+export const guardarMensaje = async (email, nombre, asunto, mensaje) => {    
 
   const response = await fetch(`/api/v1/mensajes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, nombre, mensaje }),
+    body: JSON.stringify({ email, nombre, asunto, mensaje }),
   });
 
   if (!response.ok) {

@@ -8,6 +8,7 @@ import Spinner from "./Spinner";
 const MensajeForm = () => {
   const [email, setEmail] = useState("");
   const [nombre, setNombre] = useState("");
+  const [asunto, setAsunto] = useState(""); 
   const [mensaje, setMensaje] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -15,19 +16,18 @@ const MensajeForm = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (!email || !nombre || !mensaje) {
+    if (!email || !nombre || !mensaje || !asunto) {
       alert("Todos los campos son obligatorios");
       setLoading(false);
       return;
     }
-    const data = await guardarMensaje(email, nombre, mensaje);
+    await guardarMensaje(email, nombre, asunto, mensaje);
 
     setEmail("");
     setNombre("");
+    setAsunto("");
     setMensaje("");
-    setLoading(false);
-
-    console.log(data);
+    setLoading(false);    
   };
 
   return (
@@ -57,6 +57,17 @@ const MensajeForm = () => {
       </div>
 
       <div className="flex flex-col w-full mt-3">
+        <label>Asunto</label>
+        <input
+          value={asunto}
+          onChange={(e) => setAsunto(e.target.value)}
+          type="text"
+          className="border rounded-md p-2 outline-none focus:border-black focus:shadow-md"
+          placeholder="Asunto"
+        />
+      </div>
+
+      <div className="flex flex-col w-full mt-3">
         <label className="select-none font-josefin text-lg text-gray-700 italic">
           Mensaje
         </label>
@@ -74,7 +85,7 @@ const MensajeForm = () => {
         <button
           disabled={loading}
           type="submit"
-          className="mt-5 w-full md:w-fit md:px-8 bg-black py-2 text-white text-md font-bold rounded-md shadow-md hover:shadow-lg hover:scale-105 ease-in duration-300"
+          className="mt-5 w-full md:w-56 md:px-8 bg-black py-2 text-white text-md font-bold rounded-md shadow-md hover:shadow-lg hover:scale-105 ease-in duration-300"
         >
           {!loading ? "Enviar" : <Spinner />}
         </button>

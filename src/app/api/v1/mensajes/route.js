@@ -19,10 +19,10 @@ export const GET = async (req, res) => {
 
 export const POST = async (req, res) => {  
   try {
-    const { email, nombre, mensaje } = await req.json();
+    const { email, nombre, asunto, mensaje } = await req.json();
     await connectDB();
     
-    const mensajeRes = await Mensaje.create({ email, nombre, mensaje });
+    const mensajeRes = await Mensaje.create({ email, nombre, asunto, mensaje });
     return NextResponse.json(mensajeRes, { status: 201 });
   } catch (error) {
     return NextResponse.json({msg: error.message}, { status: 400 });

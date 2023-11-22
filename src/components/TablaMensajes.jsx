@@ -63,7 +63,15 @@ const TablaMensajes = ({ data }) => {
         const leido = info.row.original.leido;
         return <p onClick={() => handleSelectMsg(info.row.original)}  className={`${!leido ? 'font-bold' : ''} hover:cursor-pointer`}>{info.getValue()}</p>
       }
-    },         
+    }, 
+    {
+      header: "Asunto",
+      accessorKey: "asunto",
+      cell: info => {
+        const leido = info.row.original.leido;
+        return <p onClick={() => handleSelectMsg(info.row.original)}  className={`${!leido ? 'font-bold' : ''} hover:cursor-pointer`}>{info.getValue()}</p>
+      }
+    },           
     {
       header: "Acciones",
       cell: info => {   
@@ -108,7 +116,7 @@ const TablaMensajes = ({ data }) => {
         type="text"
         value={filtered}
         onChange={(e) => setFiltered(e.target.value)}
-        placeholder="Buscar juego..."
+        placeholder="Buscar mensaje..."
         className="mb-2 w-full p-2 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
       />
       <table>
@@ -171,7 +179,11 @@ const TablaMensajes = ({ data }) => {
                 <p className="font-semibold">{selectedMsg.email}</p>
               </div>
               <hr />
-              <div className="mt-3 flex flex-col gap-1">
+              <div className="mt-4 flex items-center gap-1">
+                <h2>Asunto:</h2>
+                <p className="font-semibold">{selectedMsg.asunto}</p>
+              </div>
+              <div className="mt-1 flex flex-col gap-1">
                 <h2>Mensaje:</h2>
                 <p className="font-semibold bg-gray-200/50 p-2 rounded-md">{selectedMsg.mensaje}</p>
               </div>
