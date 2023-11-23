@@ -1,13 +1,14 @@
 'use client'
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import { AiFillCloseCircle } from "react-icons/ai";
-import { FaCloudUploadAlt } from "react-icons/fa";
 import Spinner from "./Spinner";
 import { TfiPencilAlt } from "react-icons/tfi";
+import { updateProducto } from "@/utils/juegos/juegos";
+import { useRouter } from "next/navigation";
 
 const EditJuegoForm = ({ game }) => {    
+
+  const router = useRouter();
 
   const [titulo, setTitulo] = useState('');
   const [categoria, setCategoria] = useState('');
@@ -17,11 +18,7 @@ const EditJuegoForm = ({ game }) => {
   const [stock, setStock] = useState(0);
   const [trailer1, setTrailer1] = useState('');
   const [trailer2, setTrailer2] = useState('');
-  const [trailer3, setTrailer3] = useState('');
-  const [boxImage, setBoxImage] = useState(''); 
-  const [boxImagePreview, setBoxImagePreview] = useState('');
-  const [posterImage, setPosterImage] = useState('');
-  const [posterImagePreview, setPosterImagePreview] = useState('');
+  const [trailer3, setTrailer3] = useState('');  
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -34,33 +31,9 @@ const EditJuegoForm = ({ game }) => {
     setStock(game.stock);
     setTrailer1(game.trailer1);
     setTrailer2(game.trailer2);
-    setTrailer3(game.trailer3);
-    setBoxImagePreview(game.boxImage)
-    setPosterImagePreview(game.posterImage);
+    setTrailer3(game.trailer3);        
   }, [game])
-  const handleInputImage = (e) => {   
-    if(e.target.name === 'boxImage') {
-      setBoxImage(e.target.files[0]);
-      setBoxImagePreview(URL.createObjectURL(e.target.files[0]))            
-    }
-
-    if(e.target.name === 'posterImage') {
-      setPosterImage(e.target.files[0]);
-      setPosterImagePreview(URL.createObjectURL(e.target.files[0]))            
-    }
-  }
   
-  const handleDeleteImage = (type) => (e) => {
-    if(type === 'box') {
-      setBoxImage('');
-      setBoxImagePreview('');
-    }
-
-    if(type === 'poster') {
-      setPosterImage('');
-      setPosterImagePreview('');
-    }
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
@@ -70,13 +43,17 @@ const EditJuegoForm = ({ game }) => {
       setError('Todos los campos son obligatorios');
       setLoading(false);
       return;
-    }
+    }    
 
-    if(!boxImage || !posterImage) {
-      setError('Debes cargar ambas imágenes');
+    const data = await updateProducto(game._id, titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating, stock);        
+
+    if(data.error){
+      setModal({ error: true, msg: data.errorMsg});
       setLoading(false);
       return;
     }
+    router.refresh();
+    router.push('/admin/productos');
   }
 
   return (
@@ -105,8 +82,10 @@ const EditJuegoForm = ({ game }) => {
             className="bg-white h-full outline-none font-josefin text-lg border-2 px-2 py-1 rounded-md"
           >
             <option value="" className="text-lg">Seleccione Plataforma</option>
-            <option value="ps4" className="text-lg">PS4</option>            
             <option value="ns" className="text-lg">Nintendo Switch</option>
+            <option value="pc" className="text-lg">PC</option> 
+            <option value="ps4" className="text-lg">PS4</option>            
+            <option value="ps5" className="text-lg">PS5</option> 
             <option value="xbox" className="text-lg">XBOX</option>
           </select>
         </div>

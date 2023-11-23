@@ -86,7 +86,7 @@ const NuevoJuegoForm = () => {
       return;
     }
 
-    const data = await saveProducto(titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating, boxImage, posterImage, stock);
+    const data = await saveProducto(titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating, boxImage, posterImage, stock);    
 
     if(data.error){
       setModal({ error: true, msg: data.errorMsg});
