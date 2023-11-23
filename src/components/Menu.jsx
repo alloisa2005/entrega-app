@@ -1,13 +1,13 @@
 'use client'
 
-import { navbarLinks } from '@/utils/navbarLinks'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import React, { useState } from 'react'
-import { HiMenuAlt3 } from 'react-icons/hi'
+import Link from 'next/link'
 import MenuList from './MenuList'
+import { navbarLinks } from '@/utils/navbarLinks'
+import { usePathname } from 'next/navigation'
+import { HiMenuAlt3 } from 'react-icons/hi'
 
-const Menu = () => {
+const Menu = () => {  
 
   const pathname = usePathname();
   const [open, setOpen] = useState(false)

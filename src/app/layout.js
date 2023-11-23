@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
+import Providers from '@/components/Providers/Providers'
 import { Inter, Montserrat, Caveat } from 'next/font/google'
 import './globals.css'
 
@@ -30,9 +31,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${montserrat.variable} ${caveat.variable}`}> 
+      <Providers>
+
         <Navbar />
+
         {children}
+        
         <Footer />
+
+      </Providers>
       </body>
     </html>
   )
