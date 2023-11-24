@@ -1,8 +1,38 @@
+'use client'
+
 import { separadorMiles } from '@/utils/separadorMiles';
-import React from 'react'
+import React, { useState } from 'react'
 import { BsCartPlusFill } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '@/redux/slices/cartSlice';
 
 const AddToCart = ({ game }) => {
+
+  const dispatch = useDispatch();
+
+  const [cantidad, setCantidad] = useState(1);
+
+  const incrementar = () => {
+    setCantidad(cantidad + 1);
+  }
+
+  const decrementar = () => {
+    if (cantidad > 1) {
+      setCantidad(cantidad - 1);
+    }
+  }
+
+  const handleAddToCart = () => {
+    console.log('Añadir al carrito')
+    
+    dispatch(addToCart({
+      usuarioId: '6553a79ffd36d201d01cb7f4',
+      productoId: game._id,
+      precio: game.precio,
+      cantidad,
+    }))
+  }
+
   return (
     <div className='w-full lg:w-[30%] border rounded-md shadow-md flex-col items-center justify-center overflow-hidden'>
       <p className='select-none text-center mb-2 text-black border-b-2 text-xl py-3'>Precio</p>
@@ -12,17 +42,17 @@ const AddToCart = ({ game }) => {
       </div>
 
       <div className='select-none flex items-center justify-center mt-5 gap-7'>
-        <div className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
+        <div onClick={decrementar} className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
           <p className='font-bold text-lg'>-</p>
         </div>
-        <p className='text-3xl font-bold text-red-500'>1</p>
-        <div className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
+        <p className='text-3xl font-bold text-red-500'>{cantidad}</p>
+        <div onClick={incrementar} className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
           <p className='font-bold text-lg'>+</p>
         </div>
       </div> 
 
       {/* background: linear-gradient(90.06deg, #1E1E1E 0.05%, #122930 41.06%); */}
-      <div className='select-none flex items-center justify-center gap-4 bg-black py-3 text-white mt-4 hover:bg-black/80 hover:cursor-pointer ease-out duration-300'>
+      <div onClick={handleAddToCart} className='select-none flex items-center justify-center gap-4 bg-black py-3 text-white mt-4 hover:bg-black/80 hover:cursor-pointer ease-out duration-300'>
         <BsCartPlusFill size={20} className='text-white' />
         <p>Añadir al carrito</p>
       </div>           

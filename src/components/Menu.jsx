@@ -6,8 +6,11 @@ import MenuList from './MenuList'
 import { navbarLinks } from '@/utils/navbarLinks'
 import { usePathname } from 'next/navigation'
 import { HiMenuAlt3 } from 'react-icons/hi'
+import { useSelector } from 'react-redux'
 
 const Menu = () => {  
+
+  const { cart } = useSelector(state => state.cart)  
 
   const pathname = usePathname();
   const [open, setOpen] = useState(false)
@@ -23,6 +26,7 @@ const Menu = () => {
             </Link>
           ))
         } 
+        <p className='text-white'>{cart.cantidadProductos}</p>
       </nav>
       <div className='lg:hidden' onClick={handleMenu} >
         <HiMenuAlt3 size={32} className='text-white hover:cursor-pointer' />

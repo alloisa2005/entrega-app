@@ -1,21 +1,74 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
+  loading: false,
+  error: "",
   cart: [],
   total: 0,
 };
 
+export const getUserCart = createAsyncThunk(
+  "cart/getUserCart",
+  async (userId) => {
+    const response = await fetch(`http://localhost:3001/api/v1/cart/${userId}`);
+    const data = await response.json();
+    return data;
+  }
+);
+
+export const addToCart = createAsyncThunk(
+  "cart/addToCart",
+  async (cart) => {
+    const response = await fetch(`http://localhost:3000/api/v1/cart/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        usuarioId: cart.usuarioId,
+        productoId: cart.productoId,
+        precio: cart.precio,
+        cantidad: cart.cantidad,
+      }),
+    });
+    const data = await response.json();
+    return data;
+  }
+);
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
-  reducers: {
-    addToCart: (state, action) => {
-      state.cart.push(action.payload);
-      state.total += action.payload.price;
-    }    
+  extraReducers: (builder) => {
+    builder.addCase(getUserCart.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(getUserCart.fulfilled, (state, action) => {
+      state.cart = action.payload;
+      state.loading = false;
+      state.error = "";
+    });
+    builder.addCase(getUserCart.rejected, (state, action) => {
+      state.cart = [];
+      state.loading = false;
+      state.error = action.payload;
+    });
+    builder.addCase(addToCart.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(addToCart.fulfilled, (state, action) => {
+      state.cart = action.payload;
+      state.loading = false;
+      state.error = "";
+    });
+    builder.addCase(addToCart.rejected, (state, action) => {
+      state.cart = [];
+      state.loading = false;
+      state.error = action.payload;
+    });
   },
 });
-
-export const { addToCart } = cartSlice.actions;
 
 export const selectCart = (state) => state.cart.cart;

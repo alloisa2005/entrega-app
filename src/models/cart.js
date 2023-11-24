@@ -8,7 +8,8 @@ const cartSchema = new mongoose.Schema({
   usuarioId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', // Reemplaza 'User' con el nombre del modelo de usuario si lo tienes definido
-    required: true
+    required: true,
+    unique: true
   },
   productos: [
     {
