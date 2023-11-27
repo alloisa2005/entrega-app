@@ -5,6 +5,7 @@ const initialState = {
   error: "",
   cart: [],
   total: 0,
+  cantidadProductos: 0,
 };
 
 export const getUserCart = createAsyncThunk(
@@ -58,10 +59,11 @@ export const cartSlice = createSlice({
       state.loading = true;
       state.error = "";
     });
-    builder.addCase(addToCart.fulfilled, (state, action) => {
+    builder.addCase(addToCart.fulfilled, (state, action) => {      
       state.cart = action.payload;
       state.loading = false;
       state.error = "";
+      state.cantidadProductos = action.payload.cantidadProductos;
     });
     builder.addCase(addToCart.rejected, (state, action) => {
       state.cart = [];
