@@ -4,7 +4,7 @@ import React from 'react'
 
 const NotFound = () => {
   return (
-    <div className='contenedor flex flex-col items-center justify-center mt-20'>
+    <div className='contenedor h-screen flex flex-col items-center justify-center mt-20'>
       <Image 
         src={'/images/404.png'}
         alt='404 Not Found'
