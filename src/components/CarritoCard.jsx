@@ -5,7 +5,7 @@ import React from 'react'
 import CartControls from './CartControls'
 import { motion } from 'framer-motion'
 
-const CarritoCard = () => {
+const CarritoCard = ({ prod }) => {
   return (
     <div className='w-full  p-2 flex items-center justify-between gap-3'>
       <div className='flex items-center gap-3'>

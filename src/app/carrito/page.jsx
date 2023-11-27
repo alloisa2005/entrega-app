@@ -1,4 +1,5 @@
 import CarritoCard from '@/components/CarritoCard'
+import CarritoList from '@/components/CarritoList'
 import DetalleCompra from '@/components/DetalleCompra'
 import MetodosPago from '@/components/MetodosPago'
 
@@ -7,9 +8,7 @@ export const metadata = {
   description: "Home page",
 }
 
-const Carrito = () => {
-
-  
+const Carrito = () => {  
 
   return (
     <div className='contenedor my-4 alturaMinima' >      
@@ -19,10 +18,7 @@ const Carrito = () => {
       <div className='mt-3 flex flex-col-reverse lg:flex-row justify-between gap-3'>
         {/* Lista de Prods */}
         <div className='flex flex-col gap-3 w-full border rounded-md shadow-md p-2'>
-          <CarritoCard />
-
-          <CarritoCard />
-          
+          <CarritoList />                    
         </div>
 
         {/* Detalle de compra */}
