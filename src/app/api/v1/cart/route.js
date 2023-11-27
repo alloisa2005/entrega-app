@@ -1,15 +1,10 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/db/connectDB";
 import Cart from "@/models/cart";
-import Juego from "@/models/juego";
 
 
 export const POST = async (req, { params }) => {  
-  const { usuarioId, productoId, precio, cantidad } = await req.json();
-  console.log("usuarioId: ", usuarioId)
-  console.log("productoId: ", productoId)
-  console.log("precio: ", precio)
-  console.log("cantidad: ", cantidad)
+  const { usuarioId, productoId, precio, cantidad } = await req.json();  
 
   try {
     await connectDB();
@@ -49,9 +44,7 @@ export const POST = async (req, { params }) => {
       }
 
       // Actualiza la cantidad total de productos en el carrito
-      carritoExistente.cantidadProductos += cantidad;
-      
-      console.log("carritoExistente: ", carritoExistente)
+      carritoExistente.cantidadProductos += cantidad;            
 
       // Guarda la actualización del carrito
       await carritoExistente.save();

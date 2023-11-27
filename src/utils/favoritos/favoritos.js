@@ -10,7 +10,7 @@ export const getFavoritosByUser = async (userId) => {
 
 export const addToFavoritos = async (userId, productoId) => {
 
-  const url = `${process.env.NEXTAUTH_URL}/api/v1/favoritos`;
+  const url = `http://localhost:3000/api/v1/favoritos`;
 
   const response = await fetch(url, {
     method: 'POST',

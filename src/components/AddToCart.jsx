@@ -3,12 +3,14 @@
 import { separadorMiles } from '@/utils/separadorMiles';
 import React, { useState } from 'react'
 import { BsCartPlusFill } from 'react-icons/bs';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '@/redux/slices/cartSlice';
+import Spinner from './Spinner';
 
 const AddToCart = ({ game }) => {
 
   const dispatch = useDispatch();
+  const { loading } = useSelector(state => state.cart);
 
   const [cantidad, setCantidad] = useState(1);
 
@@ -22,11 +24,10 @@ const AddToCart = ({ game }) => {
     }
   }
 
-  const handleAddToCart = () => {
-    console.log('Añadir al carrito')
+  const handleAddToCart = () => {    
     
     dispatch(addToCart({
-      usuarioId: '6553a79ffd36d201d01cb7f4',
+      usuarioId: '6553a8d2fd36d201d01cb7fc',
       productoId: game._id,
       precio: game.precio,
       cantidad,
@@ -54,7 +55,11 @@ const AddToCart = ({ game }) => {
       {/* background: linear-gradient(90.06deg, #1E1E1E 0.05%, #122930 41.06%); */}
       <div onClick={handleAddToCart} className='select-none flex items-center justify-center gap-4 bg-black py-3 text-white mt-4 hover:bg-black/80 hover:cursor-pointer ease-out duration-300'>
         <BsCartPlusFill size={20} className='text-white' />
-        <p>Añadir al carrito</p>
+        {
+          loading ? <Spinner />
+            : <p>Añadir al carrito</p>
+        }
+        
       </div>           
     </div>
   )

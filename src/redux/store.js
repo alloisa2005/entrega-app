@@ -1,13 +1,14 @@
 // create a redux toolkit store
 import { configureStore } from '@reduxjs/toolkit';
 import { cartSlice } from './slices/cartSlice';
+import { favoritosSlice } from './slices/favoritosSlice';
 
 
 // create the store
 export const store = configureStore({
-  reducer: {
-    // here we will be adding reducers
+  reducer: {    
     cart: cartSlice.reducer,
+    favoritos: favoritosSlice.reducer,
   },
 });
 
