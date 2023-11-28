@@ -11,7 +11,8 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 
 const Menu = () => {
-  const { data: session } = useSession();  
+  const { data: session } = useSession();
+
   const { cantidadProductos } = useSelector((state) => state.cart);
 
   const pathname = usePathname();
@@ -38,27 +39,31 @@ const Menu = () => {
           >
             Tienda
           </Link>
-          <Link
-            href="/favoritos"
-            className={`${
-              pathname === "/favoritos" ? "bg-white text-black" : ""
-            } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
-          >
-            Favoritos
-          </Link>
-          <Link
-            href="/carrito"
-            className={`${
-              pathname === "/carrito" ? "bg-white text-black" : ""
-            } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
-          >
-            <div className="relative">
-              <FaShoppingCart size={20} />
-              <div className="absolute -top-2 -right-2 bg-red-500 rounded-full w-4 h-4 flex items-center justify-center">
-                <p className="text-white text-[10px]">{cantidadProductos}</p>
+          {session?.user?.email && (
+            <Link
+              href="/favoritos"
+              className={`${
+                pathname === "/favoritos" ? "bg-white text-black" : ""
+              } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
+            >
+              Mis Favoritos
+            </Link>
+          )}
+          {session?.user?.email && (
+            <Link
+              href="/carrito"
+              className={`${
+                pathname === "/carrito" ? "bg-white text-black" : ""
+              } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
+            >
+              <div className="relative">
+                <FaShoppingCart size={20} />
+                <div className="absolute -top-2 -right-2 bg-red-500 rounded-full w-4 h-4 flex items-center justify-center">
+                  <p className="text-white text-[10px]">{cantidadProductos}</p>
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          )}
           {!session?.user?.email ? (
             <Link
               href="/user/login"
@@ -77,14 +82,16 @@ const Menu = () => {
             </p>
           )}
 
-          <Link
-            href="/admin/productos"
-            className={`${
-              pathname === "/admin/productos" ? "bg-white text-black" : ""
-            } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
-          >
-            Menu Admin
-          </Link>
+          {session?.user?.isAdmin && (
+            <Link
+              href="/admin/productos"
+              className={`${
+                pathname === "/admin/productos" ? "bg-white text-black" : ""
+              } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
+            >
+              Menu Admin
+            </Link>
+          )}
         </ul>
       </nav>
       <div className="lg:hidden" onClick={handleMenu}>
