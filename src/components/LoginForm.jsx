@@ -3,23 +3,43 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import MiModal from "./MiModal";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);  
+  const [modal, setModal] = useState({error: false, msg: ""});
+  
+  const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     if (!email.trim() || !password.trim()) {
-      setLoading(false);
-      setError("Ingrese email y/o contraseña");
+      setLoading(false);      
+      setModal({ error: true, msg: "Ingrese email y/o contraseña"});
       return;
     }    
+
+    try {
+      const res = await signIn("credentials", {email, password, redirect: false});
+
+      if(res.error){
+        setLoading(false);
+        setModal({ error: true, msg: 'Usuario y/o contraseña incorrectos'});
+        return;
+      }
+
+      router.replace("/tienda/categorias/all");
+    } catch (error) {
+      
+    }
+
+
   };
 
   return (
@@ -59,6 +79,7 @@ export const LoginForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
+            placeholder="********"
             className="border rounded-md p-2 outline-none focus:border-black focus:shadow-md"
           />
         </div>
@@ -80,8 +101,12 @@ export const LoginForm = () => {
         </div>
       </form>
 
-      {error && (
-        <MiModal titulo={'ERROR'} mensaje={error} closeFn={() => setError('')} />
+      {modal.msg && (
+        <MiModal 
+          error={modal.error}          
+          mensaje={modal.msg}
+          closeFn={() => setModal({ error: false, msg: ""})} 
+        />
       )}
     </>
   );

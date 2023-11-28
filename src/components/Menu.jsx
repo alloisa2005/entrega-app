@@ -1,15 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import MenuList from "./MenuList";
 import { usePathname } from "next/navigation";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
-
+import { useSession } from "next-auth/react";
 
 const Menu = () => {
+  const { data: session } = useSession();  
   const { cantidadProductos } = useSelector((state) => state.cart);
 
   const pathname = usePathname();
@@ -56,15 +58,25 @@ const Menu = () => {
                 <p className="text-white text-[10px]">{cantidadProductos}</p>
               </div>
             </div>
-          </Link>          
-          <Link
-            href="/user/login"
-            className={`${
-              pathname === "/user/login" ? "bg-white text-black" : ""
-            } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
-          >
-            LogIn
           </Link>
+          {!session?.user?.email ? (
+            <Link
+              href="/user/login"
+              className={`${
+                pathname === "/user/login" ? "bg-white text-black" : ""
+              } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
+            >
+              LogIn
+            </Link>
+          ) : (
+            <p
+              onClick={() => signOut()}
+              className={`font-montserrat hover:text-black hover:bg-white hover:cursor-pointer p-2 rounded-md`}
+            >
+              LogOut
+            </p>
+          )}
+
           <Link
             href="/admin/productos"
             className={`${

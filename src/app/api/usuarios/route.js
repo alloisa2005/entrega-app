@@ -23,7 +23,7 @@ export const POST = async (req) => {
 
     const existeUser = await User.findOne({ email });
     if (existeUser) {
-      return NextResponse.json({msg: "El email ya se encuentra registrado."}, { status: 400 });
+      return NextResponse.json({msg: "Email ya se encuentra registrado."}, { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
