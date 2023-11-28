@@ -1,6 +1,6 @@
 
 export const getFavoritosByUser = async (userId) => {
-  const url = `${process.env.NEXTAUTH_URL}/api/v1/favoritos/${userId}`;    
+  const url = `${process.env.NEXTAUTH_URL}/api/favoritos/${userId}`;    
 
   const response = await fetch(url, { next: { revalidate: 0 } });
 
@@ -10,7 +10,7 @@ export const getFavoritosByUser = async (userId) => {
 
 export const addToFavoritos = async (userId, productoId) => {
 
-  const url = `http://localhost:3000/api/v1/favoritos`;
+  const url = `http://localhost:3000/api/favoritos`;
 
   const response = await fetch(url, {
     method: 'POST',
@@ -26,7 +26,7 @@ export const addToFavoritos = async (userId, productoId) => {
 
 export const removeFromFavoritos = async (userId, productoId) => {
   
-    const url = `${process.env.NEXTAUTH_URL}/api/v1/favoritos`;
+    const url = `${process.env.NEXTAUTH_URL}/api/favoritos`;
   
     const response = await fetch(url, {
       method: 'DELETE',
