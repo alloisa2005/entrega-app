@@ -1,18 +1,17 @@
-'use client'
+'use client';
 
 import React from 'react'
-import { useSelector } from 'react-redux'
 import CarritoCard from './CarritoCard'
+import { useSelector } from 'react-redux';
 
-const CarritoList = () => {
-
-  const { cart } = useSelector(state => state.cart)  
-  console.log(cart.productos)
+const CarritoList = () => {    
+  
+  const { cart } = useSelector(state => state.cart);  
 
   return (
     <>
-      {cart.productos?.map((prod, index) => (
-        <CarritoCard key={index} prod={prod.productoId} cantidad={prod.cantidad} />
+      {cart?.map((prod, index) => (
+        <CarritoCard key={index} prod={prod} />
       ))}
     </>
   )

@@ -3,18 +3,18 @@
 import { separadorMiles } from '@/utils/separadorMiles';
 import React, { useState } from 'react'
 import { BsCartPlusFill } from 'react-icons/bs';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '@/redux/slices/cartSlice';
-import Spinner from './Spinner';
+import { useDispatch } from 'react-redux';
+import { addToCartSlice } from '@/redux/slices/cartSlice';
 import { useSession } from 'next-auth/react';
 import MiModal from './MiModal';
+import { addToCartAPI } from '@/utils/cart/cart';
+import { useRouter } from 'next/navigation';
 
 const AddToCart = ({ game }) => {
-
+  const router = useRouter();
   const {data:session} = useSession()    
 
-  const dispatch = useDispatch();
-  const { loading } = useSelector(state => state.cart);
+  const dispatch = useDispatch();  
 
   const [cantidad, setCantidad] = useState(1);
   const [modal, setModal] = useState({error: false, msg: ""}); 
@@ -29,19 +29,22 @@ const AddToCart = ({ game }) => {
     }
   }
 
-  const handleAddToCart = () => {    
+  const handleAddToCart = async () => {    
     
     if(!session?.user) {
       setModal({error: true, msg: "Debes iniciar sesión para poder comprar."});
       return;
     }
 
-    dispatch(addToCart({
-      usuarioId: session?.user._id,
-      productoId: game._id,
-      precio: game.precio,
-      cantidad,
-    }))
+    const res = await addToCartAPI(session?.user._id, game._id, game.precio,cantidad);
+    if(res.error) {
+      setModal({error: true, msg: res.error});
+      return;
+    } else{
+      dispatch(addToCartSlice({cantidad, game}))
+      setModal({error: false, msg: 'Producto añadido al carrito'});
+      router.replace('/tienda/categorias/all');      
+    }
   }
 
   return (
@@ -65,10 +68,7 @@ const AddToCart = ({ game }) => {
       {/* background: linear-gradient(90.06deg, #1E1E1E 0.05%, #122930 41.06%); */}
       <div onClick={handleAddToCart} className='select-none flex items-center justify-center gap-4 bg-black py-3 text-white mt-4 hover:bg-black/80 hover:cursor-pointer ease-out duration-300'>
         <BsCartPlusFill size={20} className='text-white' />
-        {
-          loading ? <Spinner />
-            : <p>Añadir al carrito</p>
-        }
+        <p>Añadir al carrito</p>
         
       </div>           
 
