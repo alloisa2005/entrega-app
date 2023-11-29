@@ -7,13 +7,15 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import MiModal from "./MiModal";
 
-export const LoginForm = () => {
+
+export const LoginForm = () => {  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);  
-  const [modal, setModal] = useState({error: false, msg: ""});
+  const [modal, setModal] = useState({error: false, msg: ""}); 
   
-  const router = useRouter();
+  const router = useRouter();  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,14 +34,11 @@ export const LoginForm = () => {
         setLoading(false);
         setModal({ error: true, msg: 'Usuario y/o contraseña incorrectos'});
         return;
-      }
-
+      }            
       router.replace("/tienda/categorias/all");
     } catch (error) {
       
     }
-
-
   };
 
   return (

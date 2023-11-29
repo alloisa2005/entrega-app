@@ -6,13 +6,18 @@ import { BsCartPlusFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '@/redux/slices/cartSlice';
 import Spinner from './Spinner';
+import { useSession } from 'next-auth/react';
+import MiModal from './MiModal';
 
 const AddToCart = ({ game }) => {
+
+  const {data:session} = useSession()    
 
   const dispatch = useDispatch();
   const { loading } = useSelector(state => state.cart);
 
   const [cantidad, setCantidad] = useState(1);
+  const [modal, setModal] = useState({error: false, msg: ""}); 
 
   const incrementar = () => {
     setCantidad(cantidad + 1);
@@ -26,8 +31,13 @@ const AddToCart = ({ game }) => {
 
   const handleAddToCart = () => {    
     
+    if(!session?.user) {
+      setModal({error: true, msg: "Debes iniciar sesión para poder comprar."});
+      return;
+    }
+
     dispatch(addToCart({
-      usuarioId: '6553a8d2fd36d201d01cb7fc',
+      usuarioId: session?.user._id,
       productoId: game._id,
       precio: game.precio,
       cantidad,
@@ -61,6 +71,15 @@ const AddToCart = ({ game }) => {
         }
         
       </div>           
+
+      {modal.msg && (
+        <MiModal 
+          error={modal.error}          
+          mensaje={modal.msg}
+          closeFn={() => setModal({ error: false, msg: ""})} 
+        />
+      )}
+
     </div>
   )
 }

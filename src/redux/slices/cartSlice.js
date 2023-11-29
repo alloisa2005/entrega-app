@@ -11,8 +11,8 @@ const initialState = {
 export const getUserCart = createAsyncThunk(
   "cart/getUserCart",
   async (userId) => {
-    const response = await fetch(`http://localhost:3000/api/v1/cart/${userId}`);
-    const data = await response.json();
+    const response = await fetch(`/api/cart/${userId}`);
+    const data = await response.json();       
     return data;
   }
 );
@@ -20,7 +20,7 @@ export const getUserCart = createAsyncThunk(
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
   async (cart) => {
-    const response = await fetch(`http://localhost:3000/api/v1/cart/`, {
+    const response = await fetch(`/api/cart/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,6 +49,7 @@ export const cartSlice = createSlice({
       state.cart = action.payload;
       state.loading = false;
       state.error = "";
+      state.cantidadProductos = action.payload.cantidadProductos;
     });
     builder.addCase(getUserCart.rejected, (state, action) => {
       state.cart = [];

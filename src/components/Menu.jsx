@@ -10,14 +10,16 @@ import { useSelector } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 
-const Menu = () => {
-  const { data: session } = useSession();
 
+
+const Menu = () => {  
+  
+  const { data: session } = useSession();  
   const { cantidadProductos } = useSelector((state) => state.cart);
 
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const handleMenu = () => setOpen(!open);
+  const handleMenu = () => setOpen(!open);    
 
   return (
     <>

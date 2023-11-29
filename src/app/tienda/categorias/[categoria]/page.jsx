@@ -1,3 +1,4 @@
+import CargarCart from "@/components/CargarCart";
 import GamesList from "@/components/GamesList";
 import { getProductos } from "@/utils/juegos/juegos";
 import { Suspense } from "react";
@@ -27,6 +28,7 @@ const ProductsByCategory = async ({ params, searchParams }) => {
 
   return (
     <>
+      <CargarCart />
       {games.length === 0 ? (
         <p className="text-center text-2xl font-semibold alturaMinima ">
           Lo sentimos, no tenemos productos de esta plataforma.
