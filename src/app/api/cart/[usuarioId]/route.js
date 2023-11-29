@@ -10,7 +10,8 @@ export const GET = async (req, { params }) => {
   try {
     await connectDB();
 
-    const cart = await Cart.findOne({ usuarioId }).populate("productos.productoId");
+    const cart = await Cart.findOne({ usuarioId }).populate("productos.productoId");    
+
     return NextResponse.json(cart, { status: 201 });
     
   } catch (error) {

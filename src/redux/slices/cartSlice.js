@@ -12,7 +12,7 @@ export const getUserCart = createAsyncThunk(
   "cart/getUserCart",
   async (userId) => {
     const response = await fetch(`/api/cart/${userId}`);
-    const data = await response.json();       
+    const data = await response.json();   
     return data;
   }
 );

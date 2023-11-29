@@ -6,13 +6,13 @@ import CarritoCard from './CarritoCard'
 
 const CarritoList = () => {
 
-  const { cart } = useSelector(state => state.cart)
-  console.log(cart.productos);
+  const { cart } = useSelector(state => state.cart)  
+  console.log(cart.productos)
 
   return (
     <>
       {cart.productos?.map((prod, index) => (
-        <CarritoCard key={index} prod={prod} />
+        <CarritoCard key={index} prod={prod.productoId} cantidad={prod.cantidad} />
       ))}
     </>
   )
