@@ -9,11 +9,11 @@ export default function Home() {
 
   return (    
     <main className="">      
-      <Hero />      
+      <Hero />
 
       <Leyenda />
       
-      <FilaJuegos titulo={'últimos agregados'} />            
+      <FilaJuegos />            
 
       <Editoriales />
 
