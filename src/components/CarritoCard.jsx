@@ -1,12 +1,12 @@
 'use client'
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { separadorMiles } from '@/utils/separadorMiles'
 import { useSession } from 'next-auth/react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addToCartSlice } from '@/redux/slices/cartSlice'
+import { useDispatch } from 'react-redux'
+import { addToCartSlice, getUserCart } from '@/redux/slices/cartSlice'
 import { addToCartAPI } from '@/utils/cart/cart'
 
 
@@ -14,13 +14,17 @@ const CarritoCard = ({ prod }) => {
   
   const dispatch = useDispatch();  
   const { data: session } = useSession();        
+  const [cantidad, setCantidad] = useState(prod.cantidad);  
 
   const increment = async () => {
 
+    setCantidad(cantidad+1);
+
     const res = await addToCartAPI(session?.user._id, prod.productoId._id, prod.productoId.precio, 1);    
     if(res.ok) {
-      dispatch(addToCartSlice({cantidad: 1, game: prod.productoId}))
-    }       
+      dispatch(addToCartSlice({cantidad: (cantidad-prod.cantidad), game: prod.productoId}))
+      dispatch(getUserCart(session?.user._id))
+    }           
   }
 
   return (
@@ -47,7 +51,7 @@ const CarritoCard = ({ prod }) => {
       <div className='flex flex-col lg:flex-row items-center gap-4 lg:gap-8'>
         <div className='flex justify-center items-center border rounded-md overflow-hidden'>
           <button className='w-6 h-6 md:w-9 md:h-9 bg-black text-white text-xl'>-</button>
-          <p className='w-6 h-6 md:w-9 md:h-9 flex items-center justify-center select-none text-lg'>{prod.cantidad}</p>
+          <p className='w-6 h-6 md:w-9 md:h-9 flex items-center justify-center select-none text-lg'>{cantidad}</p>
           <button 
             onClick={increment}
             className='w-6 h-6 md:w-9 md:h-9 bg-black text-white text-lg'>+</button>

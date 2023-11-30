@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import MenuList from "./MenuList";
@@ -15,11 +15,11 @@ import { useSession } from "next-auth/react";
 const Menu = () => {  
   
   const { data: session } = useSession();  
-  const { cantidadProductos } = useSelector((state) => state.cart);
+  const { cantidadProductos } = useSelector((state) => state.cart);  
 
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const handleMenu = () => setOpen(!open);    
+  const handleMenu = () => setOpen(!open);      
 
   return (
     <>

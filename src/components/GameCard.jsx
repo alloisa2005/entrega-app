@@ -7,13 +7,17 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import RatingBar from './RatingBar'
 import { MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
+import { useSession } from 'next-auth/react'
+import { addToFavoritos } from '@/utils/favoritos/favoritos'
 
 const GameCard = ({ game }) => {
 
+  const {data: session} = useSession()
   const [isFav, setIsFav] = useState(false)
 
-  const toggleFav = () => {
-    setIsFav(!isFav)
+  const toggleFav = async () => {
+    setIsFav(!isFav)    
+    const res = await addToFavoritos(session.user._id, game._id)    
   }
 
   return (

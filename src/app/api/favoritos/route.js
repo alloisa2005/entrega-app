@@ -3,7 +3,7 @@ import Favoritos from "@/models/favoritos";
 import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
-  const { userId, juegoId } = await req.json();
+  const { userId, productoId } = await req.json();  
   try {
     await connectDB();
 
@@ -13,9 +13,9 @@ export const POST = async (req) => {
       favoritos = await Favoritos.create({ userId });
     }
 
-    if (!favoritos.productos.includes(juegoId)) {
+    if (!favoritos.productos.includes(productoId)) {
       // Agregar el producto a la lista de favoritos
-      favoritos.productos.push(juegoId);
+      favoritos.productos.push(productoId);
 
       // Guardar el documento Favoritos actualizado
       await favoritos.save();

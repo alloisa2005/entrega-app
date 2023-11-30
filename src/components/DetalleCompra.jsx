@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 const DetalleCompra = () => {
 
   const { cart, montoTotal, cantidadProductos } = useSelector(state => state.cart);
-  console.log(cart)
 
   return (
     <div className='mt-4 flex flex-col gap-1'>

@@ -2,7 +2,6 @@
 import CarritoList from '@/components/CarritoList'
 import DetalleCompra from '@/components/DetalleCompra'
 import MetodosPago from '@/components/MetodosPago'
-import { getUserCartAPI } from '@/utils/cart/cart'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 import { authOptions } from '../api/auth/[...nextauth]/route'
@@ -12,10 +11,13 @@ export const metadata = {
   description: "Home page",
 }
 
-const Carrito = async () => {
-  // const session = await getServerSession(authOptions)
+const Carrito =  async () => {  
 
-  // const cart = await getUserCartAPI(session?.user?._id)
+  const session = await getServerSession(authOptions)  
+
+  if(!session) {
+    redirect('/tienda/categorias/all')
+  }
 
   return (
     <div className='contenedor my-4 alturaMinima' >
