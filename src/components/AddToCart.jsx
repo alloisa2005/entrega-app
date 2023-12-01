@@ -3,48 +3,22 @@
 import { separadorMiles } from '@/utils/separadorMiles';
 import React, { useState } from 'react'
 import { BsCartPlusFill } from 'react-icons/bs';
-import { useDispatch } from 'react-redux';
-import { addToCartSlice } from '@/redux/slices/cartSlice';
 import { useSession } from 'next-auth/react';
 import MiModal from './MiModal';
-import { addToCartAPI } from '@/utils/cart/cart';
-import { useRouter } from 'next/navigation';
 
-const AddToCart = ({ game }) => {
-  const router = useRouter();
-  const {data:session} = useSession()    
 
-  const dispatch = useDispatch();  
+const AddToCart = ({ game }) => {  
+  const {data:session} = useSession()      
 
   const [cantidad, setCantidad] = useState(1);
-  const [modal, setModal] = useState({error: false, msg: ""}); 
-
-  const incrementar = () => {
-    setCantidad(cantidad + 1);
-  }
-
-  const decrementar = () => {
-    if (cantidad > 1) {
-      setCantidad(cantidad - 1);
-    }
-  }
+  const [modal, setModal] = useState({error: false, msg: ""});   
 
   const handleAddToCart = async () => {    
     
     if(!session?.user) {
       setModal({error: true, msg: "Debes iniciar sesión para poder comprar."});
       return;
-    }
-
-    const res = await addToCartAPI(session?.user._id, game._id, game.precio,cantidad);
-    if(res.error) {
-      setModal({error: true, msg: res.error});
-      return;
-    } else{
-      dispatch(addToCartSlice({cantidad, game}))
-      setModal({error: false, msg: 'Producto añadido al carrito'});
-      router.replace('/tienda/categorias/all');      
-    }
+    }    
   }
 
   return (
@@ -56,11 +30,11 @@ const AddToCart = ({ game }) => {
       </div>
 
       <div className='select-none flex items-center justify-center mt-5 gap-7'>
-        <div onClick={decrementar} className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
+        <div className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
           <p className='font-bold text-lg'>-</p>
         </div>
         <p className='text-3xl font-bold text-red-500'>{cantidad}</p>
-        <div onClick={incrementar} className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
+        <div className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
           <p className='font-bold text-lg'>+</p>
         </div>
       </div> 

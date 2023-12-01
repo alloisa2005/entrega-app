@@ -1,112 +1,56 @@
-import { NextResponse } from "next/server";
 import { connectDB } from "@/db/connectDB";
 import Cart from "@/models/cart";
+import Juego from "@/models/juego";
+import { NextResponse } from "next/server";
 
+export const POST = async (req, res) => {
 
-export const POST = async (req, { params }) => {  
-  const { usuarioId, productoId, precio, cantidad } = await req.json();  
+  const { usuarioEmail, productoId, precioParam, cantidad } = await req.json();
 
   try {
+    
     await connectDB();
 
-    const carritoExistente = await Cart.findOne({ usuarioId });   
-    
-    if (!carritoExistente) {  // Si no hay carrito existente, crea uno nuevo
-      const nuevoCart = new Cart({
-        usuarioId,
-        productos: [{ productoId, cantidad }],
-        montoTotal: cantidad * precio,  // Puedes ajustar esto según tus necesidades
-        cantidadProductos: cantidad
-      });
-      
-      const cartGuardado = await nuevoCart.save();
-      return NextResponse.json(cartGuardado, { status: 201 });      
-    } else {
-      // Verifica si el producto ya está en el carrito
-      const productoExistente = carritoExistente.productos.find((producto) => String(producto.productoId) === productoId);
+    // Buscar el carrito del usuario por su correo electrónico
+    let carrito = await Cart.findOne({ email: usuarioEmail });
 
-      if (productoExistente) {
-        // Si el producto ya existe, actualiza la cantidad y el monto total
-        productoExistente.cantidad += cantidad;
-        carritoExistente.montoTotal += cantidad * precio; // Ajusta según la estructura de tu producto
-
-      } else {
-        // Si el producto no existe, agrégalo al carrito
-        carritoExistente.productos.push({
-          productoId,
-          cantidad
-        });
-        // Actualiza el monto total
-        carritoExistente.montoTotal += cantidad * precio;
-        // Necesitarás ajustar esto según la estructura de tu producto
-        // const productoAgregado = await Juego.findById(productoId);
-        // carritoExistente.montoTotal += cantidad * productoAgregado.precio;
-      }
-
-      // Actualiza la cantidad total de productos en el carrito
-      carritoExistente.cantidadProductos += cantidad;            
-
-      // Guarda la actualización del carrito
-      await carritoExistente.save();
-
-      return NextResponse.json(carritoExistente, { status: 201 });
+    // Si el carrito no existe, crear uno nuevo
+    if (!carrito) {
+      carrito = new Cart({ email: usuarioEmail, productos: [], montoTotal: 0, cantidadProductos: 0 });
     }
-    
+
+    // Verificar si el producto ya está en el carrito
+    const productoExistente = carrito.productos.find(
+      (producto) => producto.producto.toString() === productoId
+    );
+    console.log('prod existe: ', productoExistente);
+
+    // Si el producto ya está en el carrito, aumentar su cantidad
+    if (productoExistente) {
+      productoExistente.cantidad += cantidad;
+    } else {
+      // Si el producto no está en el carrito, agregarlo con cantidad 1
+      carrito.productos.push({ producto: productoId, cantidad });
+    }
+
+    // Calcular el monto total y la cantidad total de productos en el carrito
+    carrito.montoTotal = 0;
+    carrito.cantidadProductos = 0;
+
+    for (let producto of carrito.productos) {          
+      const juego = await Juego.findById(producto.producto);
+      carrito.montoTotal += juego.precio * producto.cantidad;
+      carrito.cantidadProductos += producto.cantidad;
+    }
+
+    console.log('carrito1: ', carrito.montoTotal);
+    console.log('carrito2: ', carrito.cantidadProductos);
+    // Guardar los cambios en el carrito
+    await carrito.save();
+    return NextResponse.json(carrito, { status: 201 });
+
   } catch (error) {
-    return NextResponse.json({msg: error.message}, { status: 401 });  
-  }  
+   return NextResponse.json({ error: error.message }, { status: 500 }); 
+  }
+
 }
-
-/*
-
-
-    // Busca el carrito existente del usuario
-    const carritoExistente = await Cart.findOne({ usuarioId });    
-
-    if (carritoExistente) {
-      // Verifica si el producto ya está en el carrito
-      const productoExistente = carritoExistente.productos.find(
-        (producto) => String(producto.productoId) === productoId
-      );
-
-      if (productoExistente) {
-        // Si el producto ya existe, actualiza la cantidad y el monto total
-        productoExistente.cantidad += cantidad;
-        carritoExistente.montoTotal += cantidad * productoExistente.precio; // Ajusta según la estructura de tu producto
-
-      } else {
-        // Si el producto no existe, agrégalo al carrito
-        carritoExistente.productos.push({
-          productoId,
-          cantidad
-        });
-        // Actualiza el monto total
-        // Necesitarás ajustar esto según la estructura de tu producto
-        const productoAgregado = await Juego.findById(productoId);
-        carritoExistente.montoTotal += cantidad * productoAgregado.precio;
-      }
-
-      // Actualiza la cantidad total de productos en el carrito
-      carritoExistente.cantidadProductos += cantidad;
-      
-      console.log("carritoExistente: ", carritoExistente)
-
-      // Guarda la actualización del carrito
-      await carritoExistente.save();
-
-      return NextResponse.json(carritoExistente, { status: 201 });      
-    } else {
-      // Si no hay carrito existente, crea uno nuevo
-      const nuevoCart = new Cart({
-        usuarioId,
-        productos: [{ productoId, cantidad }],
-        montoTotal: 0,  // Puedes ajustar esto según tus necesidades
-        cantidadProductos: cantidad
-      });
-
-      // Guarda el nuevo carrito en la base de datos
-      const cartGuardado = await nuevoCart.save();
-      return NextResponse.json(cartGuardado, { status: 201 });      
-    }
-
-*/
