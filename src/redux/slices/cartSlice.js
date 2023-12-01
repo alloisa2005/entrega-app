@@ -32,6 +32,22 @@ export const addToCart = createAsyncThunk(
   }
 );
 
+export const deleteProductFromCart = createAsyncThunk(
+  'cart/deleteProductFromCart',
+  async (cartItem) => {
+    const response = await fetch(`http://localhost:3000/api/cart`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartItem),
+    });
+    const data = await response.json();
+    return data;
+  }
+);
+
+
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -63,5 +79,18 @@ export const cartSlice = createSlice({
         state.cartLoading = false;
         state.cartError = action.error.message;
       });
+      builder.addCase(deleteProductFromCart.pending, (state) => {
+        state.cartLoading = true;
+      });
+      builder.addCase(deleteProductFromCart.fulfilled, (state, action) => {
+        state.cartLoading = false;
+        state.cart = action.payload.productos;
+        state.cartTotalAmount = action.payload.montoTotal;
+        state.cartTotalItems = action.payload.cantidadProductos;
+      });
+      builder.addCase(deleteProductFromCart.rejected, (state, action) => {
+        state.cartLoading = false;
+        state.cartError = action.error.message;
+      });      
   },
 });

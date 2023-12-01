@@ -11,7 +11,7 @@ const CarritoList = () => {
     <>
       {cart?.length === 0 ? (
         <div className=" h-full w-full flex items-center justify-center font-montserrat">
-          <p className="text-xl">No tiene productos en el carrito</p>
+          <p className="text-2xl font-semibold">No tiene productos en el carrito</p>
         </div>
       ) : 
         cart?.map((prod, index) => <CarritoCard key={index} prod={prod} />)}
