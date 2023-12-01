@@ -18,12 +18,12 @@ const DetalleCompra = () => {
         <p className='text-gray-500 font-bold'>{separadorMiles(cartTotalAmount)}</p>
       </div>
       <div className='flex items-center justify-between px-2'>
-        <p className='font-bold'>Envío ($):</p>
-        <p className='text-gray-500 font-bold'>{separadorMiles(500)}</p>
+        <p className='font-bold'>Envío 5% ($):</p>
+        <p className='text-gray-500 font-bold'>{separadorMiles((cartTotalAmount*5/100).toFixed(0))}</p>
       </div>
       <div className='flex items-center justify-between px-2 text-lg'>
         <p className='font-bold'>Total ($):</p>
-        <p className='text-red-500 font-bold'>{separadorMiles(cartTotalAmount + 500)}</p>
+        <p className='text-red-500 font-bold'>{separadorMiles((cartTotalAmount + (cartTotalAmount*5/100)).toFixed(0))}</p>
       </div>            
 
       <motion.button          
