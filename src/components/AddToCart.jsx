@@ -5,19 +5,26 @@ import React, { useState } from 'react'
 import { BsCartPlusFill } from 'react-icons/bs';
 import { useSession } from 'next-auth/react';
 import MiModal from './MiModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '@/redux/slices/cartSlice';
+import Spinner from './Spinner';
 
 
 const AddToCart = ({ game }) => {  
   const dispatch = useDispatch();
+  const { cartLoading } = useSelector(state => state.cart);
+
   const {data:session} = useSession()      
 
   const [cantidad, setCantidad] = useState(1);
-  const [modal, setModal] = useState({error: false, msg: ""});   
+  const [modal, setModal] = useState({error: false, msg: ""});     
 
-  console.log('SESSION: ', session?.user?.email);
-  console.log('GAME: ', game._id);
+  const increment = () => setCantidad(cantidad + 1);
+  const decrement = () => {
+    if(cantidad > 1) {
+      setCantidad(cantidad - 1);
+    }
+  };
 
   const handleAddToCart = async () => {    
     
@@ -44,18 +51,23 @@ const AddToCart = ({ game }) => {
       </div>
 
       <div className='select-none flex items-center justify-center mt-5 gap-7'>
-        <div className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
+        <div onClick={decrement} className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
           <p className='font-bold text-lg'>-</p>
         </div>
         <p className='text-3xl font-bold text-red-500'>{cantidad}</p>
-        <div className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
+        <div onClick={increment} className='h-9 w-9 flex items-center justify-center rounded-full bg-black text-white shadow-sm hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 '>
           <p className='font-bold text-lg'>+</p>
         </div>
       </div> 
       
       <div onClick={handleAddToCart} className='select-none flex items-center justify-center gap-4 bg-black py-3 text-white mt-4 hover:bg-black/80 hover:cursor-pointer ease-out duration-300'>
         <BsCartPlusFill size={20} className='text-white' />
-        <p>Añadir al carrito</p>
+        {
+          cartLoading ? (
+            <Spinner />
+          ) : <p>Añadir al carrito</p>
+        }
+        
         
       </div>           
 
