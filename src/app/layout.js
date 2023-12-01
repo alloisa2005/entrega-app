@@ -32,13 +32,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${montserrat.variable} ${caveat.variable}`}> 
       <Providers>
-
         <Navbar />
-
-        {children}
-        
+        {children}        
         <Footer />
-
       </Providers>
       </body>
     </html>

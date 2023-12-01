@@ -9,12 +9,13 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { useSelector } from "react-redux";
+import Spinner from "./Spinner";
 
 
 const Menu = () => {  
   
   const { data: session } = useSession();  
-  const { cartTotalItems } = useSelector((state) => state.cart);  
+  const { cartTotalItems, cartLoading } = useSelector((state) => state.cart);  
 
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -51,6 +52,9 @@ const Menu = () => {
             </Link>
           )}
           {session?.user?.email && (
+            cartLoading ? (
+              <Spinner />
+            ) : (
             <Link
               href="/carrito"
               className={`${
@@ -63,7 +67,7 @@ const Menu = () => {
                   <p className="text-white text-[10px]">{cartTotalItems}</p>
                 </div>
               </div>
-            </Link>
+            </Link>)
           )}
           {!session?.user?.email ? (
             <Link
