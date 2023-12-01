@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import GameCard from "./GameCard";
 import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/navigation";
@@ -9,7 +9,7 @@ const GamesList = ({ games, params }) => {
 
   const router = useRouter();
 
-  const [searchText, setSearchText] = React.useState("");
+  const [searchText, setSearchText] = useState("");
 
   const handleChange = (e) => {
     setSearchText(e.target.value);    

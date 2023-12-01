@@ -23,7 +23,7 @@ const GameCard = ({ game }) => {
   return (
     <div className="relative rounded-md bg-white shadow-lg w-full hover:scale-105 hover:shadow-lg hover:cursor-pointer ease-out duration-300 border border-gray-300" key={game.id} >
       <div onClick={toggleFav} className='z-10 absolute top-2 right-4 bg-gray-200 w-7 h-7 rounded-full border border-gray-100 flex items-center justify-center'>
-        {
+        { 
           isFav ? (
             <MdOutlineFavorite size={17} className='text-red-500'/>
           ) : (

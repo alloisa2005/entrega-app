@@ -5,13 +5,13 @@ import { NextResponse } from "next/server";
 
 export const POST = async (req, res) => {
 
-  const { usuarioEmail, productoId, precioParam, cantidad } = await req.json();
+  const { usuarioEmail, productoId, cantidad } = await req.json();
 
   try {
     
     await connectDB();
 
-    // Buscar el carrito del usuario por su correo electrónico
+    // Buscar el carrito del usuario por su email
     let carrito = await Cart.findOne({ email: usuarioEmail });
 
     // Si el carrito no existe, crear uno nuevo
@@ -22,14 +22,13 @@ export const POST = async (req, res) => {
     // Verificar si el producto ya está en el carrito
     const productoExistente = carrito.productos.find(
       (producto) => producto.producto.toString() === productoId
-    );
-    console.log('prod existe: ', productoExistente);
+    );    
 
     // Si el producto ya está en el carrito, aumentar su cantidad
     if (productoExistente) {
       productoExistente.cantidad += cantidad;
     } else {
-      // Si el producto no está en el carrito, agregarlo con cantidad 1
+      // Si el producto no está en el carrito, agregarlo con cantidad 
       carrito.productos.push({ producto: productoId, cantidad });
     }
 
@@ -42,9 +41,7 @@ export const POST = async (req, res) => {
       carrito.montoTotal += juego.precio * producto.cantidad;
       carrito.cantidadProductos += producto.cantidad;
     }
-
-    console.log('carrito1: ', carrito.montoTotal);
-    console.log('carrito2: ', carrito.cantidadProductos);
+    
     // Guardar los cambios en el carrito
     await carrito.save();
     return NextResponse.json(carrito, { status: 201 });

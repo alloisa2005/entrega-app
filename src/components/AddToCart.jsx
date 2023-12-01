@@ -5,13 +5,19 @@ import React, { useState } from 'react'
 import { BsCartPlusFill } from 'react-icons/bs';
 import { useSession } from 'next-auth/react';
 import MiModal from './MiModal';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '@/redux/slices/cartSlice';
 
 
 const AddToCart = ({ game }) => {  
+  const dispatch = useDispatch();
   const {data:session} = useSession()      
 
   const [cantidad, setCantidad] = useState(1);
   const [modal, setModal] = useState({error: false, msg: ""});   
+
+  console.log('SESSION: ', session?.user?.email);
+  console.log('GAME: ', game._id);
 
   const handleAddToCart = async () => {    
     
@@ -19,6 +25,14 @@ const AddToCart = ({ game }) => {
       setModal({error: true, msg: "Debes iniciar sesión para poder comprar."});
       return;
     }    
+
+    const cartItem = {
+      usuarioEmail: session?.user?.email,
+      productoId: game._id,
+      cantidad,
+    }
+
+    dispatch(addToCart(cartItem));
   }
 
   return (
@@ -38,8 +52,7 @@ const AddToCart = ({ game }) => {
           <p className='font-bold text-lg'>+</p>
         </div>
       </div> 
-
-      {/* background: linear-gradient(90.06deg, #1E1E1E 0.05%, #122930 41.06%); */}
+      
       <div onClick={handleAddToCart} className='select-none flex items-center justify-center gap-4 bg-black py-3 text-white mt-4 hover:bg-black/80 hover:cursor-pointer ease-out duration-300'>
         <BsCartPlusFill size={20} className='text-white' />
         <p>Añadir al carrito</p>

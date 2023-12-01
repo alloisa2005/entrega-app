@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cart: [],
@@ -17,6 +17,21 @@ export const getUserCart = createAsyncThunk(
   }
 );
 
+export const addToCart = createAsyncThunk(
+  'cart/addToCart',
+  async (cartItem) => {
+    const response = await fetch(`http://localhost:3000/api/cart`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartItem),
+    });
+    const data = await response.json();
+    return data;
+  }
+);
+
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -24,14 +39,27 @@ export const cartSlice = createSlice({
     builder
       .addCase(getUserCart.pending, (state) => {
         state.cartLoading = true;
-      })
-      .addCase(getUserCart.fulfilled, (state, action) => {
+      });
+      builder.addCase(getUserCart.fulfilled, (state, action) => {
         state.cartLoading = false;
         state.cart = action.payload.cart;
         state.cartTotalAmount = action.payload.cartTotalAmount;
         state.cartTotalItems = action.payload.cartTotalItems;
-      })
-      .addCase(getUserCart.rejected, (state, action) => {
+      });
+      builder.addCase(getUserCart.rejected, (state, action) => {
+        state.cartLoading = false;
+        state.cartError = action.error.message;
+      });
+      builder.addCase(addToCart.pending, (state) => {
+        state.cartLoading = true;
+      });
+      builder.addCase(addToCart.fulfilled, (state, action) => {
+        state.cartLoading = false;
+        state.cart = action.payload.productos;
+        state.cartTotalAmount = action.payload.montoTotal;
+        state.cartTotalItems = action.payload.cantidadProductos;
+      });
+      builder.addCase(addToCart.rejected, (state, action) => {
         state.cartLoading = false;
         state.cartError = action.error.message;
       });

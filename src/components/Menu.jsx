@@ -8,11 +8,13 @@ import { usePathname } from "next/navigation";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+import { useSelector } from "react-redux";
 
 
 const Menu = () => {  
   
   const { data: session } = useSession();  
+  const { cartTotalItems } = useSelector((state) => state.cart);  
 
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -58,7 +60,7 @@ const Menu = () => {
               <div className="relative">
                 <FaShoppingCart size={20} />
                 <div className="absolute -top-2 -right-2 bg-red-500 rounded-full w-4 h-4 flex items-center justify-center">
-                  <p className="text-white text-[10px]">{0}</p>
+                  <p className="text-white text-[10px]">{cartTotalItems}</p>
                 </div>
               </div>
             </Link>

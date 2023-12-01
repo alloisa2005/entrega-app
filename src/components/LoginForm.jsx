@@ -6,9 +6,13 @@ import { motion } from "framer-motion";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import MiModal from "./MiModal";
+import { useDispatch } from "react-redux";
+import { getUserCart } from "@/redux/slices/cartSlice";
 
 
 export const LoginForm = () => {  
+
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,10 +38,13 @@ export const LoginForm = () => {
         setLoading(false);
         setModal({ error: true, msg: 'Usuario y/o contraseña incorrectos'});
         return;
-      }            
+      }   
+
+      dispatch(getUserCart(email));
+      
       router.replace("/tienda/categorias/all");
     } catch (error) {
-      
+      setModal({ error: true, msg: 'Error al iniciar sesión'});
     }
   };
 
