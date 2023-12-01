@@ -62,7 +62,7 @@ const CarritoCard = ({ prod }) => {
             onClick={increment}
             className='w-6 h-6 md:w-9 md:h-9 bg-black text-white text-lg'>+</button>
         </div>
-        {/* <p className='text-xl font-bold'>${separadorMiles(prod.productoId.precio*prod.cantidad)}</p> */}
+        <p className='text-xl font-bold'>${separadorMiles(prod.producto.precio*prod.cantidad)}</p> 
       </div>
 
       {/* <CartControls prodId={prod._id} precio={prod.precio} cantidad={cantidad}/> */}
