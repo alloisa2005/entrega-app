@@ -44,7 +44,9 @@ export const POST = async (req, res) => {
     
     // Guardar los cambios en el carrito
     await carrito.save();
-    return NextResponse.json(carrito, { status: 201 });
+
+    let cartPrueba = await Cart.findOne({ email: usuarioEmail }).populate("productos.producto");
+    return NextResponse.json(cartPrueba, { status: 201 });
 
   } catch (error) {
    return NextResponse.json({ error: error.message }, { status: 500 }); 

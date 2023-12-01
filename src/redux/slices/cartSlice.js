@@ -13,6 +13,7 @@ export const getUserCart = createAsyncThunk(
   async (usuarioEmail) => {
     const response = await fetch(`http://localhost:3000/api/cart/${usuarioEmail}`, {next:{revalidate:0}});
     const data = await response.json();
+    console.log('GET CART: ', data);
     return data;
   }
 );
@@ -28,6 +29,8 @@ export const addToCart = createAsyncThunk(
       body: JSON.stringify(cartItem),
     });
     const data = await response.json();
+    console.log('ADD TO CART: ', data);
+    
     return data;
   }
 );
