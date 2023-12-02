@@ -9,7 +9,7 @@ export const GET = async (req, { params }) => {
   try {
     await connectDB();
 
-    let favoritos = await Favoritos.findOne({ email: usuarioEmail });            
+    let favoritos = await Favoritos.findOne({ email: usuarioEmail }).populate("productos");            
     return NextResponse.json(favoritos, { status: 200 });
     
   } catch (error) {

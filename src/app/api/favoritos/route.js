@@ -27,7 +27,7 @@ export const POST = async (req) => {
       await favoritos.save(); 
     }
 
-    const favoritosUser = await Favoritos.findOne({ email: usuarioEmail });  
+    const favoritosUser = await Favoritos.findOne({ email: usuarioEmail }).populate("productos");  
     return NextResponse.json( favoritosUser, { status: 201 });
 
   } catch (error) {
