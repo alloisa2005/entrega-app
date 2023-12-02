@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import MiModal from "./MiModal";
 import { useDispatch } from "react-redux";
 import { getUserCart } from "@/redux/slices/cartSlice";
+import { getFavoritosByUser } from "@/redux/slices/favoritosSlice";
 
 
 export const LoginForm = () => {  
@@ -41,7 +42,8 @@ export const LoginForm = () => {
       }   
 
       dispatch(getUserCart(email));
-      
+      dispatch(getFavoritosByUser(email));
+
       router.replace("/tienda/categorias/all");
     } catch (error) {
       setModal({ error: true, msg: 'Error al iniciar sesión'});

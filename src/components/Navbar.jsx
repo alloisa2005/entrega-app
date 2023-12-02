@@ -7,16 +7,8 @@ import Menu from './Menu'
 import { motion } from 'framer-motion'
 import { useSession } from 'next-auth/react'
 import { useDispatch } from 'react-redux'
-import { getUserCart } from '@/redux/slices/cartSlice'
 
-const Navbar = () => {
-
-  const dispatch = useDispatch();
-  const { data: session} = useSession();
-
-  if(session?.user?.email) {
-    dispatch(getUserCart(session?.user?.email))
-  }
+const Navbar = () => {      
 
   return (
     <header className='w-full bg-black h-[70px]'>

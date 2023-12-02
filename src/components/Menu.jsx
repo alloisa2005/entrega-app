@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import MenuList from "./MenuList";
@@ -8,14 +8,23 @@ import { usePathname } from "next/navigation";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSession } from "next-auth/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Spinner from "./Spinner";
+import { getUserCart } from "@/redux/slices/cartSlice";
+import { getFavoritosByUser } from "@/redux/slices/favoritosSlice";
 
 
 const Menu = () => {  
-  
+  const dispatch = useDispatch();
   const { data: session } = useSession();  
   const { cartTotalItems, cartLoading } = useSelector((state) => state.cart);  
+
+  useEffect(() => {
+    if(session?.user?.email) {
+      dispatch(getUserCart(session?.user?.email))
+      dispatch(getFavoritosByUser(session?.user?.email))
+    }
+  }, [dispatch, session?.user?.email]);
 
   const pathname = usePathname();
   const [open, setOpen] = useState(false);

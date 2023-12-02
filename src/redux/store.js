@@ -11,8 +11,7 @@ export const store = configureStore({
     favoritos: favoritosSlice.reducer,
     prueba: pruebaSlice.reducer,
     cart: cartSlice.reducer,
-  },
-  devTools: true,
+  },  
 });
 
 

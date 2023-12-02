@@ -2,7 +2,7 @@ import { mongoose } from "mongoose";
 
 const favoritosSchema = new mongoose.Schema(
   {
-    userId: {
+    email: {
       type: String,
       required: true,
       unique: true,

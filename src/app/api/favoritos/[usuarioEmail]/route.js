@@ -4,12 +4,12 @@ import { NextResponse } from "next/server"
 
 export const GET = async (req, { params }) => {
 
-  const { userId } = params;
+  const { usuarioEmail } = params;
 
   try {
     await connectDB();
 
-    let favoritos = await Favoritos.findOne({ userId }).populate('productos');    
+    let favoritos = await Favoritos.findOne({ email: usuarioEmail });            
     return NextResponse.json(favoritos, { status: 200 });
     
   } catch (error) {
