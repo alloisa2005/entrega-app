@@ -5,8 +5,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Menu from './Menu'
 import { motion } from 'framer-motion'
+import { useSession } from 'next-auth/react'
+import { useDispatch } from 'react-redux'
+import { getUserCart } from '@/redux/slices/cartSlice'
 
 const Navbar = () => {
+
+  const dispatch = useDispatch();
+  const { data: session} = useSession();
+  console.log(session?.user)
+
+  if(session?.user?.email) {
+    dispatch(getUserCart(session?.user?.email))
+  }
+
   return (
     <header className='w-full bg-black h-[70px]'>
       <div className='contenedor h-full flex justify-between items-center'>
