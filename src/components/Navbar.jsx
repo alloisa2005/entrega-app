@@ -13,7 +13,6 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const { data: session} = useSession();
-  console.log(session?.user)
 
   if(session?.user?.email) {
     dispatch(getUserCart(session?.user?.email))
