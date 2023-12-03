@@ -47,6 +47,19 @@ export const deleteProductFromCart = createAsyncThunk(
   }
 );
 
+export const clearCart = createAsyncThunk(
+  'cart/clearCart',
+  async (usuarioEmail) => {
+    const response = await fetch(`http://localhost:3000/api/cart/${usuarioEmail}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    return data;
+  }
+);
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -92,5 +105,18 @@ export const cartSlice = createSlice({
         state.cartLoading = false;
         state.cartError = action.error.message;
       });      
+      builder.addCase(clearCart.pending, (state) => {
+        state.cartLoading = true;
+      });
+      builder.addCase(clearCart.fulfilled, (state, action) => {
+        state.cartLoading = false;
+        state.cart = [];
+        state.cartTotalAmount = 0;
+        state.cartTotalItems = 0;
+      });
+      builder.addCase(clearCart.rejected, (state, action) => {
+        state.cartLoading = false;
+        state.cartError = action.error.message;
+      });
   },
 });

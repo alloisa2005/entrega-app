@@ -30,3 +30,19 @@ export const GET = async (_, { params }) => {
 
 };
 
+export const DELETE = async (req, { params }) => {
+
+  const { usuarioEmail } = params;
+
+  try {
+    await connectDB();
+
+    const userCart = await Cart.findOneAndDelete({ email: usuarioEmail });
+    return NextResponse.json(userCart, { status: 201 });
+    
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+
+}

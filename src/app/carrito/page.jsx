@@ -1,5 +1,6 @@
 
 import CarritoList from '@/components/CarritoList'
+import CarritoTitle from '@/components/CarritoTitle'
 import DetalleCompra from '@/components/DetalleCompra'
 import MetodosPago from '@/components/MetodosPago'
 import { getServerSession } from 'next-auth'
@@ -20,8 +21,8 @@ const Carrito =  async () => {
   }
 
   return (
-    <div className='contenedor my-4 alturaMinima' >
-      <p className='border-b-2 border-black text-2xl italic'>Mi Carrito</p>   
+    <div className='contenedor my-4 alturaMinima' >      
+      <CarritoTitle />
 
       <div className='mt-3 flex flex-col-reverse lg:flex-row justify-between gap-3'>
         <div className='flex flex-col gap-3 w-full border rounded-md shadow-md p-2'>
