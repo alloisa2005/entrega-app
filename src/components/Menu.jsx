@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "./Spinner";
 import { getUserCart } from "@/redux/slices/cartSlice";
 import { getFavoritosByUser } from "@/redux/slices/favoritosSlice";
+import Avatar from "./Avatar";
 
 
 const Menu = () => {  
@@ -88,12 +89,7 @@ const Menu = () => {
               LogIn
             </Link>
           ) : (
-            <p
-              onClick={() => signOut()}
-              className={`font-montserrat hover:text-black hover:bg-white hover:cursor-pointer p-2 rounded-md`}
-            >
-              LogOut
-            </p>
+            <Avatar />            
           )}
 
           {session?.user?.isAdmin && (
