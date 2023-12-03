@@ -17,8 +17,7 @@ import Avatar from "./Avatar";
 
 const Menu = () => {  
   const dispatch = useDispatch();
-  const { data: session } = useSession();  
-  const { cartTotalItems, cartLoading } = useSelector((state) => state.cart);  
+  const { data: session } = useSession();      
 
   useEffect(() => {
     if(session?.user?.email) {
@@ -50,35 +49,7 @@ const Menu = () => {
             } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
           >
             Tienda
-          </Link>
-          {session?.user?.email && (
-            <Link
-              href="/favoritos"
-              className={`${
-                pathname === "/favoritos" ? "bg-white text-black" : ""
-              } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
-            >
-              Mis Favoritos
-            </Link>
-          )}
-          {session?.user?.email && (
-            cartLoading ? (
-              <Spinner />
-            ) : (
-            <Link
-              href="/carrito"
-              className={`${
-                pathname === "/carrito" ? "bg-white text-black" : ""
-              } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
-            >
-              <div className="relative">
-                <FaShoppingCart size={20} />
-                <div className="absolute -top-2 -right-2 bg-red-500 rounded-full w-4 h-4 flex items-center justify-center">
-                  <p className="text-white text-[10px]">{cartTotalItems}</p>
-                </div>
-              </div>
-            </Link>)
-          )}
+          </Link>                    
           {!session?.user?.email ? (
             <Link
               href="/user/login"
@@ -90,17 +61,6 @@ const Menu = () => {
             </Link>
           ) : (
             <Avatar />            
-          )}
-
-          {session?.user?.isAdmin && (
-            <Link
-              href="/admin/productos"
-              className={`${
-                pathname === "/admin/productos" ? "bg-white text-black" : ""
-              } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
-            >
-              Menu Admin
-            </Link>
           )}
         </ul>
       </nav>

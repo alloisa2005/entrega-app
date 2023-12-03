@@ -4,10 +4,12 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Avatar = () => {
   const { data: session } = useSession();
-  const [isHovered, setIsHovered] = useState(false);
+  const { cartTotalItems } = useSelector((state) => state.cart);
+  const [isHovered, setIsHovered] = useState(false);  
 
   const handleHover = () => {
     setIsHovered(!isHovered);
@@ -27,12 +29,21 @@ const Avatar = () => {
         alt="Avatar Image"
       />
       {isHovered && (
-        <div className="rounded-b-lg text-md font-montserrat w-[135px] absolute top-full left-0 p-3 z-20 flex flex-col gap-3 bg-black text-white">
-          <Link className="hover:cursor-pointer" href="/carrito">Mi Carrito</Link>
-          <Link className="hover:cursor-pointer" href="/favoritos">Mis Favoritos</Link>
-          <Link className="hover:cursor-pointer" href="/">Mis Compras</Link>
-          <Link className="hover:cursor-pointer" href="/">Mis Datos</Link>
-          <span onClick={() => signOut()} className="hover:cursor-pointer">Log Out</span>
+        <div className="rounded-b-lg text-md font-montserrat w-[155px] absolute top-full left-0 px-3 py-4 z-20 flex flex-col gap-4 bg-black text-white  border-l border-r border-b border-white">
+          <p className="border-b border-gray-400">Hola, {session.user.nombre.split(' ')[0]}</p>
+          <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/carrito">
+            Mi Carrito 
+            <span className="ml-2 w-5 h-5 p-1 rounded-full text-sm bg-red-500 text-white">{cartTotalItems}</span>
+          </Link>
+          <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/favoritos">Mis Favoritos</Link>
+          <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/compras">Mis Compras</Link>
+          <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/">Mis Datos</Link>
+          {
+            session?.user?.isAdmin && (
+              <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/admin/productos">Menu Admin</Link>
+            )
+          }
+          <span onClick={() => signOut()} className="hover:bg-white hover:text-black hover:cursor-pointer px-1">Log Out</span>
         </div>
       )}
     </div>
