@@ -7,6 +7,10 @@ const DetalleCompra = () => {
 
   const { cartTotalAmount, cartTotalItems } = useSelector(state => state.cart);
 
+  const handleFinalizaCompra = () => {
+    
+  }
+
   return (
     <div className='mt-4 flex flex-col gap-1'>
       <div className='flex items-center justify-between px-2'>
@@ -26,16 +30,12 @@ const DetalleCompra = () => {
         <p className='text-red-500 font-bold'>{separadorMiles((cartTotalAmount + (cartTotalAmount*5/100)).toFixed(0))}</p>
       </div>            
 
-      <motion.button          
-        whileTap={{ scale: 0.90 }}         
-        className='rounded-md py-2 md:py-3 mt-3 mb-1 text-center bg-black hover:bg-black/90 text-white hover:cursor-pointer ease-in duration-300'>
-        <motion.p 
-          initial={{ opacity: 0, y: -100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          exit={{ opacity: 0, y: -100 }}
-          className='font-bold'>Confirmar Compra</motion.p>
-      </motion.button>
+      <button          
+        onClick={handleFinalizaCompra}
+        disabled={cartTotalItems === 0}
+        className={`rounded-md py-2 md:py-3 mt-3 mb-1 text-center ${cartTotalItems === 0 ? 'bg-gray-500' : 'bg-black hover:bg-black/90'} text-white hover:cursor-pointer ease-in duration-300`}>
+        <p className='font-bold'>Confirmar Compra</p>
+      </button>
       
     </div>
   )
