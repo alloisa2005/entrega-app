@@ -18,9 +18,7 @@ export default function Home() {
         <p className="font-montserrat font-bold text-2xl italic">Loading...</p>
       </div>}>
         <FilaJuegos />            
-      </Suspense>
-
-      
+      </Suspense>      
 
       <Editoriales />
 

@@ -37,7 +37,7 @@ const Avatar = () => {
           </Link>
           <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/favoritos">Mis Favoritos</Link>
           <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/compras">Mis Compras</Link>
-          <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/">Mis Datos</Link>
+          <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/user/datos">Mis Datos</Link>
           {
             session?.user?.isAdmin && (
               <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/admin/productos">Menu Admin</Link>
