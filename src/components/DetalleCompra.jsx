@@ -1,6 +1,5 @@
 'use client'
 import { separadorMiles } from '@/utils/separadorMiles'
-import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
 
 const DetalleCompra = () => {
