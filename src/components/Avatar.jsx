@@ -43,7 +43,7 @@ const Avatar = () => {
               <Link className="hover:cursor-pointer hover:bg-white hover:text-black p-1" href="/admin/productos">Menu Admin</Link>
             )
           }
-          <span onClick={() => signOut()} className="hover:bg-white hover:text-black hover:cursor-pointer px-1">Log Out</span>
+          <span onClick={() => signOut()} className="hover:bg-white hover:text-black hover:cursor-pointer p-1">Log Out</span>
         </div>
       )}
     </div>
