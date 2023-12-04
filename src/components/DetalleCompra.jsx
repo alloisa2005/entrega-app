@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux'
 
 const DetalleCompra = () => {
 
-  const { cartTotalAmount, cartTotalItems } = useSelector(state => state.cart);
+  const { cart, cartTotalAmount, cartTotalItems } = useSelector(state => state.cart);
 
-  const handleFinalizaCompra = () => {
-    
+  const handleFinalizaCompra = async () => {
+    console.log('Finaliza Compra', cart);
   }
 
   return (
