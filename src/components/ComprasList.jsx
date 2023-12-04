@@ -1,26 +1,32 @@
 'use client'
 
-import { convertirfecha } from '@/utils/convertirFecha'
-import { separadorMiles } from '@/utils/separadorMiles'
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+
+
+import CompraItem from './CompraItem'
 
 const ComprasList = () => {
 
   const { compras, comprasTotalAmount } = useSelector(state => state.compras)
   console.log(compras[0])  
 
+  const [selected, setSelected] = useState(null)
+  const toggle = i => {
+
+    if (selected === i) {
+      return setSelected(null)
+    }
+    
+    setSelected(i)
+  }
+
   return (
     <>      
       {
-        compras?.map((compra) => {
+        compras?.map((compra, index) => {
           return (
-            <div key={compra._id} className='border border-black p-2 mb-4 rounded-md shadow-sm font-montserrat'>   
-              <div className='flex items-center gap-6'>
-              <p className='font-bold'>{convertirfecha(compra.createdAt)}</p>
-              <p className='font-semibold text-gray-500 italic'>Monto ($): {separadorMiles(compra.montoTotal)}</p>
-              </div>
-            </div>
+            <CompraItem key={compra._id} compra={compra} onClick={() => toggle(index)} selected={selected} index={index} />
           )
         })
       }
