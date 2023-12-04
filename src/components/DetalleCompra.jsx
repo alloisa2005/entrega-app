@@ -1,13 +1,33 @@
 'use client'
 import { separadorMiles } from '@/utils/separadorMiles'
+import { useSession } from 'next-auth/react'
 import { useSelector } from 'react-redux'
 
 const DetalleCompra = () => {
-
+  const { data: session} = useSession();
   const { cart, cartTotalAmount, cartTotalItems } = useSelector(state => state.cart);
 
-  const handleFinalizaCompra = async () => {
-    console.log('Finaliza Compra', cart);
+  const handleFinalizaCompra = async () => {        
+    let envio = (cartTotalAmount*5/100).toFixed(0);
+    let montoTotal = (cartTotalAmount + (cartTotalAmount*5/100)).toFixed(0);
+
+    const res = await fetch('/api/compras', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        usuarioEmail: session?.user?.email, 
+        productos: cart, 
+        cantidadProductos: cartTotalItems, 
+        subTotal: cartTotalAmount, 
+        envio, 
+        montoTotal
+      })
+    });
+
+    const data = await res.json();
+    console.log('data', data);
   }
 
   return (

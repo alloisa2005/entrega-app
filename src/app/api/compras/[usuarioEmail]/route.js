@@ -9,9 +9,9 @@ export const GET = async (req, { params }) => {
   try {
     await connectDB();
 
-    const compra = await Compra.findOne({ email: usuarioEmail });
+    const compras = await Compra.find({ email: usuarioEmail });
 
-    return NextResponse.json(compra, { status: 200 });
+    return NextResponse.json(compras, { status: 200 });
 
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
