@@ -13,6 +13,7 @@ import Spinner from "./Spinner";
 import { getUserCart } from "@/redux/slices/cartSlice";
 import { getFavoritosByUser } from "@/redux/slices/favoritosSlice";
 import Avatar from "./Avatar";
+import { getUserCompras } from "@/redux/slices/compraSlice";
 
 
 const Menu = () => {  
@@ -23,6 +24,7 @@ const Menu = () => {
     if(session?.user?.email) {
       dispatch(getUserCart(session?.user?.email))
       dispatch(getFavoritosByUser(session?.user?.email))
+      dispatch(getUserCompras(session?.user?.email))
     }
   }, [dispatch, session?.user?.email]);
 
@@ -59,8 +61,8 @@ const Menu = () => {
             >
               LogIn
             </Link>
-          ) : (
-            <Avatar />            
+          ) : (            
+            <Avatar />                        
           )}
         </ul>
       </nav>

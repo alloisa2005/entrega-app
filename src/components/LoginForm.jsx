@@ -9,6 +9,7 @@ import MiModal from "./MiModal";
 import { useDispatch } from "react-redux";
 import { getUserCart } from "@/redux/slices/cartSlice";
 import { getFavoritosByUser } from "@/redux/slices/favoritosSlice";
+import { getUserCompras } from "@/redux/slices/compraSlice";
 
 
 export const LoginForm = () => {  
@@ -43,6 +44,7 @@ export const LoginForm = () => {
 
       dispatch(getUserCart(email));
       dispatch(getFavoritosByUser(email));
+      dispatch(getUserCompras(email));
 
       router.replace("/tienda/categorias/all");
     } catch (error) {

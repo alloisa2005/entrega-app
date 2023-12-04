@@ -24,10 +24,10 @@ export const compraSlice = createSlice({
       .addCase(getUserCompras.pending, (state) => {
         state.comprasLoading = true;
       })
-      .addCase(getUserCompras.fulfilled, (state, action) => {
+      .addCase(getUserCompras.fulfilled, (state, action) => {        
         state.comprasLoading = false;
-        state.compras = action.payload.compras;
-        state.comprasTotalAmount = action.payload.totalAmount;
+        state.compras = action.payload;
+        state.comprasTotalAmount = action.payload.reduce((total, item) => total + item.montoTotal, 0);
       })
       .addCase(getUserCompras.rejected, (state, action) => {
         state.comprasLoading = false;

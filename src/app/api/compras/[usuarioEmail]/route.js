@@ -1,5 +1,6 @@
 import { connectDB } from "@/db/connectDB";
 import Compra from "@/models/compra";
+import Juego from "@/models/juego";
 import { NextResponse } from "next/server";
 
 export const GET = async (req, { params }) => {
@@ -9,7 +10,7 @@ export const GET = async (req, { params }) => {
   try {
     await connectDB();
 
-    const compras = await Compra.find({ email: usuarioEmail });
+    let compras = await Compra.find({ email: usuarioEmail }).populate("productos.producto").sort({ createdAt: -1 });        
 
     return NextResponse.json(compras, { status: 200 });
 
