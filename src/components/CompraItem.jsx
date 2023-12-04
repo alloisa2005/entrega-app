@@ -2,6 +2,7 @@ import { convertirfecha } from "@/utils/convertirFecha";
 import { separadorMiles } from "@/utils/separadorMiles";
 import React from "react";
 import { IoIosArrowDown, IoIosArrowUp  } from "react-icons/io";
+import { TbTruckDelivery } from "react-icons/tb";
 
 const CompraItem = ({ compra, onClick, selected, index }) => {  
 
@@ -21,7 +22,7 @@ const CompraItem = ({ compra, onClick, selected, index }) => {
 
       {
         selected === index && (
-          <div>JAJA</div>
+          <TbTruckDelivery size={25} />
         )
       }
     </div>
