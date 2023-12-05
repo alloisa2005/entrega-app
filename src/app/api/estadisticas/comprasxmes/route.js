@@ -1,5 +1,6 @@
 import { connectDB } from "@/db/connectDB";
 import Compra from "@/models/compra";
+import { nombreMes } from "@/utils/nombreMes";
 import { NextResponse } from "next/server"
 
 export const GET = async (req, res) => {
@@ -42,10 +43,13 @@ export const GET = async (req, res) => {
       }
     ]);
 
-    
-    
+    // Cambio el nro de mes por el nombre usando la función nombreMes
+    compras.forEach(compra => {
+      compra.mes = nombreMes(compra.mes);
+    });        
 
     return NextResponse.json(compras, { status: 201 });
+
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
