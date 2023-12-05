@@ -9,7 +9,6 @@ import CompraItem from './CompraItem'
 const ComprasList = () => {
 
   const { compras, comprasTotalAmount } = useSelector(state => state.compras)
-  console.log(compras[0])  
 
   const [selected, setSelected] = useState(null)
   const toggle = i => {
