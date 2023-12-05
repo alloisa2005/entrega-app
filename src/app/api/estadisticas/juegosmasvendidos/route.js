@@ -23,7 +23,7 @@ export const GET = async (req, res) => {
         $sort: { totalVendido: -1 }
       },
       {
-        $limit: 4
+        $limit: 5
       }
     ]);    
     

@@ -1,22 +1,11 @@
+import React from "react";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import MiBarChart from "@/components/Chart";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import React from "react";
+import { getAnio } from "@/utils/getAnio";
+import { getComprasMes } from "@/utils/estadisticas/estadisticas";
 
-const getComprasMes = async () => {
-  const res = await fetch(
-    "http://localhost:3000/api/estadisticas/comprasxmes", {next: { revalidate: 0 }}   
-  );
-  const data = await res.json();
-  return data;
-};
-
-// funcion que reciba un anio por parametro y devuelva los dos ultimos digitos
-const getAnio = (anio) => {
-  const anioStr = anio.toString();
-  return anioStr.slice(2, 4);
-};
 
 const ComprasXMes = async () => {
 
