@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "@/redux/slices/cartSlice";
 import { useState } from "react";
 import MiModal from "./MiModal";
+import { confirmarCompra, getUserCompras } from "@/redux/slices/compraSlice";
 
 const DetalleCompra = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const DetalleCompra = () => {
 
   const handleFinalizaCompra = async () => {
     let envio = ((cartTotalAmount * 5) / 100).toFixed(0);
-    let montoTotal = (cartTotalAmount + (cartTotalAmount * 5) / 100).toFixed(0);
+    let montoTotal = (cartTotalAmount + (cartTotalAmount * 5) / 100).toFixed(0);    
 
     const res = await fetch("/api/compras", {
       method: "POST",
@@ -33,9 +34,12 @@ const DetalleCompra = () => {
         montoTotal,
       }),
     });
+    
 
     if (res.ok) {
       dispatch(clearCart(session?.user?.email));
+      dispatch(getUserCompras(session?.user?.email));
+      
       setModal({
         error: false,
         msg: "Compra realizada con éxito. Recibirá un correo electrónico con los detalles de la compra.",

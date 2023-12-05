@@ -1,4 +1,7 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import MiBarChart from "@/components/Chart";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const getComprasMes = async () => {
@@ -16,6 +19,12 @@ const getAnio = (anio) => {
 };
 
 const ComprasXMes = async () => {
+
+  const session = await getServerSession(authOptions)
+  if(!session) {
+    redirect('/tienda/categorias/all')
+  }
+  
   const compras = await getComprasMes();
   const meses = compras.map(
     (compra) => `${compra.mes}/${getAnio(compra.anio)}`

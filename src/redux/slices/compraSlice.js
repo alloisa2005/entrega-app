@@ -32,6 +32,6 @@ export const compraSlice = createSlice({
       .addCase(getUserCompras.rejected, (state, action) => {
         state.comprasLoading = false;
         state.comprasError = action.error.message;
-      });
+      });      
   },
 });

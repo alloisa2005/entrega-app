@@ -13,8 +13,9 @@ export const POST = async (req, res) => {
     const compra = new Compra({email: usuarioEmail, productos, cantidadProductos, subTotal,
       envio, montoTotal });
     await compra.save();
-
-    return NextResponse.json(compra, { status: 201 });
+    
+    let compras = await Compra.find({ email: usuarioEmail }).populate("productos.producto").sort({ createdAt: -1 });        
+    return NextResponse.json(compras, { status: 201 });
     //return NextResponse.json({msg: 'OK Compra'}, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
