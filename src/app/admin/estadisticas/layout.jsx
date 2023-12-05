@@ -1,11 +1,11 @@
 import React from 'react'
 
-const EstadisticasLayout = ({ prueba, nose, jua }) => {
+const EstadisticasLayout = ({ userMasCompras, comprasMes, juegosmasvendidos }) => {
   return (
-    <div className='grid grid-cols-7 gap-3  h-[350px]'>            
-      { prueba }
-      { nose }
-      { jua }  
+    <div className='grid grid-cols-8 grid-rows-2 gap-3 h-[500px]'>  
+      { comprasMes }  
+      { userMasCompras }
+      { juegosmasvendidos }
     </div>
   )
 }
