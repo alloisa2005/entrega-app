@@ -29,6 +29,9 @@ export const GET = async (req, res) => {
       {
         $sort: { totalCompras: -1 }
       },
+      {
+        $limit: 5
+      }      
     ]);
 
     // a partir del email del usuario obtenemos el nombre
