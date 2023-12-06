@@ -14,7 +14,7 @@ const ScrollToTop = () => {
   };
 
   return (
-    <div onClick={handleScrollToTop} className="sticky bottom-8 h-[50px] w-full flex justify-end items-center">
+    <div onClick={handleScrollToTop} className="hidden sticky bottom-8 h-[50px] w-full md:flex justify-end items-center">
       <div className="border border-white bg-black/80 hover:bg-black hover:cursor-pointer h-full w-[50px] mr-8 rounded-full flex items-center justify-center ease-in duration-300">
         <FaArrowUpLong size={25} className="text-white" />
       </div>
