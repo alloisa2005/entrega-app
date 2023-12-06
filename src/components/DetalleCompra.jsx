@@ -7,6 +7,7 @@ import { clearCart } from "@/redux/slices/cartSlice";
 import { useState } from "react";
 import MiModal from "./MiModal";
 import { confirmarCompra, getUserCompras } from "@/redux/slices/compraSlice";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const DetalleCompra = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const DetalleCompra = () => {
     (state) => state.cart
   );
   const [modal, setModal] = useState({ error: false, msg: "" });
+  const [modalCompra, setModalCompra] = useState(false);
 
   const handleFinalizaCompra = async () => {
     let envio = ((cartTotalAmount * 5) / 100).toFixed(0);
@@ -78,7 +80,7 @@ const DetalleCompra = () => {
         </div>
 
         <button
-          onClick={handleFinalizaCompra}
+          onClick={() => setModalCompra(true)}
           disabled={cartTotalItems === 0}
           className={`rounded-md py-2 md:py-3 mt-3 mb-1 text-center ${
             cartTotalItems === 0 ? "bg-gray-500" : "bg-black hover:bg-black/90"
@@ -95,6 +97,38 @@ const DetalleCompra = () => {
           closeFn={() => setModal({ error: false, msg: "" })}
         />
       )}
+
+      {
+        modalCompra && (
+          <div className="px-4 absolute w-full h-full top-0 left-0 bottom-0 bg-black/60 z-20 flex items-center justify-center">
+            <div className="w-full lg:w-[55%] h-[55%] bg-white p-3 rounded-md font-montserrat">
+              {/* Titulo */}
+              <div className="flex items-center justify-between border-b-2">
+                <h2 className="text-xl font-semibold">Confirmar Compra</h2>
+                <AiFillCloseCircle size={27} className='hover:cursor-pointer text-black' onClick={() => setModalCompra(false)}/>
+              </div>
+
+              {/* Datos Persona */}
+              <div className="mt-3">
+                <h2 className="font-semibold text-gray-500">Datos de Usuario</h2>
+                
+                <div className="flex items-center gap-2 mt-1">
+                  <p className="w-[90px]">Nombre:</p>
+                  <p className="font-bold">{session.user.nombre}</p>
+                </div>
+                <div className="flex items-center gap-2 mt-1">
+                  <p className="w-[90px]">Email:</p>
+                  <p className="font-bold">{session.user.email}</p>
+                </div>
+                <div className="flex items-center gap-2 mt-1">
+                  <p className="w-[90px]">Dirección:</p>
+                  <p className="font-bold">{session.user.direccion}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
     </>
   );
 };
