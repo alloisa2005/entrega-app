@@ -1,8 +1,10 @@
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import Providers from '@/components/Providers/Providers'
+import ScrollToTop from '@/components/ScrollToTop'
 import { Inter, Montserrat, Caveat } from 'next/font/google'
 import './globals.css'
+
 
 const caveat = Caveat({
   subsets: ['latin'],
@@ -35,6 +37,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}        
         <Footer />
+        <ScrollToTop />       
       </Providers>
       </body>
     </html>
