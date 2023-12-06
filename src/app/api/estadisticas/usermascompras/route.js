@@ -1,6 +1,7 @@
 import { connectDB } from "@/db/connectDB";
 import Compra from "@/models/compra";
 import { NextResponse } from "next/server";
+import User from "@/models/user";
 
 export const GET = async (req, res) => {
 
@@ -24,9 +25,19 @@ export const GET = async (req, res) => {
           cantidadTotal: { $sum: '$cantidadProductos' },
           montoTotal: { $sum: '$montoTotal' }
         }
-      }
+      }, 
+      {
+        $sort: { totalCompras: -1 }
+      },
     ]);
 
+    // a partir del email del usuario obtenemos el nombre
+    for (let i = 0; i < compras.length; i++) {
+      const compra = compras[i];
+      const usuario = await User.findOne({ email: compra._id });
+      compra.nombre = usuario.nombre;
+    }
+    
     return NextResponse.json(compras, { status: 201 });
 
   } catch (error) {

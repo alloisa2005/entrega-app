@@ -44,6 +44,8 @@ const DetalleCompra = () => {
         error: false,
         msg: "Compra realizada con éxito. Recibirá un correo electrónico con los detalles de la compra.",
       });
+
+      //TODO: hacer modal que muestre los datos de la persona
     }    
   };
 

@@ -14,14 +14,15 @@ const ComprasXMes = async () => {
     redirect('/tienda/categorias/all')
   }
   
-  const compras = await getComprasMes();
+  const compras = await getComprasMes();  
+
   const meses = compras.map(
     (compra) => `${compra.mes}/${getAnio(compra.anio)}`
   );
   const totales = compras.map((compra) => compra.total);
 
   return (
-    <div className="col-span-5 row-span-2 h-full w-full flex items-center justify-center">
+    <div className="px-2 col-span-5 row-span-2 h-full w-full flex items-center justify-center border-2 shadow-md rounded-md">
       <MiBarChart totales={totales} meses={meses} />
     </div>
   );

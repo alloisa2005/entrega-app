@@ -1,7 +1,7 @@
 
 export const getComprasMes = async () => {
   const res = await fetch(
-    "http://localhost:3000/api/estadisticas/comprasxmes", {next: { revalidate: 0 }}   
+    "http://localhost:3000/api/estadisticas/comprasxmes", {cache: 'no-cache'}   
   );
   const data = await res.json();
   return data;
@@ -9,7 +9,7 @@ export const getComprasMes = async () => {
 
 export const getUsersMasCompras = async () => {
   const res = await fetch(
-    "http://localhost:3000/api/estadisticas/usermascompras", {next: { revalidate: 0 }}   
+    "http://localhost:3000/api/estadisticas/usermascompras", {cache: 'no-cache'}   
   );
   const data = await res.json();
   return data;
@@ -17,7 +17,7 @@ export const getUsersMasCompras = async () => {
 
 export const getJuegosMasVendidos = async () => {
   const res = await fetch(
-    "http://localhost:3000/api/estadisticas/juegosmasvendidos", {next: { revalidate: 0 }}   
+    "http://localhost:3000/api/estadisticas/juegosmasvendidos", {cache: 'no-cache'}   
   );
   const data = await res.json();
   return data;

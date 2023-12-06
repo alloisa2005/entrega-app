@@ -3,8 +3,7 @@ import React from 'react'
 
 const JuegosMasVendidos = async () => {
 
-  const juegos = await getJuegosMasVendidos();
-  console.log(juegos)
+  const juegos = await getJuegosMasVendidos();  
 
   return (
     <div className=' col-span-3 p-2 border-2 shadow-md rounded-md font-montserrat font-semibold '>
