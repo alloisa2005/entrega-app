@@ -13,7 +13,7 @@ export const getAllMensajes = async (leido = false) => {
 
 export const guardarMensaje = async (email, nombre, asunto, mensaje) => {    
 
-  const response = await fetch(`http://localhost:3000/api/mensajes`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/mensajes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const guardarMensaje = async (email, nombre, asunto, mensaje) => {
 
 export const leerMensaje = async (mensajeId) => {
 
-  const response = await fetch(`http://localhost:3000/api/mensajes/${mensajeId}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/mensajes/${mensajeId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export const leerMensaje = async (mensajeId) => {
 
 export const borrarMensaje = async (mensajeId) => {
 
-  const response = await fetch(`http://localhost:3000/api/mensajes/${mensajeId}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/mensajes/${mensajeId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

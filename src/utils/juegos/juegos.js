@@ -2,8 +2,8 @@ import { uploadGameImage } from "../uploadImages";
 
 export const getProductos = async (categoria = 'all', nombre='') => {
 
-  const url = nombre === '' ? `${process.env.NEXTAUTH_URL}/api/productos/${categoria}` 
-                            : `${process.env.NEXTAUTH_URL}/api/productos/${categoria}?nombre=${nombre}` 
+  const url = nombre === '' ? `${process.env.NEXT_PUBLIC_API_URL}/api/productos/${categoria}` 
+                            : `${process.env.NEXT_PUBLIC_API_URL}/api/productos/${categoria}?nombre=${nombre}` 
 
   const response = await fetch(url,{next: {revalidate: 0}});
   
@@ -25,7 +25,7 @@ export const saveProducto = async (titulo, categoria, precio, descripcion, trail
   }  
   const bgImage = response.imgUrl;
 
-  response = await fetch(`http://localhost:3000/api/productos/`, {
+  response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/productos/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export const saveProducto = async (titulo, categoria, precio, descripcion, trail
 }
 
 export const getProductoById = async (juegoId) => {
-  const response = await fetch(`http://localhost:3000/api/productos/detail/${juegoId}`, 
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/productos/detail/${juegoId}`, 
     {next: {revalidate: 60}}
   );
   const data = await response.json();
@@ -54,7 +54,7 @@ export const getProductoById = async (juegoId) => {
 };
 
 export const getProductosOrdenados = async (filtro) => {
-  const response = await fetch(`http://localhost:3000/api/productos/ordenados/${filtro}`, 
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/productos/ordenados/${filtro}`, 
     {next: {revalidate: 180}}  // cada 3 min se actualiza
   );
   const data = await response.json();
@@ -62,7 +62,7 @@ export const getProductosOrdenados = async (filtro) => {
 };
 
 export const updateProducto = async (juegoId, titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating, stock) => {
-  const response = await fetch(`http://localhost:3000/api/productos/producto/${juegoId}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/productos/producto/${juegoId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

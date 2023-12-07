@@ -11,7 +11,7 @@ const initialState = {
 export const getUserCart = createAsyncThunk(
   'cart/getUserCart',
   async (usuarioEmail) => {
-    const response = await fetch(`http://localhost:3000/api/cart/${usuarioEmail}`, {next:{revalidate:0}});
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cart/${usuarioEmail}`, {next:{revalidate:0}});
     const data = await response.json();    
     return data;
   }
@@ -20,7 +20,7 @@ export const getUserCart = createAsyncThunk(
 export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async (cartItem) => {
-    const response = await fetch(`http://localhost:3000/api/cart`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cart`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export const addToCart = createAsyncThunk(
 export const deleteProductFromCart = createAsyncThunk(
   'cart/deleteProductFromCart',
   async (cartItem) => {
-    const response = await fetch(`http://localhost:3000/api/cart`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cart`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export const deleteProductFromCart = createAsyncThunk(
 export const clearCart = createAsyncThunk(
   'cart/clearCart',
   async (usuarioEmail) => {
-    const response = await fetch(`http://localhost:3000/api/cart/${usuarioEmail}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cart/${usuarioEmail}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

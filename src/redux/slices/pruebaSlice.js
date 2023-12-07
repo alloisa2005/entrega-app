@@ -10,7 +10,7 @@ const initialState = {
 export const getPruebas = createAsyncThunk(
   "prueba/getPruebas",
   async () => {
-    const response = await fetch(`http://localhost:3000/api/prueba`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/prueba`);
     const data = await response.json();
     return data;
   }
@@ -19,7 +19,7 @@ export const getPruebas = createAsyncThunk(
 export const addToPruebas = createAsyncThunk(    
   "prueba/addToPruebas",
   async (prueba) => {
-    const response = await fetch(`http://localhost:3000/api/prueba`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/prueba`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

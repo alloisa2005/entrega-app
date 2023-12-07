@@ -10,7 +10,7 @@ const initialState = {
 export const getUserCompras = createAsyncThunk(
   'compras/getUserCompras',
   async (usuarioEmail) => {
-    const response = await fetch(`http://localhost:3000/api/compras/${usuarioEmail}`, {next:{revalidate:0}});
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/compras/${usuarioEmail}`, {next:{revalidate:0}});
     const data = await response.json();    
     return data;
   }

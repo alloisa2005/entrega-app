@@ -10,7 +10,7 @@ export const saveUser = async (nombre, email, direccion, password, fileImg) => {
 
   const image = response.imgUrl;
 
-  response = await fetch("http://localhost:3000/api/usuarios/", {
+  response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/usuarios/`, { 
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -34,7 +34,7 @@ export const saveUser = async (nombre, email, direccion, password, fileImg) => {
 };
 
 export const getUsers = async () => {
-  const response = await fetch("http://localhost:3000/api/usuarios/", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/usuarios/`, {  
     next: {
       revalidate: 0,
     }
@@ -44,13 +44,13 @@ export const getUsers = async () => {
 };
 
 export const getUserById = async (id) => {
-  const response = await fetch(`http://localhost:3000/api/usuarios/${id}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/usuarios/${id}`);  // 
   const data = await response.json();
   return data;
 }
 
 export const actualizarUsuario = async (id, isAdmin, activo) => {
-  const response = await fetch(`http://localhost:3000/api/usuarios/${id}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/usuarios/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

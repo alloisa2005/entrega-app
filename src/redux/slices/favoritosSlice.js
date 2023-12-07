@@ -9,7 +9,7 @@ const initialState = {
 export const getFavoritosByUser = createAsyncThunk(
   "favoritos/getFavoritos",
   async (usuarioEmail) => {
-    const response = await fetch(`http://localhost:3000/api/favoritos/${usuarioEmail}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/favoritos/${usuarioEmail}`);
     const data = await response.json();    
     return data;
   }
@@ -18,7 +18,7 @@ export const getFavoritosByUser = createAsyncThunk(
 export const addToFavoritos = createAsyncThunk(
   "favoritos/addToFavoritos",
   async (favorito) => {
-    const response = await fetch(`http://localhost:3000/api/favoritos`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/favoritos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
