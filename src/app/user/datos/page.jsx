@@ -12,7 +12,8 @@ const MisDatos = async () => {
 
   return (
     <div className='contenedor my-4 alturaMinima'>
-      <p className='border-b-2 border-black text-2xl italic mb-3'>Mis Datos</p>                
+      <p className='border-b-2 border-black text-2xl italic mb-3'>Mis Datos</p>          
+      {/* TODO: Completar pagina de MIS DATOS       */}
     </div>
   )
 }
