@@ -31,13 +31,13 @@ export const authOptions = {
       },      
     }),
   ],
-  callbacks: {
+  callbacks: {    
     async session(session, user) {
       await connectDB();
       const userSession = await User.findOne({ email: session.token.email }).select("-password");
       session.user = userSession;      
       return session;
-    },    
+    },  
   },
   session: {
     strategy: "jwt",
