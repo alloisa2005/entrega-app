@@ -64,7 +64,7 @@ export const actualizarUsuario = async (id, isAdmin, activo) => {
   return data;
 };
 
-export const actualizarEmailUsuario = async (id, direccion) => {
+export const actualizarDireccionUsuario = async (id, direccion) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/usuarios/`, {
     method: "PUT",
     headers: {
