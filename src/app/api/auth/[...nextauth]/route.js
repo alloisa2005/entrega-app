@@ -16,13 +16,15 @@ export const authOptions = {
 
         try {
           await connectDB();
-          const user = await User.findOne({ email });
+          const user = await User.findOne({ email });          
 
           if(!user) return null;
 
           const passwordCoincide = await bcrypt.compare(password, user.password);
 
           if(!passwordCoincide) return null;
+
+          if(!user.activo) return null;
 
           return user;
         } catch (error) {
