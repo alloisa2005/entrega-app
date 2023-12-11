@@ -33,3 +33,17 @@ export const POST = async (req) => {
     return NextResponse.json({msg: error.message}, { status: 400 });
   }
 };
+
+export const PUT = async (req) => {
+  const { id, direccion } = await req.json();
+
+  try {
+    await connectDB();
+
+    const user = await User.findByIdAndUpdate(id, { direccion }, { new: true }).select("-password");
+    return NextResponse.json(user, { status: 201 });
+
+  } catch (error) {
+    return NextResponse.json({msg: error.message}, { status: 400 });
+  }
+}

@@ -63,3 +63,15 @@ export const actualizarUsuario = async (id, isAdmin, activo) => {
   const data = await response.json();
   return data;
 };
+
+export const actualizarEmailUsuario = async (id, direccion) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/usuarios/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({id, direccion}),
+  });
+  const data = await response.json();
+  return data;
+};
