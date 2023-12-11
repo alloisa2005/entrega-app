@@ -28,9 +28,9 @@ const CompraItem = ({ compra, onClick, selected, index }) => {
           <>
           {
             productosCompra.map((producto) => (
-              <div key={producto.producto._id} className='flex items-center gap-3'>
+              <div key={producto.producto._id} className='flex items-center gap-3 mb-2'>
                 <Image 
-                  className="w-14 h-14 object-contain"
+                  className="w-12 h-16 object-contain"
                   src={producto.producto.boxImage} 
                   alt={producto.producto.titulo} 
                   width={50} 
