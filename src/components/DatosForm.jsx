@@ -4,6 +4,8 @@ import { convertirfecha } from '@/utils/convertirFecha';
 import { useSession } from 'next-auth/react'
 import Image from 'next/image';
 import React, { useState } from 'react'
+import { FaRegEdit } from "react-icons/fa";
+
 
 const DatosForm = () => {
 
@@ -29,13 +31,16 @@ const DatosForm = () => {
       </div>
 
       <div className="flex flex-col mt-10">
-        <label className="font-bold">Dirección</label>
-        <input
-          value={newDireccion}   
-          onChange={(e) => setNewDireccion(e.target.value)}         
-          type="text"
-          className="border rounded-md p-2 outline-none focus:border-black focus:shadow-md"
-        />
+        <label className="font-bold text-md">Dirección</label>
+        <div className='flex items-center justify-between gap-8'>
+          <input
+            value={newDireccion}   
+            onChange={(e) => setNewDireccion(e.target.value)}         
+            type="text"
+            className="w-full border rounded-md p-2 outline-none focus:border-black focus:shadow-md"
+          />
+          <FaRegEdit size={30} className='text-gray-500 hover:cursor-pointer hover:text-black ease-in duration-200' />
+        </div>
       </div>
     </div>
   )

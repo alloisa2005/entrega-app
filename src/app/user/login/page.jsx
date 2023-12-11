@@ -1,5 +1,8 @@
 
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { LoginForm } from '@/components/LoginForm'
+import { getServerSession } from 'next-auth'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
 export const metadata = {
@@ -7,7 +10,14 @@ export const metadata = {
   description: "Home page",
 }
 
-const Login = () => {
+const Login = async () => {
+
+  const session = await getServerSession(authOptions)
+
+  if (session) {
+    redirect('/tienda/categorias/all')
+  }
+
   return (    
     <div className='font-montserrat contenedor my-4 flex items-center justify-center w-full min-h-[calc(100vh-140px)]'>
       <div className='flex flex-col gap-3 items-center justify-center w-full h-full'>

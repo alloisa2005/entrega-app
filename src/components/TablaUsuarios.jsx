@@ -125,16 +125,12 @@ const TablaUsuarios = ({ data }) => {
       cell: (info) => {
         const userId = info.row.original._id;
         return (
-          <div className="w-full flex gap-3">            
+          <div className="w-full pl-6">            
             <FaRegEdit
             onClick={() => handleOpciones(info.row.original)}
               size={22}
               className="text-green-400 hover:text-green-500 hover:cursor-pointer hover:scale-110 ease-in duration-300"
-            />            
-            <MdOutlineDelete
-              size={24}
-              className="text-red-400 hover:text-red-500 hover:cursor-pointer hover:scale-110 ease-in duration-300"
-            />
+            />                        
           </div>
         );
       },
